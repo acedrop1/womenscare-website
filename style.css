@@ -2866,3 +2866,24 @@ a:hover .cta_arrow { background: var(--rose_dark); }
 @media (max-width: 540px) {
   .lang_toggle { margin-right: 6px; }
 }
+
+/* ============================================
+   MOBILE POLISH (authoritative — keep last)
+   1. Horizontal gutters: section containers use the
+      `padding: N 0` shorthand, which zeroes side
+      padding and leaves content edge-to-edge. Restore
+      side breathing room with longhand so vertical
+      padding set elsewhere is preserved.
+   2. Floating buttons: the sticky book bar is hidden
+      on mobile, so the AI + call FABs no longer need a
+      92px offset to clear it — dock them near the
+      bottom edge, respecting the safe-area inset.
+   ============================================ */
+@media (max-width: 980px) {
+  .container,
+  .sec,
+  .world { padding-left: 22px; padding-right: 22px; }
+
+  .ai_fab,
+  .call_fab { bottom: calc(18px + env(safe-area-inset-bottom)); }
+}
