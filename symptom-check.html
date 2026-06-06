@@ -1,0 +1,1736 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Menopause Symptom Check · Women's Care of NJ</title>
+<meta name="description" content="Anonymous 3 minute menopause and perimenopause symptom check based on the Greene Climacteric Scale. From Women's Care OB/GYN of NJ.">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://womenscarenj.com/symptom-check.html">
+<meta property="og:title" content="Menopause Symptom Check · Women's Care of NJ">
+<meta property="og:description" content="Anonymous 3 minute check. Find out if your symptoms could be perimenopause.">
+<meta property="og:image" content="social.svg">
+<meta property="og:image:width" content="1672">
+<meta property="og:image:height" content="941">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Menopause Symptom Check · Women's Care of NJ">
+<meta name="twitter:description" content="Anonymous 3 minute check. Find out if your symptoms could be perimenopause.">
+<meta name="twitter:image" content="social.svg">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/lay-grotesk" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<style>
+:root {
+  --bg: #ffffff;
+  --bg_section: #f4f8fc;
+  --bg_warm: #eef3f8;
+  --card: #ffffff;
+  --ink: #0a1733;
+  --ink_soft: #475569;
+  --muted: #94a3b8;
+  --line: #e2e8f0;
+  --line_soft: #eef2f7;
+  --accent: #0a1733;
+  --accent_soft: #d6e4f0;
+  --tint: #e0eaf3;
+  --rose: #be4255;
+  --rose_dark: #98364a;
+  --rose_soft: #fdf2f4;
+  --peach: #f6cfb5;
+  --sage: #4f7c82;
+  --sage_soft: #dbe8e9;
+  --gold: #c9a86a;
+  --ok: #4b8a5b;
+  --radius: 16px;
+  --shadow_pill: 0 8px 24px rgba(15,23,42,0.08), 0 1px 2px rgba(15,23,42,0.06);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Lay Grotesk", "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+button { font-family: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+a { color: inherit; text-decoration: none; }
+
+/* App shell */
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  position: relative;
+}
+
+/* Top bar */
+.top {
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ink);
+  transition: opacity 0.2s;
+}
+.logo:hover { opacity: 0.7; }
+.logo img { height: 26px; width: auto; display: block; }
+.logo_sub { display: none; }
+.logo_mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+.close_btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 1px 3px rgba(15,23,42,0.06);
+  transition: transform 0.15s;
+}
+.close_btn:active { transform: scale(0.92); }
+
+/* Progress */
+.progress_wrap {
+  padding: 0 20px 16px;
+  display: none;
+}
+.progress_wrap.show { display: block; }
+.progress_bar {
+  height: 8px;
+  background: var(--line_soft);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress_fill {
+  height: 100%;
+  background: var(--ink);
+  border-radius: 99px;
+  width: 0;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.progress_meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+/* Resume banner */
+.resume_banner {
+  margin: 0 20px 16px;
+  background: var(--accent_soft);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 14px 16px;
+  border-radius: 14px;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--ink);
+}
+.resume_banner.show { display: flex; }
+.resume_btn {
+  margin-left: auto;
+  background: var(--ink);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 99px;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+/* Screens */
+.screen {
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  padding: 0 20px;
+}
+.screen.active { display: flex; }
+.screen.entering { animation: slideIn 0.45s cubic-bezier(0.22, 0.61, 0.36, 1); }
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Welcome screen */
+.welcome {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32px 4px;
+}
+.welcome_art {
+  width: 96px;
+  height: 96px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, var(--peach), var(--rose));
+  margin: 0 auto 28px;
+  display: grid;
+  place-items: center;
+  color: white;
+  box-shadow: 0 20px 40px rgba(156,29,42,0.2);
+  animation: pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes pop {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.welcome_h1 {
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.welcome_h1 em { font-style: italic; color: var(--rose); font-weight: 500; }
+.welcome_sub {
+  font-size: 16px;
+  color: var(--ink_soft);
+  text-align: center;
+  margin-bottom: 28px;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.welcome_facts {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+.fact {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: white;
+  border-radius: 99px;
+  font-size: 13px;
+  color: var(--ink_soft);
+  font-weight: 500;
+  box-shadow: var(--shadow_pill);
+  border: 1px solid rgba(15,23,42,0.04);
+}
+
+/* Question screen */
+.q_meta {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 8px;
+  margin-bottom: 14px;
+}
+.q_text {
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.q_hint {
+  font-size: 15px;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 28px;
+}
+.opts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.opt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+  background: white;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  text-align: left;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(15,23,42,0.04);
+  min-height: 70px;
+  width: 100%;
+  font-family: inherit;
+}
+.opt:active { transform: scale(0.98); }
+.opt:hover { border-color: rgba(15, 23, 42, 0.15); }
+.opt.selected {
+  background: var(--ink);
+  border-color: var(--ink);
+  transform: scale(1.015);
+  box-shadow: 0 10px 30px rgba(15,23,42,0.25);
+}
+.opt.selected .opt_label { color: white; }
+.opt.selected .opt_num { background: white; color: var(--ink); }
+.opt_label {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.opt_num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent_soft);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  font-weight: 500;
+  font-size: 15px;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+/* Bottom action area (sticky) */
+.actions {
+  padding: 16px 20px calc(20px + env(safe-area-inset-bottom));
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: linear-gradient(to top, var(--bg) 70%, rgba(255,255,255,0));
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+}
+.btn {
+  flex: 1;
+  padding: 16px 20px;
+  border-radius: 99px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+  min-height: 56px;
+  letter-spacing: -0.01em;
+}
+.btn:active { transform: scale(0.98); }
+.btn_primary { background: var(--ink); color: white; }
+.btn_primary:disabled { background: var(--line); color: var(--muted); cursor: not-allowed; transform: none; }
+.btn_rose { background: var(--ink); color: white; box-shadow: 0 10px 28px rgba(15,23,42,0.28); }
+.btn_back {
+  flex: 0;
+  width: 56px;
+  min-width: 56px;
+  background: white;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  padding: 14px;
+}
+
+/* Group intro */
+.group_intro {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 4px;
+  text-align: center;
+}
+.group_icon {
+  width: 88px;
+  height: 88px;
+  border-radius: 26px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 24px;
+  animation: pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.group_eyebrow {
+  font-size: 12px;
+  color: var(--rose);
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.group_title {
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.group_desc {
+  color: var(--ink_soft);
+  font-size: 16px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+/* Results */
+.results {
+  padding: 16px 0 0;
+  flex: 1;
+}
+.res_head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 6px;
+  justify-content: space-between;
+}
+.res_head_left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  flex: 1;
+}
+.res_pdf_top {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: var(--ink);
+  color: white;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  border: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  letter-spacing: -0.01em;
+}
+.res_pdf_top:hover { background: #1a2547; transform: translateY(-1px); }
+.res_pdf_top:disabled { opacity: 0.6; cursor: wait; }
+.res_icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--peach), var(--rose));
+  display: grid;
+  place-items: center;
+  color: white;
+  flex-shrink: 0;
+}
+.res_eyebrow {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 500;
+}
+.res_title {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.res_disclaimer {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 6px 0 20px;
+}
+
+.res_card {
+  background: white;
+  border-radius: 16px;
+  padding: 18px 18px 16px;
+  margin: 12px 0;
+  border: 1px solid var(--line_soft);
+}
+.res_card_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.res_card_name { font-size: 16px; font-weight: 500; letter-spacing: -0.01em; }
+.res_card_tag {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 99px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.res_card_bar {
+  height: 8px;
+  background: var(--line_soft);
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 4px 0 8px;
+}
+.res_card_fill { height: 100%; border-radius: 99px; width: 0; transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1); }
+.res_card_score { font-size: 12px; color: var(--muted); font-weight: 600; }
+.res_card_msg { font-size: 14px; color: var(--ink_soft); margin-top: 10px; line-height: 1.55; }
+.tier_mild .res_card_fill { background: var(--ok); }
+.tier_mild .res_card_tag { background: #d1fae5; color: #065f46; }
+.tier_mod  .res_card_fill { background: var(--gold); }
+.tier_mod  .res_card_tag { background: #fef3c7; color: #92400e; }
+.tier_sig  .res_card_fill { background: var(--rose); }
+.tier_sig  .res_card_tag { background: var(--rose_soft); color: var(--rose); }
+
+.urgent {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-size: 14px;
+  color: #7f1d1d;
+  margin: 16px 0;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.urgent svg { flex-shrink: 0; margin-top: 2px; }
+.urgent a { color: #7f1d1d; font-weight: 500; text-decoration: underline; }
+
+.res_cta {
+  background: linear-gradient(160deg, #0a1733 0%, #1a2547 60%, #2a3760 100%);
+  color: white;
+  padding: 28px 24px;
+  border-radius: 24px;
+  margin: 20px 0 12px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.res_cta::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(40% 60% at 80% 20%, rgba(214,228,240,0.2), transparent);
+}
+.res_cta_inner { position: relative; }
+.res_cta h3 {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  line-height: 1.15;
+}
+.res_cta p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 18px;
+}
+.res_cta_btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 8px;
+  padding: 16px 20px;
+  background: white;
+  color: var(--ink);
+  border-radius: 99px;
+  font-weight: 500;
+  font-size: 15px;
+  min-height: 54px;
+  letter-spacing: -0.01em;
+}
+.res_phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  color: white;
+  text-decoration: underline;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.res_secondary {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-top: 14px;
+  padding-bottom: 30px;
+}
+.res_ghost {
+  padding: 14px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--ink);
+  min-height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.disclaimer {
+  font-size: 11.5px;
+  color: var(--muted);
+  text-align: center;
+  padding: 16px 0 32px;
+  line-height: 1.5;
+}
+
+/* Bottom sheet modal */
+.sheet_bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,42,0.55);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  z-index: 99;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fadeIn 0.2s;
+}
+.sheet_bg.show { display: flex; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.sheet {
+  width: 100%;
+  max-width: 480px;
+  background: white;
+  border-radius: 24px 24px 0 0;
+  padding: 32px 22px calc(22px + env(safe-area-inset-bottom));
+  animation: slideUp 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+}
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.sheet h3 {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.sheet p {
+  color: var(--ink_soft);
+  font-size: 15px;
+  margin-bottom: 22px;
+}
+.sheet_actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ===== DESKTOP LAYOUT (tablet and up) ===== */
+@media (min-width: 760px) {
+  html, body { height: 100dvh; overflow: hidden; }
+  body {
+    background: linear-gradient(180deg, #f4f8fc 0%, #ffffff 30%, #ffffff 100%);
+    padding: 0;
+    display: block;
+  }
+  .app {
+    height: 100dvh;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 48px 32px;
+    box-shadow: none;
+    border-radius: 0;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Top bar */
+  .top {
+    padding: 0 0 16px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  .logo img { height: 28px; }
+  .close_btn {
+    width: 42px; height: 42px;
+    background: white;
+    border: 1px solid var(--line);
+  }
+
+  /* Screens fill remaining viewport, no scroll except results */
+  .screen.active {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 0;
+  }
+  #screen_results.active {
+    overflow-y: auto;
+    justify-content: flex-start;
+    padding-top: 16px;
+  }
+
+  /* Progress is a centered bar with side meta */
+  .progress_wrap { padding: 0 0 24px; max-width: 720px; margin: 0 auto; flex-shrink: 0; }
+  .progress_bar { height: 8px; }
+  .progress_meta { margin-top: 10px; font-size: 13px; }
+
+  /* Resume banner: centered, narrower */
+  .resume_banner { max-width: 720px; margin: 0 auto 16px; padding: 14px 20px; border-radius: 14px; flex-shrink: 0; }
+
+  /* Welcome screen: two column, fills remaining space */
+  #screen_welcome.active {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 18px 64px;
+    align-items: center;
+    align-content: center;
+    max-width: 1080px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0;
+  }
+  .welcome { display: contents; }
+  .welcome_art {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    width: 100%;
+    max-width: 420px;
+    max-height: min(60vh, 420px);
+    aspect-ratio: 1;
+    border-radius: 32px;
+    margin: 0;
+    align-self: center;
+    box-shadow: 0 30px 80px rgba(156,29,42,0.15);
+  }
+  .welcome_art svg { width: 88px; height: 88px; }
+  .welcome_h1 {
+    font-size: clamp(40px, 4.6vw, 62px);
+    text-align: left;
+    margin-bottom: 0;
+    grid-column: 2; grid-row: 1;
+    align-self: end;
+    line-height: 1.02;
+  }
+  .welcome_sub {
+    font-size: 17px;
+    text-align: left;
+    margin: 0;
+    max-width: 460px;
+    grid-column: 2; grid-row: 2;
+  }
+  .welcome_facts {
+    justify-content: flex-start;
+    margin: 0;
+    grid-column: 2; grid-row: 3;
+  }
+  #screen_welcome .actions {
+    background: none;
+    position: static;
+    padding: 0;
+    justify-content: flex-start;
+    grid-column: 2; grid-row: 4;
+    margin-top: 4px;
+  }
+  #screen_welcome .actions .btn { flex: 0; padding: 14px 26px; min-width: 200px; min-height: 52px; }
+
+  /* Question screen layout */
+  #screen_question {
+    max-width: 920px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0;
+  }
+  .q_meta {
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+  .q_text {
+    font-size: clamp(34px, 3.6vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 8px;
+  }
+  .q_hint {
+    font-size: 16px;
+    margin-bottom: 28px;
+  }
+
+  /* Horizontal answer buttons */
+  .opts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .opt {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 22px 14px;
+    min-height: 120px;
+    gap: 10px;
+  }
+  .opt_num {
+    width: 40px; height: 40px;
+    font-size: 16px;
+    order: -1;
+  }
+  .opt_label {
+    font-size: 15px;
+  }
+
+  /* Bottom actions: in line, narrower */
+  #screen_question > div[style*="flex"] { display: none; }
+  #screen_question .actions {
+    background: none;
+    position: static;
+    padding: 0;
+    justify-content: space-between;
+    margin-top: 0;
+  }
+  #screen_question .actions .btn_back {
+    width: auto; min-width: 56px;
+  }
+  #screen_question .actions .btn_primary {
+    flex: 0;
+    padding: 14px 28px;
+    min-width: 160px;
+    min-height: 52px;
+  }
+
+  /* Group intro */
+  #screen_group { justify-content: center; }
+  #screen_group .group_intro {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+  }
+  .group_icon { width: 88px; height: 88px; margin-bottom: 20px; }
+  .group_icon svg { width: 40px; height: 40px; }
+  .group_title { font-size: clamp(36px, 3.6vw, 48px); }
+  .group_desc { font-size: 17px; max-width: 420px; }
+  #screen_group .actions {
+    background: none;
+    position: static;
+    padding: 20px 0 0;
+    justify-content: center;
+    margin-top: 0;
+  }
+  #screen_group .actions .btn { flex: 0; min-width: 220px; min-height: 52px; padding: 14px 28px; }
+
+  /* Results */
+  #screen_results { max-width: 1080px; margin: 0 auto; padding: 0; }
+  .results { padding: 0; }
+  .res_head { gap: 18px; margin-bottom: 8px; }
+  .res_icon { width: 56px; height: 56px; }
+  .res_eyebrow { font-size: 13px; letter-spacing: 2px; }
+  .res_title {
+    font-size: clamp(40px, 4vw, 56px);
+    letter-spacing: -0.025em;
+  }
+  .res_disclaimer { font-size: 15px; margin-bottom: 28px; }
+
+  .res_cards_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  #subscales {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .res_card { padding: 28px; margin: 0; min-height: 200px; }
+  .res_card_name { font-size: 19px; }
+  .res_card_msg { font-size: 15px; }
+
+  /* CTA */
+  .res_cta {
+    padding: 48px 56px;
+    border-radius: 28px;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-areas:
+      "title button"
+      "text  button"
+      ".     phone";
+    gap: 12px 40px;
+    align-items: center;
+  }
+  .res_cta_inner { display: contents; }
+  .res_cta h3 { grid-area: title; font-size: clamp(28px, 3vw, 40px); margin: 0; align-self: end; }
+  .res_cta p { grid-area: text; font-size: 16px; margin: 0; max-width: 480px; }
+  .res_cta_btn { grid-area: button; width: auto; padding: 18px 32px; align-self: center; justify-self: end; min-width: 200px; }
+  .res_phone { grid-area: phone; justify-self: end; margin-top: 4px; }
+
+  .res_secondary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 8px;
+    padding-bottom: 0;
+  }
+
+  /* Compact results to fit one viewport */
+  #screen_results.active { overflow-y: hidden; padding-top: 0; }
+  .results { padding: 0; }
+  .res_head { margin-bottom: 4px; }
+  .res_disclaimer { font-size: 13px; margin-bottom: 12px; }
+  #subscales { gap: 10px; margin-bottom: 8px; }
+  .res_card { padding: 16px 18px 14px; min-height: 0; }
+  .res_card_name { font-size: 16px; }
+  .res_card_msg { font-size: 13px; line-height: 1.4; margin-top: 6px; }
+  .res_card_bar { margin: 4px 0 6px; }
+  .res_card_score { font-size: 11.5px; }
+  .res_cta { padding: 22px 24px; margin: 8px 0 0; border-radius: 18px; }
+  .res_cta h3 { font-size: 22px; }
+  .res_cta p { font-size: 14px; }
+  .res_cta_btn { padding: 12px 20px; min-width: 160px; min-height: 0; font-size: 14px; }
+  .res_phone { font-size: 13px; margin-top: 0; }
+  .res_ghost { padding: 10px; min-height: 44px; font-size: 13px; }
+  .disclaimer { padding: 8px 0 0; font-size: 11px; }
+
+  /* Modal sheet centers on desktop */
+  .sheet_bg { align-items: center; }
+  .sheet {
+    max-width: 460px;
+    border-radius: 24px;
+    padding: 36px 32px;
+    animation: scaleIn 0.25s ease;
+  }
+  @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+}
+
+/* Extra polish for big screens */
+@media (min-width: 1100px) {
+  .app { padding: 40px 56px 40px; }
+  .welcome_h1 { font-size: clamp(48px, 5vw, 72px); }
+  .welcome_art { max-width: 460px; max-height: min(62vh, 460px); }
+}
+
+/* Tighter spacing for short viewports */
+@media (min-width: 760px) and (max-height: 760px) {
+  .app { padding: 24px 32px; }
+  .welcome_h1 { font-size: clamp(34px, 4vw, 48px); line-height: 1; }
+  .welcome_sub { font-size: 15px; }
+  .q_text { font-size: clamp(28px, 3vw, 36px); }
+  .opt { min-height: 100px; padding: 18px 12px; }
+  .group_title { font-size: clamp(28px, 3vw, 36px); }
+}
+
+/* Mobile results compact layout */
+@media (max-width: 759px) {
+  .res_head { flex-direction: column; align-items: stretch; gap: 12px; margin-bottom: 4px; }
+  .res_head_left { width: 100%; }
+  .res_pdf_top { width: 100%; justify-content: center; padding: 13px 18px; font-size: 14.5px; }
+  .res_disclaimer { font-size: 12.5px; margin-bottom: 10px; }
+  #subscales { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 4px; }
+  .res_card { padding: 12px; margin: 0; min-height: 0; border-radius: 12px; }
+  .res_card_head { margin-bottom: 4px; gap: 6px; }
+  .res_card_name { font-size: 13.5px; }
+  .res_card_tag { font-size: 9px; padding: 3px 7px; letter-spacing: 0.4px; }
+  .res_card_bar { height: 5px; margin: 3px 0 5px; }
+  .res_card_score { font-size: 10.5px; }
+  .res_card_msg { display: none; }
+  .res_cta { padding: 18px; margin: 8px 0 0; border-radius: 14px; }
+  .res_cta h3 { font-size: 17px; line-height: 1.1; margin-bottom: 4px; }
+  .res_cta p { font-size: 12.5px; margin-bottom: 12px; }
+  .res_cta_btn { padding: 11px 18px; min-height: 0; font-size: 14px; }
+  .res_phone { font-size: 12.5px; margin-top: 4px; }
+  .res_secondary {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    padding-bottom: 4px;
+    margin-top: 8px;
+  }
+  .res_ghost {
+    padding: 8px 4px;
+    min-height: 50px;
+    font-size: 11px;
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+  .res_ghost svg { width: 16px; height: 16px; }
+  .disclaimer { display: none; }
+}
+</style>
+<!-- Google Analytics 4 — REPLACE G-XXXXXXXXXX WITH YOUR MEASUREMENT ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX', { 'anonymize_ip': true });
+</script>
+</head>
+<body>
+
+<div class="app">
+  <!-- Top bar -->
+  <div class="top">
+    <a href="index.html" class="logo" aria-label="Women's Care OB/GYN of NJ home">
+      <img src="logo.svg" alt="Women's Care OB/GYN of NJ">
+    </a>
+    <button class="close_btn" id="closeBtn" aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- Resume banner -->
+  <div class="resume_banner" id="resumeBanner">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--rose);"><path d="M12 8v4l3 3M12 22a10 10 0 100-20 10 10 0 000 20z"/></svg>
+    <span>Welcome back. Continue where you left off?</span>
+    <button class="resume_btn" id="resumeBtn">Resume</button>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress_wrap" id="progressWrap">
+    <div class="progress_bar"><div class="progress_fill" id="progressFill"></div></div>
+    <div class="progress_meta">
+      <span id="progressLabel">Question 1 of 21</span>
+      <span id="progressTime">about 3 min</span>
+    </div>
+  </div>
+
+  <!-- Welcome screen -->
+  <div class="screen active" id="screen_welcome">
+    <div class="welcome">
+      <div class="welcome_art">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      </div>
+      <h1 class="welcome_h1">Is this <em>perimenopause?</em></h1>
+      <p class="welcome_sub">Many women have symptoms they don't realize are connected. Our clinicians are NAMS certified by the North American Menopause Society. Take this 3 minute check to find out where you stand.</p>
+      <div class="welcome_facts">
+        <span class="fact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 3 minutes</span>
+        <span class="fact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> Anonymous</span>
+        <span class="fact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 13h6M9 17h4"/></svg> 21 questions</span>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn btn_rose" id="startBtn">
+        Start the check
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Group intro screen -->
+  <div class="screen" id="screen_group">
+    <div class="group_intro">
+      <div class="group_icon" id="groupIcon"></div>
+      <div class="group_eyebrow" id="groupEyebrow"></div>
+      <h2 class="group_title" id="groupTitle"></h2>
+      <p class="group_desc" id="groupDesc"></p>
+    </div>
+    <div class="actions">
+      <button class="btn btn_rose" id="groupNextBtn">
+        Continue
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Question screen -->
+  <div class="screen" id="screen_question">
+    <div class="q_meta" id="qMeta">Mood &middot; Item 1</div>
+    <h2 class="q_text" id="qText">Heart beating quickly or strongly</h2>
+    <p class="q_hint">How much is this bothering you right now?</p>
+    <div class="opts" id="opts"></div>
+    <div style="flex:1; min-height: 20px"></div>
+    <div class="actions">
+      <button class="btn btn_back" id="backBtn" aria-label="Back">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <button class="btn btn_primary" id="nextBtn" disabled>
+        Next
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Results screen -->
+  <div class="screen" id="screen_results">
+    <div class="results">
+      <div class="res_head">
+        <div class="res_head_left">
+          <div class="res_icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4M12 22a10 10 0 100-20 10 10 0 000 20z"/></svg>
+          </div>
+          <div>
+            <div class="res_eyebrow">All done</div>
+            <div class="res_title">Here's what you shared.</div>
+          </div>
+        </div>
+        <button class="res_pdf_top" id="pdfBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          <span id="pdfLabel">Download PDF</span>
+        </button>
+      </div>
+      <p class="res_disclaimer">Educational only. Not a diagnosis. Bring the PDF to your visit if you'd like to talk it through.</p>
+
+      <div id="urgentBlock"></div>
+      <div id="subscales"></div>
+
+      <div class="res_cta">
+        <div class="res_cta_inner">
+          <h3>Talk to a provider who gets it.</h3>
+          <p>Our team treats menopause every day. Most symptoms can be eased with the right plan.</p>
+          <a href="contact.html" class="res_cta_btn">
+            Book a visit
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="tel:9737825577" class="res_phone">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.72 2.8a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.35 1.84.59 2.8.72A2 2 0 0122 16.92z"/></svg>
+            Or call (973) 782 5577
+          </a>
+        </div>
+      </div>
+
+      <div class="res_secondary">
+        <button class="res_ghost" id="copyBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          <span id="copyLabel">Copy summary</span>
+        </button>
+        <button class="res_ghost" id="restartBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 109-9M3 4v8h8"/></svg>
+          Take it again
+        </button>
+        <a href="index.html" class="res_ghost" id="doneBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12L21 12M3 12l6 6M3 12l6-6"/></svg>
+          Done
+        </a>
+      </div>
+
+      <p class="disclaimer">Uses the Greene Climacteric Scale, a 21 item screening questionnaire published by J. Greene in the Journal of Psychosomatic Research (1976), 20, 425 to 430.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Exit bottom sheet -->
+<div class="sheet_bg" id="exitSheet">
+  <div class="sheet">
+    <h3>Save and come back later?</h3>
+    <p>Your progress is saved on this device. You can pick up right where you left off.</p>
+    <div class="sheet_actions">
+      <button class="btn btn_primary" id="exitConfirm">Save and exit</button>
+      <button class="btn btn_back" id="exitCancel" style="flex: 1; width: 100%; min-width: 0; background: white; border: 1px solid var(--line);">Keep going</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'wcnj_symptom_v1';
+
+const questions = [
+  { id: 1,  text: "Heart beating quickly or strongly",        group: "psychological" },
+  { id: 2,  text: "Feeling tense or nervous",                  group: "psychological" },
+  { id: 3,  text: "Difficulty sleeping",                       group: "psychological" },
+  { id: 4,  text: "Feeling easily upset or excitable",         group: "psychological" },
+  { id: 5,  text: "Attacks of anxiety or panic",               group: "psychological" },
+  { id: 6,  text: "Difficulty concentrating",                  group: "psychological" },
+  { id: 7,  text: "Feeling tired or lacking energy",           group: "psychological" },
+  { id: 8,  text: "Loss of interest in most things",           group: "psychological" },
+  { id: 9,  text: "Feeling unhappy or depressed",              group: "psychological" },
+  { id: 10, text: "Crying spells",                             group: "psychological" },
+  { id: 11, text: "Irritability",                              group: "psychological" },
+  { id: 12, text: "Feeling dizzy or faint",                    group: "physical" },
+  { id: 13, text: "Pressure or tightness in the head",         group: "physical" },
+  { id: 14, text: "Parts of body feeling numb",                group: "physical" },
+  { id: 15, text: "Headaches",                                 group: "physical" },
+  { id: 16, text: "Muscle and joint pains",                    group: "physical" },
+  { id: 17, text: "Loss of feeling in hands or feet",          group: "physical" },
+  { id: 18, text: "Breathing difficulties",                    group: "physical" },
+  { id: 19, text: "Hot flushes",                               group: "vasomotor" },
+  { id: 20, text: "Sweating at night",                         group: "vasomotor" },
+  { id: 21, text: "Loss of interest in sex",                   group: "sexual" }
+];
+
+const options = [
+  { val: 0, label: "Not at all" },
+  { val: 1, label: "A little" },
+  { val: 2, label: "Quite a bit" },
+  { val: 3, label: "Extremely" }
+];
+
+const groupLabels = {
+  psychological: "Mood",
+  physical: "Physical",
+  vasomotor: "Vasomotor",
+  sexual: "Sexual health"
+};
+
+const groupIntros = {
+  psychological: {
+    eyebrow: "Section 1 of 4",
+    title: "How you've been feeling",
+    desc: "11 quick questions about your mood, sleep, and energy.",
+    icon: '<svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12h.01M15 12h.01M9 16c1 1 2 1.5 3 1.5s2-.5 3-1.5M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>',
+    bg: 'var(--rose_soft)',
+    color: 'var(--rose)'
+  },
+  physical: {
+    eyebrow: "Section 2 of 4",
+    title: "Physical symptoms",
+    desc: "7 questions about how your body feels.",
+    icon: '<svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="5" r="2.5"/><path d="M9 22V12l-3 -3M15 22V12l3 -3M9 12h6"/></svg>',
+    bg: 'var(--sage_soft)',
+    color: 'var(--sage)'
+  },
+  vasomotor: {
+    eyebrow: "Section 3 of 4 · Almost done!",
+    title: "Hot flushes and sweats",
+    desc: "Just 2 quick questions in this section.",
+    icon: '<svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M2 12h3M19 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>',
+    bg: '#fef3c7',
+    color: 'var(--gold)'
+  },
+  sexual: {
+    eyebrow: "Section 4 of 4 · Last one!",
+    title: "Sexual health",
+    desc: "One final question.",
+    icon: '<svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>',
+    bg: 'var(--peach)',
+    color: 'var(--rose)'
+  }
+};
+
+let state = {
+  answers: {},
+  currentIndex: 0,
+  shownGroups: []
+};
+
+// Storage
+function save() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  return null;
+}
+function clearStorage() {
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+}
+
+// Screen control
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => {
+    s.classList.remove('active');
+    s.classList.remove('entering');
+  });
+  const el = document.getElementById('screen_' + name);
+  el.classList.add('active');
+  el.classList.add('entering');
+  document.getElementById('progressWrap').classList.toggle('show', name === 'question');
+}
+
+// Update progress
+function updateProgress() {
+  const idx = state.currentIndex;
+  document.getElementById('progressFill').style.width = (idx / 21 * 100) + '%';
+  document.getElementById('progressLabel').textContent = 'Question ' + idx + ' of 21';
+  const remaining = 21 - idx;
+  if (remaining <= 0) {
+    document.getElementById('progressTime').textContent = 'Done!';
+  } else {
+    const secs = remaining * 8;
+    document.getElementById('progressTime').textContent = secs < 60 ? 'almost done' : 'about ' + Math.ceil(secs / 60) + ' min left';
+  }
+}
+
+// Render question
+function renderQuestion() {
+  const q = questions[state.currentIndex - 1];
+  document.getElementById('qText').textContent = q.text;
+  document.getElementById('qMeta').textContent = groupLabels[q.group] + ' · Item ' + q.id;
+
+  const optsEl = document.getElementById('opts');
+  const currentAnswer = state.answers[q.id];
+  optsEl.innerHTML = options.map(o => `
+    <button class="opt ${currentAnswer === o.val ? 'selected' : ''}" data-val="${o.val}">
+      <span class="opt_label">${o.label}</span>
+      <span class="opt_num">${o.val}</span>
+    </button>
+  `).join('');
+
+  optsEl.querySelectorAll('.opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const v = parseInt(btn.dataset.val, 10);
+      state.answers[q.id] = v;
+      save();
+      optsEl.querySelectorAll('.opt').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      document.getElementById('nextBtn').disabled = false;
+      // tiny haptic-feel: brief delay so user sees their choice
+      setTimeout(goNext, 320);
+    });
+  });
+
+  document.getElementById('nextBtn').disabled = currentAnswer === undefined;
+  document.getElementById('backBtn').style.visibility = state.currentIndex > 1 ? 'visible' : 'hidden';
+  updateProgress();
+}
+
+// Group intro
+function showGroupIntro(group) {
+  const g = groupIntros[group];
+  document.getElementById('groupEyebrow').textContent = g.eyebrow;
+  document.getElementById('groupTitle').textContent = g.title;
+  document.getElementById('groupDesc').textContent = g.desc;
+  const icon = document.getElementById('groupIcon');
+  icon.innerHTML = g.icon;
+  icon.style.background = g.bg;
+  icon.style.color = g.color;
+  showScreen('group');
+  // smooth scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Navigation
+function goNext() {
+  const nextIndex = state.currentIndex + 1;
+  if (nextIndex > 21) {
+    state.currentIndex = 22; // mark as completed
+    save();
+    showResults();
+    return;
+  }
+  const nextQ = questions[nextIndex - 1];
+  const prevQ = questions[state.currentIndex - 1];
+  state.currentIndex = nextIndex;
+  save();
+
+  // entering a new group? show intro first
+  if ((!prevQ || prevQ.group !== nextQ.group) && !state.shownGroups.includes(nextQ.group)) {
+    state.shownGroups.push(nextQ.group);
+    save();
+    showGroupIntro(nextQ.group);
+    return;
+  }
+
+  renderQuestion();
+  showScreen('question');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goBack() {
+  if (state.currentIndex <= 1) return;
+  state.currentIndex--;
+  save();
+  renderQuestion();
+  showScreen('question');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Scoring
+function calcScores() {
+  const a = state.answers;
+  const sum = ids => ids.reduce((t, id) => t + (a[id] || 0), 0);
+  return {
+    psychological: { score: sum([1,2,3,4,5,6,7,8,9,10,11]), max: 33, name: 'Mood, sleep & anxiety' },
+    physical:      { score: sum([12,13,14,15,16,17,18]),     max: 21, name: 'Physical symptoms' },
+    vasomotor:     { score: sum([19,20]),                    max: 6,  name: 'Hot flushes & sweats' },
+    sexual:        { score: sum([21]),                       max: 3,  name: 'Sexual health' }
+  };
+}
+
+function tierFor(key, s) {
+  if (key === 'psychological') {
+    if (s <= 7)  return ['mild', 'Mild', 'Your responses are in a typical range for mood, sleep, and anxiety.'];
+    if (s <= 16) return ['mod', 'Moderate', "You may be carrying more anxiety, low mood, or sleep trouble than usual. This is common in perimenopause and is treatable."];
+    return ['sig', 'Significant', 'Your responses point to considerable strain. A visit is a good idea.'];
+  }
+  if (key === 'physical') {
+    if (s <= 5)  return ['mild', 'Mild', 'Few notable physical symptoms reported.'];
+    if (s <= 12) return ['mod', 'Moderate', "You're reporting a noticeable cluster of physical symptoms. Some may be related to perimenopause."];
+    return ['sig', 'Significant', 'Several bothersome physical symptoms. We recommend an evaluation.'];
+  }
+  if (key === 'vasomotor') {
+    if (s <= 1) return ['mild', 'Minimal', 'Hot flushes and night sweats are not bothering you much right now.'];
+    if (s <= 3) return ['mod', 'Moderate', 'Hot flushes or night sweats are bothersome. Effective treatments are available.'];
+    return ['sig', 'Significant', 'Hot flushes and night sweats are affecting you noticeably. This is very treatable.'];
+  }
+  if (s === 0) return ['mild', 'Not reported', 'No change reported in sexual interest.'];
+  if (s === 1) return ['mild', 'Mild', 'A small change. This is common and can have many causes.'];
+  return ['mod', 'Notable', 'A meaningful change in sexual interest. Hormones, sleep, mood, and dryness can all play a role.'];
+}
+
+function checkUrgent() {
+  const a = state.answers;
+  const flags = [];
+  if ((a[9] || 0) >= 2 || (a[10] || 0) >= 2) flags.push("low mood or crying spells");
+  if ((a[5] || 0) >= 2) flags.push("anxiety or panic");
+  const wrap = document.getElementById('urgentBlock');
+  if (flags.length) {
+    wrap.innerHTML = `<div class="urgent">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><circle cx="12" cy="17" r="1" fill="currentColor"/></svg>
+      <div><strong>If a symptom feels severe or sudden,</strong> please call us at <a href="tel:9737825577">(973) 782 5577</a>. For a medical emergency or thoughts of self harm, call 911 or 988.</div>
+    </div>`;
+  } else {
+    wrap.innerHTML = '';
+  }
+}
+
+function showResults() {
+  const s = calcScores();
+  const wrap = document.getElementById('subscales');
+  wrap.innerHTML = Object.keys(s).map(k => {
+    const v = s[k];
+    const [t, tlabel, msg] = tierFor(k, v.score);
+    return `
+      <div class="res_card tier_${t}">
+        <div class="res_card_head">
+          <span class="res_card_name">${v.name}</span>
+          <span class="res_card_tag">${tlabel}</span>
+        </div>
+        <div class="res_card_bar"><div class="res_card_fill" data-pct="${(v.score / v.max) * 100}"></div></div>
+        <div class="res_card_score">Score ${v.score} of ${v.max}</div>
+        <div class="res_card_msg">${msg}</div>
+      </div>
+    `;
+  }).join('');
+
+  // animate bars after render
+  requestAnimationFrame(() => {
+    wrap.querySelectorAll('.res_card_fill').forEach((fill, i) => {
+      const pct = fill.dataset.pct;
+      setTimeout(() => { fill.style.width = pct + '%'; }, i * 100);
+    });
+  });
+
+  checkUrgent();
+  document.getElementById('progressWrap').classList.remove('show');
+  showScreen('results');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+// Copy summary
+function buildSummary() {
+  const s = calcScores();
+  const lines = ['Women\'s Care of NJ · Menopause Symptom Check'];
+  lines.push('Date: ' + new Date().toLocaleDateString());
+  lines.push('');
+  Object.keys(s).forEach(k => {
+    const v = s[k];
+    const [, tlabel] = tierFor(k, v.score);
+    lines.push(`${v.name}: ${v.score} of ${v.max} (${tlabel})`);
+  });
+  lines.push('');
+  lines.push('Educational only. Greene Climacteric Scale.');
+  return lines.join('\n');
+}
+
+// Handlers
+document.getElementById('startBtn').addEventListener('click', () => {
+  state = { answers: {}, currentIndex: 1, shownGroups: ['psychological'] };
+  save();
+  showGroupIntro('psychological');
+});
+
+document.getElementById('groupNextBtn').addEventListener('click', () => {
+  renderQuestion();
+  showScreen('question');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+});
+
+document.getElementById('nextBtn').addEventListener('click', goNext);
+document.getElementById('backBtn').addEventListener('click', goBack);
+
+document.getElementById('closeBtn').addEventListener('click', () => {
+  // mid-questionnaire? confirm; otherwise navigate home
+  if (state.currentIndex >= 1 && state.currentIndex <= 21) {
+    document.getElementById('exitSheet').classList.add('show');
+  } else {
+    window.location.href = 'index.html';
+  }
+});
+
+document.getElementById('exitCancel').addEventListener('click', () => {
+  document.getElementById('exitSheet').classList.remove('show');
+});
+document.getElementById('exitConfirm').addEventListener('click', () => {
+  save();
+  window.location.href = 'index.html';
+});
+
+document.getElementById('restartBtn').addEventListener('click', () => {
+  clearStorage();
+  state = { answers: {}, currentIndex: 0, shownGroups: [] };
+  document.getElementById('resumeBanner').classList.remove('show');
+  showScreen('welcome');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+});
+
+document.getElementById('resumeBtn').addEventListener('click', () => {
+  const saved = load();
+  if (saved && saved.currentIndex >= 1 && saved.currentIndex <= 21) {
+    state = saved;
+    document.getElementById('resumeBanner').classList.remove('show');
+    renderQuestion();
+    showScreen('question');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+});
+
+document.getElementById('copyBtn').addEventListener('click', async () => {
+  const text = buildSummary();
+  try {
+    await navigator.clipboard.writeText(text);
+    const lbl = document.getElementById('copyLabel');
+    lbl.textContent = 'Copied!';
+    setTimeout(() => { lbl.textContent = 'Copy summary'; }, 1800);
+  } catch (e) {
+    alert(text);
+  }
+});
+
+// PDF download
+function downloadPDF() {
+  const lib = window.jspdf;
+  if (!lib) {
+    alert("PDF tool is still loading. Please try again in a second.");
+    return;
+  }
+  const btn = document.getElementById('pdfBtn');
+  const lbl = document.getElementById('pdfLabel');
+  btn.disabled = true;
+  const origText = lbl.textContent;
+  lbl.textContent = 'Preparing PDF…';
+
+  const { jsPDF } = lib;
+  const doc = new jsPDF({ unit: 'pt', format: 'letter' });
+  const pageW = doc.internal.pageSize.getWidth();
+  const pageH = doc.internal.pageSize.getHeight();
+  const margin = 56;
+  let y = margin;
+
+  // Practice header bar
+  doc.setFillColor(10, 23, 51);
+  doc.rect(0, 0, pageW, 8, 'F');
+
+  // Title
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(18);
+  doc.setTextColor(10, 23, 51);
+  y = 60;
+  doc.text("Women's Care OB/GYN of NJ", margin, y);
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(11);
+  doc.setTextColor(110, 110, 120);
+  y += 16;
+  doc.text("Menopause Symptom Check Results", margin, y);
+
+  // Right side: date + locations
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  doc.setFontSize(10);
+  doc.setTextColor(110, 110, 120);
+  const dateW = doc.getTextWidth(dateStr);
+  doc.text(dateStr, pageW - margin - dateW, 60);
+  const phone = "(973) 782 5577";
+  const phoneW = doc.getTextWidth(phone);
+  doc.text(phone, pageW - margin - phoneW, 76);
+
+  y += 28;
+
+  // Patient name line
+  doc.setFontSize(11);
+  doc.setTextColor(40, 40, 50);
+  doc.text("Patient name:", margin, y);
+  doc.setDrawColor(190, 190, 200);
+  doc.line(margin + 78, y + 2, pageW - margin, y + 2);
+  y += 24;
+
+  // Divider
+  doc.setDrawColor(220, 220, 230);
+  doc.line(margin, y, pageW - margin, y);
+  y += 24;
+
+  // Summary heading
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(13);
+  doc.setTextColor(10, 23, 51);
+  doc.text("Summary by area", margin, y);
+  y += 18;
+
+  // Subscale results
+  const scores = calcScores();
+  Object.keys(scores).forEach(k => {
+    const v = scores[k];
+    const [t, tag, msg] = tierFor(k, v.score);
+
+    // Title and score
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11.5);
+    doc.setTextColor(10, 23, 51);
+    doc.text(v.name, margin, y);
+
+    // Score on right
+    const scoreText = `${v.score} / ${v.max}`;
+    const sW = doc.getTextWidth(scoreText);
+    doc.text(scoreText, pageW - margin - sW - 90, y);
+
+    // Tier pill on right
+    const pillX = pageW - margin - 80;
+    const pillY = y - 10;
+    let fill = [200, 200, 210];
+    if (t === 'mild') fill = [209, 250, 229];
+    if (t === 'mod') fill = [254, 243, 199];
+    if (t === 'sig') fill = [254, 226, 226];
+    doc.setFillColor(...fill);
+    doc.roundedRect(pillX, pillY, 80, 16, 8, 8, 'F');
+    doc.setFontSize(9);
+    let textCol = [80, 80, 90];
+    if (t === 'mild') textCol = [6, 95, 70];
+    if (t === 'mod') textCol = [146, 64, 14];
+    if (t === 'sig') textCol = [153, 27, 27];
+    doc.setTextColor(...textCol);
+    const tW = doc.getTextWidth(tag);
+    doc.text(tag, pillX + 40 - tW / 2, y);
+
+    y += 6;
+
+    // Progress bar
+    const barW = pageW - margin * 2 - 90;
+    doc.setFillColor(238, 242, 247);
+    doc.roundedRect(margin, y, barW, 6, 3, 3, 'F');
+    const fillW = barW * (v.score / v.max);
+    let barCol = [200, 200, 210];
+    if (t === 'mild') barCol = [75, 138, 91];
+    if (t === 'mod') barCol = [201, 168, 106];
+    if (t === 'sig') barCol = [190, 66, 85];
+    doc.setFillColor(...barCol);
+    if (fillW > 0) doc.roundedRect(margin, y, fillW, 6, 3, 3, 'F');
+    y += 16;
+
+    // Message
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.setTextColor(70, 80, 95);
+    const lines = doc.splitTextToSize(msg, pageW - margin * 2);
+    lines.forEach(line => {
+      doc.text(line, margin, y);
+      y += 12;
+    });
+    y += 12;
+  });
+
+  // Individual answers section
+  if (y > pageH - 200) {
+    doc.addPage();
+    y = margin;
+  }
+
+  doc.setDrawColor(220, 220, 230);
+  doc.line(margin, y, pageW - margin, y);
+  y += 24;
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(13);
+  doc.setTextColor(10, 23, 51);
+  doc.text("Individual responses", margin, y);
+  y += 18;
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(10);
+  doc.setTextColor(40, 40, 50);
+
+  questions.forEach(q => {
+    const ans = state.answers[q.id];
+    const ansLabel = ans !== undefined ? options[ans].label : 'Not answered';
+    const line = `${q.id}.  ${q.text}`;
+    const ansText = `${ansLabel} (${ans !== undefined ? ans : '-'})`;
+
+    if (y > pageH - 60) {
+      doc.addPage();
+      y = margin;
+    }
+
+    doc.setTextColor(40, 40, 50);
+    doc.text(line, margin, y);
+    const aW = doc.getTextWidth(ansText);
+    doc.setTextColor(10, 23, 51);
+    doc.setFont('helvetica', 'bold');
+    doc.text(ansText, pageW - margin - aW, y);
+    doc.setFont('helvetica', 'normal');
+    y += 14;
+  });
+
+  // Footer
+  const footerY = pageH - 48;
+  doc.setDrawColor(220, 220, 230);
+  doc.line(margin, footerY - 18, pageW - margin, footerY - 18);
+  doc.setFontSize(8.5);
+  doc.setTextColor(120, 120, 130);
+  doc.text("Educational only. Based on the Greene Climacteric Scale (Greene J., 1976, Journal of Psychosomatic Research, 20, 425 to 430).", margin, footerY);
+  doc.text("Bring this summary to your appointment. 1044 Main St, Paterson NJ  |  825 Riverview Dr, Totowa NJ  |  (973) 782 5577", margin, footerY + 11);
+
+  // Save
+  const stamp = now.toISOString().slice(0, 10);
+  doc.save(`womenscare-symptom-check-${stamp}.pdf`);
+
+  setTimeout(() => {
+    btn.disabled = false;
+    lbl.textContent = origText;
+  }, 800);
+}
+
+document.getElementById('pdfBtn').addEventListener('click', downloadPDF);
+
+// On load
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = load();
+  if (saved && saved.currentIndex >= 1 && saved.currentIndex <= 21 && Object.keys(saved.answers || {}).length > 0) {
+    document.getElementById('resumeBanner').classList.add('show');
+    state = saved;
+  }
+});
+</script>
+
+</body>
+</html>
