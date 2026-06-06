@@ -346,6 +346,9 @@
     newFab.addEventListener('click', openChat);
     document.getElementById('chatClose').addEventListener('click', closeChat);
     document.getElementById('chatBackdrop').addEventListener('click', closeChat);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.getElementById('chatPanel').classList.contains('open')) closeChat();
+    });
     document.getElementById('chatForm').addEventListener('submit', (e) => {
       e.preventDefault();
       const input = document.getElementById('chatInput');
@@ -355,6 +358,7 @@
 
     let opened = false;
     function openChat() {
+      document.body.classList.add('chat_open');
       document.getElementById('chatBackdrop').classList.add('show');
       document.getElementById('chatPanel').classList.add('open');
       if (!opened) {
@@ -365,6 +369,7 @@
       setTimeout(() => { document.getElementById('chatInput').focus(); }, 300);
     }
     function closeChat() {
+      document.body.classList.remove('chat_open');
       document.getElementById('chatBackdrop').classList.remove('show');
       document.getElementById('chatPanel').classList.remove('open');
     }

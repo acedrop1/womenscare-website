@@ -146,11 +146,15 @@ img, svg { display: block; max-width: 100%; }
   overflow-y: auto;
 }
 .mobile_menu.open .mobile_menu_panel { transform: translateY(0); }
+/* The hamburger (in the nav, above the drawer overlay) is the close control and
+   morphs to an X when open. This in-panel button sits behind the fixed nav bar,
+   so it is unreachable — hide it to avoid a dead affordance. */
 .mobile_close {
+  display: none;
   position: absolute; top: 16px; right: 16px;
   width: 40px; height: 40px; border-radius: 50%;
   background: var(--bg_section);
-  display: grid; place-items: center;
+  place-items: center;
   color: var(--ink);
 }
 .mobile_links {
@@ -158,14 +162,14 @@ img, svg { display: block; max-width: 100%; }
 }
 .mobile_link {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 4px;
+  padding: 14px 4px;
   border-bottom: 1px solid var(--line_soft);
-  font-size: 22px; font-weight: 500;
-  letter-spacing: -0.02em;
+  font-size: 16px; font-weight: 500;
+  letter-spacing: -0.01em;
   color: var(--ink);
 }
 .mobile_link:last-child { border-bottom: 0; }
-.mobile_link svg { color: var(--muted); transition: transform 0.2s; }
+.mobile_link svg { width: 18px; height: 18px; color: var(--muted); transition: transform 0.2s; }
 .mobile_link:active svg { transform: translateX(4px); color: var(--ink); }
 .mobile_menu_cta {
   display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -2210,12 +2214,26 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em {
 .chat_send:hover { background: #1a2547; }
 
 @media (max-width: 540px) {
+  /* Chat is a true fullscreen modal on mobile. Cover everything including the
+     nav and top call bar so the close button is always reachable. */
+  .chat_backdrop { z-index: 9998; }
   .chat_panel {
-    bottom: 0; right: 0; left: 0;
+    top: 0; bottom: 0; right: 0; left: 0;
     width: 100%; max-width: none;
-    height: 92vh; max-height: 92vh;
-    border-radius: 22px 22px 0 0;
+    height: 100%; max-height: none;
+    border-radius: 0;
+    z-index: 9999;
   }
+  .chat_head {
+    padding-top: calc(env(safe-area-inset-top) + 14px);
+  }
+  /* Hide the page nav and top bar entirely while the chat is open so they
+     never bleed through above the chat header. */
+  body.chat_open .top_bar,
+  body.chat_open .nav,
+  body.chat_open .call_fab,
+  body.chat_open .ai_fab { display: none !important; }
+  body.chat_open { overflow: hidden; }
 }
 
 

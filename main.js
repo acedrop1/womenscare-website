@@ -9,12 +9,26 @@ window.addEventListener('scroll', () => {
 const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 const mobileClose = document.getElementById('mobileClose');
-function openMenu() { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
-function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
-if (menuBtn) menuBtn.addEventListener('click', openMenu);
+// The nav sits above the drawer overlay, so the hamburger is the always-tappable
+// control: it toggles the menu and morphs between the menu and close (X) icons.
+const ICON_MENU = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>';
+const ICON_CLOSE = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+function openMenu() {
+  mobileMenu.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (menuBtn) { menuBtn.innerHTML = ICON_CLOSE; menuBtn.setAttribute('aria-label', 'Close menu'); menuBtn.setAttribute('aria-expanded', 'true'); }
+}
+function closeMenu() {
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+  if (menuBtn) { menuBtn.innerHTML = ICON_MENU; menuBtn.setAttribute('aria-label', 'Open menu'); menuBtn.setAttribute('aria-expanded', 'false'); }
+}
+function toggleMenu() { mobileMenu.classList.contains('open') ? closeMenu() : openMenu(); }
+if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
 if (mobileClose) mobileClose.addEventListener('click', closeMenu);
 if (mobileMenu) mobileMenu.addEventListener('click', (e) => { if (e.target === mobileMenu) closeMenu(); });
 document.querySelectorAll('.mobile_link, #mobileMenuCta').forEach(a => a.addEventListener('click', closeMenu));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) closeMenu(); });
 
 // reveal on scroll
 const io = new IntersectionObserver((entries) => {
