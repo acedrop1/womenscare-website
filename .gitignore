@@ -23,3 +23,4 @@ npm-debug.log*
 
 # Large unused source PNGs (we ship .jpg for photo content)
 web images/practice.png
+.vercel
