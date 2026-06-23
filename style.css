@@ -2905,3 +2905,225 @@ a:hover .cta_arrow { background: var(--rose_dark); }
   .ai_fab,
   .call_fab { bottom: calc(18px + env(safe-area-inset-bottom)); }
 }
+
+/* ============================================
+   PREMIUM POLISH — ambient animations, pink wash,
+   floating motion, hover lifts. Pure CSS.
+   ============================================ */
+
+/* Reduced motion: respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.1s !important;
+  }
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes drift_a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.08); }
+  66% { transform: translate(-30px, 20px) scale(0.95); }
+}
+@keyframes drift_b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, 40px) scale(1.12); }
+}
+@keyframes drift_c {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -40px); }
+}
+@keyframes float_card {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes float_card_alt {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes soft_pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(241,69,129,0.45); }
+  70% { box-shadow: 0 0 0 14px rgba(241,69,129,0); }
+}
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes ring_pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.04); }
+}
+
+/* ---------- Ambient gradient blobs in the hero ---------- */
+.hero { isolation: isolate; }
+.hero_pane::before,
+.hero_pane::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+}
+.hero_pane::before {
+  width: 520px; height: 520px;
+  background: radial-gradient(circle at 30% 30%, rgba(241,69,129,0.30), transparent 70%);
+  top: -120px; left: -80px;
+  animation: drift_a 22s ease-in-out infinite;
+}
+.hero_pane::after {
+  width: 620px; height: 620px;
+  background: radial-gradient(circle at 60% 60%, rgba(253,231,239,0.85), rgba(241,69,129,0.12) 60%, transparent 80%);
+  bottom: -180px; right: -120px;
+  animation: drift_b 28s ease-in-out infinite;
+}
+
+/* Subtle pink wash behind body sections so the page reads as one cohesive surface */
+body { background: linear-gradient(180deg, #ffffff 0%, #fff8fb 50%, #ffffff 100%); }
+
+/* ---------- Page hero gets a softer pink ambient too ---------- */
+.page_hero { position: relative; overflow: hidden; }
+.page_hero::before {
+  content: "";
+  position: absolute;
+  top: -160px; right: -120px;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(241,69,129,0.18), transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+  animation: drift_c 26s ease-in-out infinite;
+}
+.page_hero_inner { position: relative; z-index: 1; }
+
+/* ---------- Floating cards drift subtly ---------- */
+.fc_phone { animation: float_card 8s ease-in-out infinite; }
+.fc_dept { animation: float_card_alt 9s ease-in-out infinite 0.6s; }
+.fc_patients { animation: float_card 10s ease-in-out infinite 1.1s; }
+.fc_text { animation: float_card_alt 11s ease-in-out infinite 0.3s; }
+
+/* ---------- Card hover lifts ---------- */
+.svc_card,
+.team_card,
+.blog_card,
+.feature_card,
+.quick_card,
+.loc_card,
+.fcard_box {
+  transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1),
+              box-shadow 0.45s cubic-bezier(0.32, 0.72, 0, 1),
+              background 0.3s ease;
+}
+.svc_card:hover,
+.team_card:hover,
+.blog_card:hover,
+.feature_card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(15,23,42,0.10), 0 4px 12px rgba(241,69,129,0.06);
+}
+
+/* ---------- Service cards: subtle pink overlay on hover ---------- */
+.svc_card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(241,69,129,0.08) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.svc_card:hover::after { opacity: 1; }
+
+/* ---------- Pulse glow on the AI FAB so it draws the eye ---------- */
+.ai_fab {
+  animation: soft_pulse 3.2s ease-out infinite;
+}
+
+/* ---------- Animated dot/avatar for live status ---------- */
+.chat_dot,
+.fcard_dot {
+  position: relative;
+}
+.chat_dot::before,
+.fcard_dot::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid var(--rose);
+  opacity: 0.5;
+  animation: ring_pulse 2.2s ease-out infinite;
+}
+
+/* ---------- Shimmering pink CTA fill ---------- */
+.cta_btn_dark {
+  background-size: 200% 100%;
+  background-image: linear-gradient(110deg, var(--ink) 0%, var(--ink) 45%, #1f2a4d 55%, var(--ink) 100%);
+  animation: shimmer 9s ease-in-out infinite;
+}
+
+/* ---------- Pretty floating pill badges (decorative, optional usage) ---------- */
+.pill_badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(15,23,42,0.05);
+  box-shadow: 0 4px 16px rgba(15,23,42,0.06);
+  font-size: 13px; font-weight: 500;
+  color: var(--ink);
+  animation: float_card 7s ease-in-out infinite;
+}
+.pill_badge_dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--rose);
+  box-shadow: 0 0 0 3px rgba(241,69,129,0.2);
+}
+
+/* ---------- Section eyebrow gets a pink dot pulse ---------- */
+.section_eyebrow::before,
+.page_eyebrow::before {
+  animation: ring_pulse 2.6s ease-in-out infinite;
+}
+
+/* ---------- Hero image gets a subtle ken-burns scale loop ---------- */
+@keyframes ken_burns {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+.hero_image_card img { animation: ken_burns 16s ease-in-out infinite; }
+
+/* ---------- World mega number a soft gradient sweep ---------- */
+.world_h1 em,
+.hero_h1 em {
+  background: linear-gradient(90deg, var(--rose) 0%, #c93469 50%, var(--rose) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 7s ease-in-out infinite;
+}
+
+/* ---------- Smooth focus state for accessibility ---------- */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--rose);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Mobile: tone down the heavy effects ---------- */
+@media (max-width: 540px) {
+  .hero_pane::before,
+  .hero_pane::after { opacity: 0.4; filter: blur(50px); }
+  .ai_fab { animation: none; }
+  .hero_image_card img { animation: none; }
+}
