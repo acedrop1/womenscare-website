@@ -3312,3 +3312,8 @@ button:focus-visible {
   .hp_badge_b { top: auto; bottom: 80px; right: 12px; }
   .hp_stat_card { width: calc(100% - 24px); right: 12px; bottom: 12px; }
 }
+
+/* Safety net: clamp any chip/badge SVG even if width attribute is missing */
+.hero_chip svg,
+.hp_badge svg,
+.hero_top_pill svg { width: 14px !important; height: 14px !important; flex-shrink: 0; }
