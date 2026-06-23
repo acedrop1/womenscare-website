@@ -3127,3 +3127,188 @@ button:focus-visible {
   .ai_fab { animation: none; }
   .hero_image_card img { animation: none; }
 }
+
+/* ============================================
+   HERO V2 — Docthea/MEDI inspired
+   Pill badges, stat card overlay, chip row
+   ============================================ */
+
+/* Soften the hero pane with a strong pink gradient base */
+.hero_pane_v2 {
+  background: linear-gradient(140deg, #ffe1ec 0%, #fff3f7 35%, #f5f8fc 70%, #e8f1f8 100%);
+  position: relative;
+}
+.hero_pane_v2 .hero_overlay {
+  background: linear-gradient(160deg, rgba(255,225,236,0.45) 0%, rgba(245,248,252,0.35) 60%, rgba(232,241,248,0.45) 100%);
+}
+
+/* New rounded pill at the top of the hero copy */
+.hero_top_pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 14px 7px 7px;
+  background: rgba(255,255,255,0.85);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(15,23,42,0.06);
+  border-radius: 999px;
+  font-size: 12.5px; font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 28px;
+  box-shadow: 0 4px 16px rgba(15,23,42,0.06);
+}
+.hero_top_pill_icon {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--rose); color: white;
+  display: grid; place-items: center;
+}
+
+/* Hero subtitle/lead paragraph */
+.hero_lead {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink_soft);
+  max-width: 440px;
+  margin: 18px 0 28px;
+}
+
+/* Floating pill badges around the hero image */
+.hero_image_card { overflow: visible; }
+.hp_badge {
+  position: absolute;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 8px 8px 16px;
+  background: white;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(15,23,42,0.12), 0 1px 2px rgba(15,23,42,0.06);
+  font-size: 13px; font-weight: 500;
+  color: var(--ink);
+  z-index: 5;
+  white-space: nowrap;
+}
+.hp_badge_dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--rose);
+  box-shadow: 0 0 0 3px rgba(241,69,129,0.18);
+}
+.hp_badge_plus {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--rose); color: white;
+  display: grid; place-items: center;
+  font-size: 16px; font-weight: 500;
+  line-height: 1;
+}
+.hp_badge_a {
+  top: 18%; left: -18px;
+  animation: float_card 6s ease-in-out infinite;
+}
+.hp_badge_b {
+  top: 50%; right: -30px;
+  animation: float_card_alt 7s ease-in-out infinite 0.4s;
+}
+.hp_badge_c {
+  bottom: 22%; left: -8px;
+  animation: float_card 8s ease-in-out infinite 0.9s;
+}
+
+/* Stat card overlay (heart-rate style) */
+.hp_stat_card {
+  position: absolute;
+  bottom: 18px; right: 18px;
+  width: 230px;
+  padding: 14px 16px 12px;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(15,23,42,0.18), 0 1px 2px rgba(15,23,42,0.06);
+  z-index: 6;
+  animation: float_card_alt 9s ease-in-out infinite 0.2s;
+}
+.hp_stat_top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 6px;
+}
+.hp_stat_title { font-size: 12px; font-weight: 500; color: var(--ink); }
+.hp_stat_live {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 10.5px; color: var(--rose);
+  font-weight: 500;
+}
+.hp_stat_live_dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--rose);
+  animation: chatPulse 1.6s infinite;
+}
+.hp_stat_chart { width: 100%; height: 44px; margin: 4px 0 6px; }
+.hp_stat_chart svg { width: 100%; height: 100%; display: block; }
+.hp_stat_bot {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 8px;
+}
+.hp_stat_metric {
+  font-size: 12px; color: var(--ink_soft);
+}
+.hp_stat_metric strong {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+.hp_stat_metric_alt {
+  font-size: 10.5px; color: var(--muted);
+}
+
+/* Chip row below hero */
+.hero_chips {
+  max-width: var(--maxw);
+  margin: -24px auto 0;
+  padding: 0 clamp(24px, 6vw, 88px) 48px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  position: relative;
+  z-index: 5;
+}
+.hero_chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px;
+  background: white;
+  border: 1px solid rgba(15,23,42,0.07);
+  border-radius: 999px;
+  font-size: 13.5px; font-weight: 500;
+  color: var(--ink);
+  box-shadow: 0 4px 14px rgba(15,23,42,0.05);
+  transition: all 0.3s ease;
+}
+.hero_chip svg { width: 14px; height: 14px; color: var(--rose); }
+.hero_chip:hover {
+  background: var(--ink);
+  color: white;
+  transform: translateY(-2px);
+  border-color: var(--ink);
+}
+.hero_chip:hover svg { color: var(--rose); }
+
+/* Hide the old floating cards now that we have the new badges */
+.fcard.fc_dept,
+.fcard.fc_patients,
+.fcard.fc_text,
+.fcard.fc_phone { display: none; }
+
+/* Mobile adjustments */
+@media (max-width: 900px) {
+  .hp_badge_a { top: 8%; left: 8px; }
+  .hp_badge_b { top: 45%; right: 8px; }
+  .hp_badge_c { bottom: 14%; left: 8px; }
+  .hp_badge { font-size: 11.5px; padding: 6px 6px 6px 12px; }
+  .hp_badge_plus { width: 22px; height: 22px; font-size: 14px; }
+  .hp_stat_card { width: 180px; bottom: 12px; right: 12px; padding: 12px 14px 10px; }
+  .hero_chips { padding: 0 22px 40px; margin-top: -12px; gap: 8px; }
+  .hero_chip { padding: 8px 14px; font-size: 12.5px; }
+  .hero_top_pill { font-size: 11.5px; }
+  .hero_lead { font-size: 15px; max-width: 100%; }
+}
+@media (max-width: 540px) {
+  .hp_badge_a { display: none; }
+  .hp_badge_c { display: none; }
+  .hp_badge_b { top: auto; bottom: 80px; right: 12px; }
+  .hp_stat_card { width: calc(100% - 24px); right: 12px; bottom: 12px; }
+}

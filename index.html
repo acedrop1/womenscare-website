@@ -118,22 +118,25 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero">
-  <div class="hero_pane">
+  <div class="hero_pane hero_pane_v2">
     <video class="hero_video_bg" autoplay loop muted playsinline preload="auto" aria-hidden="true">
       <source src="video.mp4" type="video/mp4">
     </video>
     <div class="hero_overlay"></div>
+
     <div class="hero_content">
-      <div class="hero_eyebrow">
-        <span class="hero_eyebrow_box"></span>
-        BOARD CERTIFIED OB/GYN<br>
-        IN PATERSON &amp; TOTOWA, NJ
-      </div>
+      <span class="hero_top_pill">
+        <span class="hero_top_pill_icon">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4M12 22a10 10 0 100-20 10 10 0 000 20z"/></svg>
+        </span>
+        Board certified OB/GYN in Paterson &amp; Totowa, NJ
+      </span>
       <h1 class="hero_h1">
         Care for every<br>
         <em>chapter</em> of women's<br>
         health<span class="asterisk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 4v16M5 7l14 10M5 17l14-10"/></svg></span>
       </h1>
+      <p class="hero_lead">From annual exams to menopause and pregnancy planning, our team provides personalised care with kindness and respect at every visit.</p>
       <div class="hero_cta_row">
         <a href="contact.html" class="hero_btn_primary">
           Request a visit
@@ -147,28 +150,79 @@
         </a>
       </div>
     </div>
+
     <div class="hero_image_card">
       <img src="web%20images/practice.jpg" alt="Women's Care OB/GYN practice" loading="lazy">
-    </div>
 
-    <!-- floating cards -->
-    <div class="fcard fc_dept">
-      <span class="fcard_icon fcard_heart">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      <!-- Floating pill badges around the photo (Docthea / MEDI style) -->
+      <span class="hp_badge hp_badge_a">
+        <span class="hp_badge_dot"></span> Expertise
+        <span class="hp_badge_plus">+</span>
       </span>
-      OB/GYN Care
-      <span class="fcard_dot"></span>
-    </div>
-    <div class="fcard fc_patients">
-      <span class="fcard_icon">P</span>
-      Happy patients
-    </div>
-<div class="fcard fc_text">
-      <strong>Personalised care</strong>
-      Each visit is tailored to your needs, not a template.
-    </div>
+      <span class="hp_badge hp_badge_b">
+        <span class="hp_badge_dot"></span> Compassion
+        <span class="hp_badge_plus">+</span>
+      </span>
+      <span class="hp_badge hp_badge_c">
+        <span class="hp_badge_dot"></span> Trust
+        <span class="hp_badge_plus">+</span>
+      </span>
 
-    
+      <!-- Stats card overlay (MEDI heart rate style) -->
+      <div class="hp_stat_card">
+        <div class="hp_stat_top">
+          <span class="hp_stat_title">Patient satisfaction</span>
+          <span class="hp_stat_live">
+            <span class="hp_stat_live_dot"></span>
+            Live
+          </span>
+        </div>
+        <div class="hp_stat_chart" aria-hidden="true">
+          <svg viewBox="0 0 220 60" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="hpgrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#f14581" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#f14581" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,45 Q30,25 55,30 T110,18 T165,22 T220,8 L220,60 L0,60 Z" fill="url(#hpgrad)"/>
+            <path d="M0,45 Q30,25 55,30 T110,18 T165,22 T220,8" stroke="#f14581" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="hp_stat_bot">
+          <span class="hp_stat_metric"><strong>4.9</strong>/5 rating</span>
+          <span class="hp_stat_metric_alt">500+ reviews</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service chip row below the hero (MEDI style) -->
+  <div class="hero_chips">
+    <a href="annual-well-woman-exam.html" class="hero_chip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+      Annual exam
+    </a>
+    <a href="perimenopause-and-menopause.html" class="hero_chip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+      Menopause care
+    </a>
+    <a href="birth-control.html" class="hero_chip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+      Birth control
+    </a>
+    <a href="ultrasound.html" class="hero_chip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6"/></svg>
+      Ultrasound
+    </a>
+    <a href="pregnancy-planning.html" class="hero_chip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      Pregnancy
+    </a>
+    <a href="adolescent-care.html" class="hero_chip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      Adolescent
+    </a>
   </div>
 </section>
 
