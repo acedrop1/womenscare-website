@@ -3509,3 +3509,74 @@ body.home #bg-fx { display: none; }
   .lp_pcard { max-width: 260px; }
   .lp_marquee_track { gap: 40px; }
 }
+
+/* ============================================
+   FULL WIDTH FIX — entire site edge-to-edge
+   No more centered card. Mobile cleanup.
+   ============================================ */
+/* Kill the outer card framing on the LP hero */
+body.home { background: #ffffff; }
+.lp { padding: 0 !important; }
+.lp_panel {
+  max-width: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+.lp_nav { padding: 14px clamp(20px, 4vw, 56px) 22px !important; }
+.lp_hero {
+  border-radius: 0 !important;
+  margin: 0 !important;
+  padding: clamp(28px, 4vw, 56px) clamp(20px, 4vw, 56px) !important;
+}
+
+/* Push all other section containers wider */
+:root { --maxw: 1600px; }
+
+/* MOBILE: lp hero cleanup */
+@media (max-width: 900px) {
+  .lp_logo img { height: 28px !important; width: auto !important; max-width: 180px !important; }
+  .lp_nav {
+    grid-template-columns: 1fr auto !important;
+    align-items: center !important;
+    padding: 14px 18px !important;
+    gap: 12px !important;
+  }
+  .lp_nav_left { gap: 8px !important; }
+  .lp_nav_tag { display: none !important; }
+  .lp_nav_links { display: none !important; }
+  .lp_nav_right { gap: 8px !important; }
+  .lp_cta { display: none !important; }
+  .lp_nav .menu_btn { display: grid !important; }
+
+  .lp_hero {
+    grid-template-columns: 1fr !important;
+    padding: 24px 18px !important;
+    gap: 32px !important;
+  }
+  .lp_h1 {
+    font-size: clamp(64px, 18vw, 110px) !important;
+    line-height: 0.95 !important;
+  }
+  .lp_sub { font-size: 15px !important; }
+  .lp_eyebrow_txt { font-size: 12.5px !important; }
+  .lp_review { flex-wrap: wrap !important; }
+  .lp_cta_row { width: 100% !important; flex-wrap: wrap !important; gap: 10px !important; }
+  .lp_btn_dark { width: 100% !important; justify-content: center !important; }
+
+  .lp_hero_right {
+    min-height: 320px !important;
+    order: 2 !important;
+  }
+  .lp_media { left: 0 !important; right: 0 !important; width: 100% !important; }
+  .lp_chip1, .lp_chip2 { font-size: 11px !important; padding: 6px 10px !important; }
+  .lp_chip2 { display: none !important; }
+  .lp_stat { display: none !important; }
+  .lp_pcard { max-width: 240px !important; }
+}
+@media (max-width: 540px) {
+  .lp_h1 { font-size: clamp(56px, 18vw, 88px) !important; }
+  .lp_hero { padding: 20px 14px !important; }
+  .lp_nav { padding: 12px 14px !important; }
+}
