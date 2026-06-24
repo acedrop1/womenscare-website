@@ -42,6 +42,19 @@ if (mobileMenu) mobileMenu.addEventListener('click', (e) => { if (e.target === m
 document.querySelectorAll('.mobile_link, #mobileMenuCta').forEach(a => a.addEventListener('click', closeMenu));
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) closeMenu(); });
 
+// nav floats into a pill on scroll
+(function () {
+  const lpNav = document.querySelector('.lp_nav');
+  if (!lpNav) return;
+  const TRIGGER = 80;
+  function onScroll() {
+    if (window.scrollY > TRIGGER) lpNav.classList.add('nav-scrolled');
+    else lpNav.classList.remove('nav-scrolled');
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
 // reveal on scroll
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
