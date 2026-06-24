@@ -3905,3 +3905,38 @@ header.lp .lp_panel {
   .lp_btn_check_sub { font-size: 10.5px; }
   .lp_cta_row { flex-wrap: wrap !important; gap: 10px !important; width: 100%; }
 }
+
+/* ============================================
+   QUICK FIXES — remove play btn, hide pcard mobile, fix close X
+   ============================================ */
+/* 1. Remove play button on video */
+.lp_play { display: none !important; }
+
+/* 2. Hide the floating Annual Well-Woman card on mobile */
+@media (max-width: 768px) {
+  .lp_pcard { display: none !important; }
+  .lp_chip1, .lp_chip2 { display: none !important; }
+  .lp_stat { display: none !important; }
+}
+
+/* 3. Make mobile close X visible and tappable */
+.mobile_close {
+  display: grid !important;
+  z-index: 5;
+  cursor: pointer;
+  border: 1px solid rgba(15,23,42,0.06);
+  box-shadow: 0 2px 8px rgba(15,23,42,0.06);
+}
+.mobile_close:hover {
+  background: var(--ink) !important;
+  color: white !important;
+}
+
+/* ============================================
+   MOBILE MENU layering — menu must sit above the floating nav pill
+   ============================================ */
+.mobile_menu { z-index: 9998 !important; }
+.mobile_menu_panel { z-index: 9999 !important; }
+.mobile_close { z-index: 10000 !important; }
+/* When menu is open, hide the floating nav pill so X is fully reachable */
+body:has(.mobile_menu.open) .lp_nav.nav-scrolled { opacity: 0 !important; pointer-events: none !important; }
