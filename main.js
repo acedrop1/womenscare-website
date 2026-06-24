@@ -1,3 +1,23 @@
+// premium animated background FX — inject once on every page
+(function () {
+  if (document.getElementById('bg-fx')) return;
+  var fx = document.createElement('div');
+  fx.id = 'bg-fx';
+  fx.setAttribute('aria-hidden', 'true');
+  fx.innerHTML =
+    '<div class="fx-grid"></div>' +
+    '<div class="fx-aurora fx-a1"></div>' +
+    '<div class="fx-aurora fx-a2"></div>' +
+    '<div class="fx-aurora fx-a3"></div>' +
+    '<div class="fx-aurora fx-a4"></div>' +
+    '<div class="fx-orb fx-o1"></div>' +
+    '<div class="fx-orb fx-o2"></div>' +
+    '<div class="fx-orb fx-o3"></div>' +
+    '<div class="fx-orb fx-o4"></div>' +
+    '<div class="fx-orb fx-o5"></div>';
+  document.body.insertBefore(fx, document.body.firstChild);
+})();
+
 // nav scroll
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
