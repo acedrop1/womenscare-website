@@ -38,8 +38,11 @@
 <link rel="alternate" hreflang="en" href="https://womenscarenj.com/index.html">
 <link rel="alternate" hreflang="es" href="https://womenscarenj.com/index.es.html">
 <link rel="alternate" hreflang="x-default" href="https://womenscarenj.com/index.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="home">
 <!-- Top call bar -->
 <div class="top_bar">
   <div class="top_bar_inner">
@@ -54,39 +57,6 @@
   </div>
 </div>
 
-
-<!-- ============ NAV ============ -->
-<nav class="nav" id="nav">
-  <div class="nav_inner">
-    <a href="index.html" class="logo" aria-label="Women's Care OB/GYN of NJ home">
-      <img src="logo.svg" alt="Women's Care OB/GYN of NJ">
-    </a>
-    <div class="nav_links">
-      <a href="index.es.html" class="nav_link">Inicio</a>
-      <span class="nav_dot"></span>
-      <a href="about.html" class="nav_link">Nosotros</a>
-      <span class="nav_dot"></span>
-      <a href="services.html" class="nav_link">Servicios</a>
-      <span class="nav_dot"></span>
-      <a href="our-team.html" class="nav_link">Médicas</a>
-      <span class="nav_dot"></span>
-      <a href="symptom-check.html" class="nav_link">Síntomas</a>
-      <span class="nav_dot"></span>
-      <a href="contact.html" class="nav_link">Contacto</a>
-    </div>
-    <div class="lang_toggle"><a href="index.html">EN</a><a href="index.es.html" class="active">ES</a></div>
-
-    <a href="contact.html" class="nav_cta">
-      <span class="nav_cta_text">Reservar cita</span>
-      <span class="cta_arrow">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </span>
-    </a>
-    <button class="menu_btn" id="menuBtn" aria-label="Open menu">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-    </button>
-  </div>
-</nav>
 
 <!-- mobile drawer -->
 <div class="mobile_menu" id="mobileMenu">
@@ -114,42 +84,129 @@
   </div>
 </div>
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="hero_pane">
-    <video class="hero_video_bg" autoplay loop muted playsinline preload="auto" aria-hidden="true">
-      <source src="video.mp4" type="video/mp4">
-    </video>
-    <div class="hero_overlay"></div>
-    <div class="hero_content">
-      <div class="hero_eyebrow">
-        <span class="hero_eyebrow_box"></span>
-        GINECOLOGÍA CERTIFICADA<br>
-        EN PATERSON Y TOTOWA, NJ
+<!-- ============ HERO (estilo de referencia) ============ -->
+<header class="lp">
+  <div class="lp_panel">
+
+    <!-- NAV -->
+    <nav class="lp_nav" id="nav">
+      <div class="lp_nav_left">
+        <a href="index.es.html" class="lp_logo" aria-label="Women's Care OB/GYN of NJ inicio">
+          <img src="logo.svg" alt="Women's Care OB/GYN of NJ">
+        </a>
+        <span class="lp_nav_tag">/ (973) 782-5577</span>
       </div>
-      <h1 class="hero_h1">
-        Cuidado para cada<br>
-        <em>etapa</em> de la salud<br>
-        de la mujer<span class="asterisk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 4v16M5 7l14 10M5 17l14-10"/></svg></span>
-      </h1>
-      <div class="hero_cta_row">
-        <a href="contact.es.html" class="hero_btn_primary">
-          Solicitar cita
-          <span class="cta_arrow">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <div class="lp_nav_links">
+        <a href="about.html">Nosotros</a><span class="lp_sep">·</span>
+        <a href="services.html">Servicios</a><span class="lp_sep">·</span>
+        <a href="our-team.html">Médicas</a><span class="lp_sep">·</span>
+        <a href="contact.html">Contacto</a>
+      </div>
+      <div class="lp_nav_right">
+        <div class="lang_toggle"><a href="index.html">EN</a><a href="index.es.html" class="active">ES</a></div>
+        <a href="contact.html" class="lp_cta"><b>Reservar cita</b> — Esta semana</a>
+        <button class="menu_btn" id="menuBtn" aria-label="Abrir menú">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="lp_hero">
+      <div class="lp_hero_left">
+        <a href="#testimonials" class="lp_eyebrow">
+          <span class="lp_eyebrow_icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h4v6a4 4 0 01-4 4v-2a2 2 0 002-2H7zM15 7h4v6a4 4 0 01-4 4v-2a2 2 0 002-2h-2z"/></svg>
           </span>
+          <span class="lp_eyebrow_txt"><b>4.0 ★ en Google</b><br>Lee las <u>historias de pacientes</u></span>
         </a>
-        <a href="symptom-check.html" class="hero_btn_ghost">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-          Evaluación de síntomas (3 min)
-        </a>
+
+        <h1 class="lp_h1">Cuidado<sup>+</sup></h1>
+
+        <hr class="lp_rule">
+
+        <p class="lp_sub">Ginecología certificada para cada etapa de la salud de la mujer — en Paterson y Totowa, NJ.</p>
+
+        <div class="lp_review">
+          <img src="web%20images/russo.jpg" class="lp_review_av" alt="Paciente" loading="lazy">
+          <div class="lp_review_txt"><b>Atención compasiva y atenta</b><br>La confianza de mujeres en NJ</div>
+          <span class="lp_review_sep"></span>
+          <span class="lp_review_rate">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            4.0
+          </span>
+        </div>
+
+        <div class="lp_cta_row">
+          <a href="contact.es.html" class="lp_btn_dark"><b>Reservar cita</b> — Esta semana</a>
+          <a href="services.es.html" class="lp_btn_link">Nuestros servicios
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="lp_hero_right">
+        <div class="lp_media">
+          <video class="lp_video" autoplay loop muted playsinline preload="auto" aria-hidden="true">
+            <source src="video.mp4" type="video/mp4">
+          </video>
+          <span class="lp_play" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </div>
+
+        <div class="lp_chip lp_chip1">
+          <span class="lp_check rose"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>
+          Citas esta semana
+        </div>
+        <div class="lp_chip lp_chip2">
+          <span class="lp_check blue"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>
+          Aceptamos seguros
+        </div>
+
+        <div class="lp_stat">
+          <span class="lp_stat_eyebrow">— CALIF.</span>
+          <span class="lp_stat_num">4.0★</span>
+          <span class="lp_stat_label">en Google,<br>61 reseñas</span>
+        </div>
+
+        <div class="lp_pcard">
+          <img src="web%20images/3.jpg" alt="Examen ginecológico anual" class="lp_pcard_img" loading="lazy">
+          <div class="lp_pcard_info">
+            <div class="lp_pcard_name">Examen Anual de la Mujer</div>
+            <div class="lp_pcard_meta">
+              <span class="lp_pcard_tag">En red</span>
+              <span class="lp_pcard_rate"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg> 5.0</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="hero_image_card">
-      <img src="web%20images/practice.jpg" alt="Women's Care OB/GYN practice" loading="lazy">
+
+    <!-- MARQUEE DE SEGUROS -->
+    <div class="lp_marquee" aria-label="Seguros aceptados">
+      <div class="lp_marquee_track">
+        <span class="lp_logo"><img src="insurance/horizon.png" alt="Horizon"></span>
+        <span class="lp_logo"><img src="insurance/aetna.png" alt="Aetna"></span>
+        <span class="lp_logo"><img src="insurance/cigna.png" alt="Cigna"></span>
+        <span class="lp_logo"><img src="insurance/unitedhealthcare.png" alt="UnitedHealthcare"></span>
+        <span class="lp_logo"><img src="insurance/anthem.png" alt="Anthem"></span>
+        <span class="lp_logo"><img src="insurance/oxford.png" alt="Oxford"></span>
+        <span class="lp_logo"><img src="insurance/meritain.webp" alt="Meritain Health"></span>
+        <span class="lp_logo"><img src="insurance/ghi.jpeg" alt="GHI"></span>
+        <span class="lp_logo" aria-hidden="true"><img src="insurance/horizon.png" alt=""></span>
+        <span class="lp_logo" aria-hidden="true"><img src="insurance/aetna.png" alt=""></span>
+        <span class="lp_logo" aria-hidden="true"><img src="insurance/cigna.png" alt=""></span>
+        <span class="lp_logo" aria-hidden="true"><img src="insurance/unitedhealthcare.png" alt=""></span>
+        <span class="lp_logo" aria-hidden="true"><img src="insurance/anthem.png" alt=""></span>
+        <span class="lp_logo" aria-hidden="true"><img src="insurance/oxford.png" alt=""></span>
+        <span class="lp_logo" aria-hidden="true"><img src="insurance/meritain.webp" alt=""></span>
+        <span class="lp_logo" aria-hidden="true"><img src="insurance/ghi.jpeg" alt=""></span>
+      </div>
     </div>
+
   </div>
-</section>
+</header>
 
 <!-- ============ WORLD OF WOMEN'S HEALTH ============ -->
 <section class="container world">
