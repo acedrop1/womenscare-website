@@ -3222,3 +3222,100 @@ body { background: transparent; position: relative; z-index: 0; }
 
 @media (prefers-reduced-motion: reduce) { #bg-fx .fx-aurora { animation: none !important; } }
 @media (max-width: 640px) { #bg-fx .fx-aurora { filter: blur(70px); opacity: 0.3; } }
+
+/* ============================================================
+   PREMIUM POLISH — hero, cards, elevation & contrast
+   ============================================================ */
+
+/* Softer, deeper elevation tokens (calmer, more luxurious) */
+:root {
+  --shadow_sm: 0 1px 2px rgba(10,23,51,0.04), 0 2px 6px rgba(10,23,51,0.05);
+  --shadow_md: 0 6px 18px rgba(10,23,51,0.06), 0 20px 48px rgba(10,23,51,0.07);
+  --shadow_lg: 0 40px 90px rgba(10,23,51,0.16);
+  --shadow_pill: 0 6px 20px rgba(10,23,51,0.10), 0 1px 2px rgba(10,23,51,0.06);
+  --ease_lux: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- HERO ---------- */
+.hero_overlay {
+  background: linear-gradient(118deg, rgba(244,248,252,0.90) 0%, rgba(233,241,248,0.66) 40%, rgba(233,241,248,0.30) 100%);
+}
+.hero_h1 {
+  letter-spacing: -0.042em;
+  text-shadow: 0 1px 26px rgba(10,23,51,0.16);
+}
+.hero_eyebrow {
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: var(--ink_soft);
+}
+.hero_btn_primary {
+  padding: 13px 13px 13px 26px;
+  box-shadow: 0 14px 32px rgba(10,23,51,0.22);
+  transition: transform 0.3s var(--ease_lux), box-shadow 0.3s var(--ease_lux);
+}
+.hero_btn_primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 44px rgba(10,23,51,0.30);
+}
+.hero_btn_primary .cta_arrow { transition: transform 0.3s var(--ease_lux); }
+.hero_btn_primary:hover .cta_arrow { transform: translateX(3px); }
+.hero_btn_ghost {
+  padding: 13px 22px;
+  transition: transform 0.3s var(--ease_lux), box-shadow 0.3s var(--ease_lux);
+}
+.hero_btn_ghost:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(10,23,51,0.12);
+}
+.hero_image_card {
+  border-radius: 34px;
+  box-shadow: 0 50px 100px rgba(10,23,51,0.22), 0 10px 26px rgba(10,23,51,0.10);
+}
+
+/* ---------- CARDS: consistent radii, refined depth, smooth lift ---------- */
+.svc, .card3, .promise_card, .prov_card, .img_banner, .feature, .faq_item {
+  transition: transform 0.4s var(--ease_lux), box-shadow 0.4s var(--ease_lux);
+}
+
+.svc {
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(10,23,51,0.10);
+}
+.svc:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 64px rgba(10,23,51,0.20);
+}
+
+.card3 {
+  border-radius: 24px;
+  border: 1px solid rgba(10,23,51,0.05);
+  box-shadow: 0 8px 26px rgba(10,23,51,0.07);
+}
+.card3:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 58px rgba(10,23,51,0.14);
+}
+
+/* Promise cards → frosted white for a calmer, premium look */
+.promise_card {
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(10,23,51,0.05);
+  box-shadow: 0 6px 22px rgba(10,23,51,0.05);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.promise_card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 50px rgba(10,23,51,0.10);
+}
+
+.img_banner {
+  box-shadow: 0 30px 70px rgba(10,23,51,0.18);
+}
+.feature {
+  box-shadow: 0 30px 80px rgba(10,23,51,0.20);
+}
+
+/* Crisper section headings */
+.sec_title, .mega_title { letter-spacing: -0.04em; }
