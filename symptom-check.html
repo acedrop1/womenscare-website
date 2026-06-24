@@ -1732,5 +1732,22 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<!-- premium animated background FX (scoped, subtle) -->
+<style>
+#bg-fx{position:fixed;inset:0;z-index:-10;overflow:hidden;pointer-events:none;
+  background:radial-gradient(1100px 800px at 10% -5%,rgba(241,69,129,0.05),transparent 60%),radial-gradient(1000px 900px at 105% 15%,rgba(10,23,51,0.05),transparent 55%),linear-gradient(180deg,#fafcff 0%,#f2f7fc 55%,#fafcff 100%);}
+#bg-fx .fx-aurora{position:absolute;border-radius:50%;filter:blur(70px);opacity:0.5;will-change:transform;mix-blend-mode:multiply;}
+#bg-fx .fx-a1{width:46vw;height:46vw;min-width:380px;min-height:380px;top:-10%;left:-8%;background:radial-gradient(circle at 35% 35%,rgba(241,69,129,0.26),rgba(253,231,239,0) 70%);animation:fxD1 30s ease-in-out infinite;}
+#bg-fx .fx-a2{width:52vw;height:52vw;min-width:420px;min-height:420px;top:24%;right:-14%;background:radial-gradient(circle at 35% 35%,rgba(126,167,209,0.30),rgba(214,228,240,0) 70%);animation:fxD2 36s ease-in-out infinite;}
+#bg-fx .fx-a3{width:40vw;height:40vw;min-width:340px;min-height:340px;bottom:-12%;left:20%;background:radial-gradient(circle at 35% 35%,rgba(168,189,224,0.26),rgba(224,234,243,0) 70%);animation:fxD3 32s ease-in-out infinite;}
+@keyframes fxD1{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(6vw,4vh) scale(1.08);}66%{transform:translate(-4vw,6vh) scale(.96);}}
+@keyframes fxD2{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(-6vw,5vh) scale(1.06);}66%{transform:translate(4vw,-4vh) scale(.95);}}
+@keyframes fxD3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(5vw,-6vh) scale(1.1);}}
+@media (prefers-reduced-motion:reduce){#bg-fx .fx-aurora{animation:none!important;}}
+</style>
+<script>
+(function(){if(document.getElementById('bg-fx'))return;var f=document.createElement('div');f.id='bg-fx';f.setAttribute('aria-hidden','true');f.innerHTML='<div class="fx-aurora fx-a1"></div><div class="fx-aurora fx-a2"></div><div class="fx-aurora fx-a3"></div>';document.body.insertBefore(f,document.body.firstChild);})();
+</script>
+
 </body>
 </html>

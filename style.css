@@ -3175,3 +3175,132 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .fly-up, .fly-up.in > * { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
+
+/* ============================================================
+   PREMIUM ANIMATED BACKGROUND FX  (aurora mesh + floating orbs)
+   Light, tasteful, low-distraction. Injected site-wide via main.js
+   ============================================================ */
+
+/* Let the fixed FX layer show through transparent sections.
+   Opaque sections (.bg_section tints, hero pane) naturally cover it,
+   creating gentle light/tint rhythm down the page. */
+html { background: #fafcff; }
+body { background: transparent; position: relative; z-index: 0; }
+
+/* Hide the old hashtag pills across all service cards */
+.svc_tag { display: none !important; }
+
+#bg-fx {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 800px at 12% -5%, rgba(241,69,129,0.05), transparent 60%),
+    radial-gradient(1100px 900px at 105% 20%, rgba(10,23,51,0.05), transparent 55%),
+    linear-gradient(180deg, #fafcff 0%, #f2f7fc 50%, #fafcff 100%);
+}
+
+/* Aurora blobs — soft, slow drifting colour fields */
+#bg-fx .fx-aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+  will-change: transform;
+  mix-blend-mode: multiply;
+}
+#bg-fx .fx-a1 {
+  width: 46vw; height: 46vw; min-width: 420px; min-height: 420px;
+  top: -10%; left: -8%;
+  background: radial-gradient(circle at 35% 35%, rgba(241,69,129,0.30), rgba(253,231,239,0) 70%);
+  animation: fxDrift1 28s ease-in-out infinite;
+}
+#bg-fx .fx-a2 {
+  width: 52vw; height: 52vw; min-width: 460px; min-height: 460px;
+  top: 22%; right: -14%;
+  background: radial-gradient(circle at 35% 35%, rgba(126,167,209,0.34), rgba(214,228,240,0) 70%);
+  animation: fxDrift2 34s ease-in-out infinite;
+}
+#bg-fx .fx-a3 {
+  width: 40vw; height: 40vw; min-width: 380px; min-height: 380px;
+  bottom: -12%; left: 18%;
+  background: radial-gradient(circle at 35% 35%, rgba(168,189,224,0.30), rgba(224,234,243,0) 70%);
+  animation: fxDrift3 31s ease-in-out infinite;
+}
+#bg-fx .fx-a4 {
+  width: 34vw; height: 34vw; min-width: 320px; min-height: 320px;
+  top: 56%; left: 46%;
+  background: radial-gradient(circle at 35% 35%, rgba(241,69,129,0.18), rgba(255,243,247,0) 70%);
+  animation: fxDrift1 38s ease-in-out infinite reverse;
+}
+
+/* Floating glass orbs — adds subtle 3D depth */
+#bg-fx .fx-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.9), rgba(255,255,255,0.05) 42%, rgba(126,167,209,0.10) 70%);
+  border: 1px solid rgba(255,255,255,0.55);
+  box-shadow: inset 0 8px 24px rgba(255,255,255,0.6), 0 24px 60px rgba(10,23,51,0.08);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  will-change: transform;
+  opacity: 0.7;
+}
+#bg-fx .fx-o1 { width: 130px; height: 130px; top: 14%;  left: 8%;  animation: fxFloat1 18s ease-in-out infinite; }
+#bg-fx .fx-o2 { width: 84px;  height: 84px;  top: 64%;  left: 12%; animation: fxFloat2 22s ease-in-out infinite; }
+#bg-fx .fx-o3 { width: 170px; height: 170px; top: 30%;  right: 9%; animation: fxFloat3 26s ease-in-out infinite; }
+#bg-fx .fx-o4 { width: 66px;  height: 66px;  top: 78%;  right: 18%; animation: fxFloat1 20s ease-in-out infinite reverse; }
+#bg-fx .fx-o5 { width: 50px;  height: 50px;  top: 46%;  left: 50%; animation: fxFloat2 16s ease-in-out infinite; }
+
+/* Faint precision grid for a structured, professional base */
+#bg-fx .fx-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(10,23,51,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10,23,51,0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 0%, transparent 78%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 0%, transparent 78%);
+  opacity: 0.6;
+}
+
+@keyframes fxDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(6vw, 4vh) scale(1.08); }
+  66%  { transform: translate(-4vw, 6vh) scale(0.96); }
+}
+@keyframes fxDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(-6vw, 5vh) scale(1.06); }
+  66%  { transform: translate(4vw, -4vh) scale(0.95); }
+}
+@keyframes fxDrift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(5vw, -6vh) scale(1.1); }
+}
+@keyframes fxFloat1 {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50%  { transform: translateY(-28px) translateX(14px); }
+}
+@keyframes fxFloat2 {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50%  { transform: translateY(24px) translateX(-12px); }
+}
+@keyframes fxFloat3 {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+  50%  { transform: translateY(-20px) translateX(-16px) scale(1.05); }
+}
+
+/* Respect reduced-motion: keep the soft colour, drop the movement */
+@media (prefers-reduced-motion: reduce) {
+  #bg-fx .fx-aurora, #bg-fx .fx-orb { animation: none !important; }
+}
+
+/* Lighter footprint on small screens */
+@media (max-width: 640px) {
+  #bg-fx .fx-orb { display: none; }
+  #bg-fx .fx-aurora { filter: blur(50px); opacity: 0.5; }
+  #bg-fx .fx-grid { background-size: 40px 40px; }
+}
