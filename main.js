@@ -36,6 +36,23 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
+// Auto fly-up reveal — sprinkle scroll motion across the page
+const flySelectors = [
+  '.svc_card', '.team_card', '.blog_card', '.feature_card', '.quick_card', '.loc_card',
+  '.world_top', '.quote_block', '.world_grid', '.section_eyebrow',
+  '.cta', '.fcard_box', '.mega_title', '.article h2', '.article h3',
+  '.fcard_grid', '.team_grid', '.blog_grid', '.svc_grid', '.svc_grid_strip',
+  '.logo_grid', '.logo_grid_compact', '.logo_grid_small',
+  '.faq_item', '.testimonial_card', '.pillars', '.pillar',
+  '.hero_image_card', '.contact_form', '.locations_v2', '.contact_quick'
+];
+const flyTargets = document.querySelectorAll(flySelectors.join(','));
+flyTargets.forEach(el => { if (!el.classList.contains('fly-up')) el.classList.add('fly-up'); });
+const flyIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); flyIO.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+flyTargets.forEach(el => flyIO.observe(el));
+
 // faq accordion
 document.querySelectorAll('.faq_q').forEach(btn => {
   btn.addEventListener('click', () => {
