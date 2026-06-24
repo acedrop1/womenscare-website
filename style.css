@@ -3641,3 +3641,71 @@ header.lp .lp_panel {
     border-radius: 24px !important;
   }
 }
+
+/* ============================================
+   FIXED NAV BAR + MARQUEE + MOBILE HERO REORDER
+   ============================================ */
+
+/* Fixed standalone nav bar at top (separate from hero card) */
+.lp_nav {
+  position: fixed !important;
+  top: 0 !important; left: 0 !important; right: 0 !important;
+  z-index: 100 !important;
+  background: rgba(255,255,255,0.92) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid rgba(15,23,42,0.06) !important;
+  padding: 14px clamp(20px, 4vw, 56px) !important;
+  margin: 0 !important;
+}
+/* Push the lp panel down so it doesn't sit under the fixed nav */
+.lp { padding-top: 92px !important; }
+@media (max-width: 600px) {
+  .lp { padding-top: 76px !important; }
+  .lp_nav { padding: 12px 14px !important; }
+}
+
+/* Increase hero height */
+.lp_hero {
+  min-height: clamp(620px, 80vh, 920px) !important;
+  align-items: center !important;
+}
+
+/* Marquee: never pause on hover */
+.lp_marquee:hover .lp_marquee_track,
+.lp_marquee_track:hover { animation-play-state: running !important; }
+.lp_marquee_track { animation-play-state: running !important; }
+
+/* ============================================
+   MOBILE — declutter hero: video first, then text
+   Hide rating eyebrow + giant Care+ heading
+   ============================================ */
+@media (max-width: 768px) {
+  .lp_hero {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    min-height: auto !important;
+    padding: 20px 16px !important;
+  }
+  .lp_hero_right { order: 1 !important; }
+  .lp_hero_left { order: 2 !important; }
+  /* Hide the noisy rating eyebrow and giant Care+ */
+  .lp_eyebrow,
+  .lp_h1,
+  .lp_rule { display: none !important; }
+  /* Make the sub line into the headline-feel */
+  .lp_sub {
+    font-size: 22px !important;
+    font-weight: 600 !important;
+    line-height: 1.25 !important;
+    color: var(--ink) !important;
+    margin: 4px 0 14px !important;
+  }
+  .lp_review { margin-bottom: 18px !important; }
+  .lp_cta_row { width: 100% !important; }
+  .lp_btn_dark { width: 100% !important; justify-content: center !important; padding: 16px 22px !important; }
+  /* Make sure the media (video) is prominent at top */
+  .lp_media { width: 100% !important; min-height: 280px !important; border-radius: 22px !important; }
+  .lp_hero_right { min-height: auto !important; }
+}
