@@ -3580,3 +3580,32 @@ body.home { background: #ffffff; }
   .lp_hero { padding: 20px 14px !important; }
   .lp_nav { padding: 12px 14px !important; }
 }
+
+/* ============================================
+   AGGRESSIVE FULL-WIDTH OVERRIDE
+   Last in cascade so it wins.
+   ============================================ */
+html, body, body.home { background: #ffffff !important; }
+.lp,
+header.lp { padding: 0 !important; margin: 0 !important; background: transparent !important; }
+.lp_panel,
+header.lp .lp_panel {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.lp_hero {
+  border-radius: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+/* Push the marquee row & section containers wider too */
+.lp_marquee, .lp_marquee_wrap {
+  margin: 0 !important;
+  max-width: 100% !important;
+}
