@@ -1,71 +1,13 @@
-// premium animated background FX — inject once on every page
+// clean premium background — inject once on every page
 (function () {
   if (document.getElementById('bg-fx')) return;
-
-  // medical motif SVGs (stroked, theme-tinted via currentColor)
-  var ICONS = {
-    cross: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 3h4v7h7v4h-7v7h-4v-7H3v-4h7z"/></svg>',
-    heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 00-7.8 7.8l1 1L12 21.2l7.8-7.8 1-1a5.5 5.5 0 000-7.8z"/></svg>',
-    venus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="9" r="6"/><path d="M12 15v7M9 19h6"/></svg>',
-    capsule: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="8" width="20" height="8" rx="4"/><path d="M12 8v8"/></svg>',
-    steth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3v5a4 4 0 008 0V3M5 3H3M5 3h2M9 3h2M9 3H7"/><path d="M9 15v1a6 6 0 0012 0v-3"/><circle cx="21" cy="11" r="2"/></svg>',
-    dna: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3c0 5 14 5 14 11s-14 6-14 11M19 3c0 5-14 5-14 11s14 6 14 11"/><path d="M7 6h10M7.5 18h9M9 9h6M9 15h6"/></svg>',
-    plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M5 12h14"/></svg>',
-    pulse: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12h5l2-6 4 12 2-6h7"/></svg>'
-  };
-  function ico(name, cls) { return '<span class="fx-ico ' + cls + '">' + ICONS[name] + '</span>'; }
-
-  // long animated EKG / heartbeat line that sweeps across
-  var EKG =
-    '<svg class="fx-ekg-svg" viewBox="0 0 1200 80" preserveAspectRatio="none">' +
-    '<path d="M0 40 H180 l18 -26 18 52 16 -40 14 22 H460 l18 -26 18 52 16 -40 14 22 H760 l18 -26 18 52 16 -40 14 22 H1060 l18 -26 18 52 16 -40 14 22 H1200" ' +
-    'fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>';
-
   var fx = document.createElement('div');
   fx.id = 'bg-fx';
   fx.setAttribute('aria-hidden', 'true');
   fx.innerHTML =
-    '<div class="fx-grid"></div>' +
     '<div class="fx-aurora fx-a1"></div>' +
-    '<div class="fx-aurora fx-a2"></div>' +
-    '<div class="fx-aurora fx-a3"></div>' +
-    '<div class="fx-aurora fx-a4"></div>' +
-    '<div class="fx-orb fx-o1"></div>' +
-    '<div class="fx-orb fx-o2"></div>' +
-    '<div class="fx-orb fx-o3"></div>' +
-    '<div class="fx-orb fx-o4"></div>' +
-    '<div class="fx-orb fx-o5"></div>' +
-    '<div class="fx-parallax fx-pl-slow">' +
-      ico('cross', 'fx-ic1 fx-rose') + ico('dna', 'fx-ic2 fx-ink') +
-      ico('heart', 'fx-ic3 fx-rose') + ico('venus', 'fx-ic4 fx-ink') +
-    '</div>' +
-    '<div class="fx-parallax fx-pl-fast">' +
-      ico('capsule', 'fx-ic5 fx-ink') + ico('steth', 'fx-ic6 fx-rose') +
-      ico('plus', 'fx-ic7 fx-ink') + ico('pulse', 'fx-ic8 fx-rose') +
-      ico('plus', 'fx-ic9 fx-rose') + ico('cross', 'fx-ic10 fx-ink') +
-    '</div>' +
-    '<div class="fx-ekg fx-ekg-a">' + EKG + '</div>' +
-    '<div class="fx-ekg fx-ekg-b">' + EKG + '</div>' +
-    '<div class="fx-tone"></div>';
+    '<div class="fx-aurora fx-a2"></div>';
   document.body.insertBefore(fx, document.body.firstChild);
-
-  // scroll-driven tone + parallax (writes CSS vars, read in style.css)
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduce) {
-    var root = document.documentElement, ticking = false;
-    function update() {
-      var sy = window.scrollY || 0;
-      var h = (document.documentElement.scrollHeight - window.innerHeight) || 1;
-      var f = Math.min(1, Math.max(0, sy / h));
-      root.style.setProperty('--sy', f.toFixed(4));
-      root.style.setProperty('--syp', sy.toFixed(1));
-      ticking = false;
-    }
-    window.addEventListener('scroll', function () {
-      if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
-    }, { passive: true });
-    update();
-  }
 })();
 
 // nav scroll
