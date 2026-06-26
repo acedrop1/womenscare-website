@@ -4051,3 +4051,81 @@ body:has(.mobile_menu.open) .lp_nav.nav-scrolled { opacity: 0 !important; pointe
   .sym-modal-frame { border-radius: 0; height: 100vh; max-height: none; }
   .sym-modal-close { top: 10px; right: 10px; width: 38px; height: 38px; }
 }
+
+/* ============================================
+   FIXES: visible CTA button + section contrast
+   ============================================ */
+
+/* Force the Book-a-visit button to be visible inside the dark CTA */
+.cta .cta_btn_dark,
+.cta_row .cta_btn_dark {
+  background: #ffffff !important;
+  color: var(--ink) !important;
+}
+.cta .cta_btn_dark b,
+.cta_row .cta_btn_dark b { color: var(--ink) !important; }
+.cta .cta_btn_dark .cta_arrow,
+.cta_row .cta_btn_dark .cta_arrow {
+  background: #f14581 !important;
+  color: white !important;
+}
+
+/* ============================================
+   SECTION CONTRAST — alternating soft tinted bands
+   ============================================ */
+body.home .world,
+body.home #checker {
+  background: linear-gradient(180deg, #fdf2f6 0%, #fff5fa 100%);
+  border-radius: 32px;
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
+  margin: 40px 18px;
+  max-width: calc(100% - 36px);
+  width: calc(100% - 36px);
+}
+body.home #services {
+  background: linear-gradient(180deg, #f4f7fb 0%, #ffffff 100%);
+  border-radius: 32px;
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
+  margin: 40px 18px;
+  max-width: calc(100% - 36px);
+  width: calc(100% - 36px);
+}
+body.home #about {
+  background: #ffffff;
+}
+body.home #providers {
+  background: linear-gradient(180deg, #faf6fd 0%, #fff5fa 100%);
+  border-radius: 32px;
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
+  margin: 40px 18px;
+  max-width: calc(100% - 36px);
+  width: calc(100% - 36px);
+}
+body.home #testimonials {
+  background: linear-gradient(180deg, #f0e9ff 0%, #fdf2f6 100%);
+  border-radius: 32px;
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
+  margin: 40px 18px;
+  max-width: calc(100% - 36px);
+  width: calc(100% - 36px);
+}
+
+/* Mobile: less aggressive padding & margin */
+@media (max-width: 768px) {
+  body.home .world,
+  body.home #checker,
+  body.home #services,
+  body.home #providers,
+  body.home #testimonials {
+    margin: 24px 10px;
+    max-width: calc(100% - 20px);
+    width: calc(100% - 20px);
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+    border-radius: 24px;
+  }
+}
