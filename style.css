@@ -5416,3 +5416,55 @@ body:has(.mobile_menu.open) .lp_nav.nav-scrolled {
     border-radius: 50% !important;
   }
 }
+
+/* ============================================================
+   INTERIOR PAGES — use the homepage nav menu (.lp_nav)
+   Positioned where the old .nav sat (fixed under the top bar)
+   so existing page offsets keep working.
+   ============================================================ */
+body:not(.home) .lp_nav {
+  position: fixed !important;
+  top: 36px !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+  width: auto !important;
+  max-width: none !important;
+  z-index: 100 !important;
+  display: grid !important;
+  grid-template-columns: auto 1fr auto !important;
+  align-items: center !important;
+  background: rgba(255,255,255,0.82) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+  backdrop-filter: blur(18px) saturate(180%) !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(15,23,42,0.06) !important;
+  border-radius: 0 !important;
+  padding: 12px clamp(16px, 2vw, 28px) !important;
+  box-shadow: none !important;
+  transition: box-shadow 0.3s ease, background 0.3s ease !important;
+}
+body:not(.home) .lp_nav_links { white-space: nowrap !important; flex-wrap: nowrap !important; }
+body:not(.home) .lp_nav_links a { white-space: nowrap !important; }
+/* Keep it a full-width bar (no pill) on interior, just deepen on scroll */
+body:not(.home) .lp_nav.nav-scrolled {
+  top: 36px !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+  width: auto !important;
+  max-width: none !important;
+  border-radius: 0 !important;
+  background: rgba(255,255,255,0.92) !important;
+  box-shadow: 0 6px 24px rgba(15,23,42,0.06) !important;
+}
+@media (max-width: 600px) {
+  body:not(.home) .lp_nav,
+  body:not(.home) .lp_nav.nav-scrolled { padding: 10px 14px !important; }
+}
+
+/* Phone pill is desktop-only (mobile has it in the drawer) — must win over the
+   desktop display rule, so keep this last. */
+@media (max-width: 768px) {
+  .lp_phone_btn { display: none !important; }
+}
