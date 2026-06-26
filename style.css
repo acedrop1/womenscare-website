@@ -5369,7 +5369,7 @@ body:has(.mobile_menu.open) .lp_nav.nav-scrolled {
     left: 0 !important; right: 0 !important;
     width: 100% !important;
     height: auto !important;
-    aspect-ratio: 3 / 4 !important;
+    aspect-ratio: 3 / 3.4 !important; /* 3:4 with height reduced 15% (mobile only) */
     border-radius: 22px !important;
     overflow: hidden !important;
     display: block !important;
