@@ -5120,3 +5120,101 @@ body.home #testimonials .test {
 @media (prefers-reduced-motion: reduce) {
   .lp_caret { animation: none; }
 }
+
+/* ============================================================
+   MOBILE INTERACTIONS — carousels, marquee, snappier menu
+   ============================================================ */
+
+/* Mobile menu: drop the expensive animated blur so it opens snappy */
+.mobile_menu {
+  background: rgba(10,17,33,0.52) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  transition: opacity 0.2s ease !important;
+}
+.mobile_menu_panel {
+  transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  will-change: transform !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+}
+
+@media (max-width: 768px) {
+  /* ---- World of care: swipeable carousel (all 5 cards) ---- */
+  body.home .wh_cards {
+    display: flex !important;
+    grid-template-columns: none !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 12px !important;
+    padding-bottom: 4px !important;
+  }
+  body.home .wh_cards::-webkit-scrollbar { display: none !important; }
+  body.home .wh_cards > .wh_card,
+  body.home .wh_cards > .wh_card:nth-child(n+4),
+  body.home .wh_cards > .wh_card:nth-child(n+5) {
+    display: block !important;
+    flex: 0 0 auto !important;
+    width: 62vw !important;
+    max-width: 270px !important;
+    aspect-ratio: 3 / 4 !important;
+    scroll-snap-align: start !important;
+  }
+
+  /* ---- How we practice: focus carousel (peek + active scale) ---- */
+  body.home .promise_grid {
+    display: flex !important;
+    grid-template-columns: none !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 14px !important;
+    padding: 6px 0 10px !important;
+  }
+  body.home .promise_grid::-webkit-scrollbar { display: none !important; }
+  body.home .promise_card {
+    flex: 0 0 auto !important;
+    width: 78vw !important;
+    max-width: 320px !important;
+    scroll-snap-align: center !important;
+    opacity: 0.55 !important;
+    transform: scale(0.94) !important;
+    transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.22,1,0.36,1) !important;
+  }
+  body.home .promise_card.is-focus {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+  }
+
+  /* ---- Words from patients: unstoppable auto marquee ---- */
+  body.home #testimonials .test_grid.is-marquee {
+    display: block !important;
+    overflow: hidden !important;
+    scroll-snap-type: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    animation: none !important;
+  }
+  body.home #testimonials .test_grid.is-marquee .test_track {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    width: max-content !important;
+    gap: 0 !important;
+    animation: testMarquee 34s linear infinite !important;
+    will-change: transform !important;
+  }
+  body.home #testimonials .test_grid.is-marquee .test_track .test {
+    margin-right: 14px !important;
+    flex: 0 0 auto !important;
+  }
+  @keyframes testMarquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+}
