@@ -4129,3 +4129,161 @@ body.home #testimonials {
     border-radius: 24px;
   }
 }
+
+/* ============================================
+   SERVICES — ACCORDION LIST (rows expand on hover)
+   ============================================ */
+.svc_list {
+  background: white;
+  border-radius: 28px;
+  box-shadow: 0 4px 24px rgba(15,23,42,0.06);
+  overflow: hidden;
+  margin-top: 8px;
+}
+.svc_row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 60px 1fr 0fr;
+  align-items: center;
+  gap: 0;
+  padding: 28px 36px;
+  border-bottom: 1px solid rgba(15,23,42,0.06);
+  cursor: pointer;
+  transition: background 0.35s ease, padding 0.35s ease;
+  overflow: hidden;
+}
+.svc_row:last-child { border-bottom: 0; }
+.svc_row:hover { background: #fdf3f7; }
+.svc_num {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink_soft);
+  letter-spacing: 0.04em;
+  align-self: start;
+  padding-top: 6px;
+}
+.svc_main { min-width: 0; }
+.svc_title {
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 6px;
+  line-height: 1.15;
+  font-style: normal;
+}
+.svc_tags {
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink_soft);
+  margin: 0;
+}
+.svc_desc {
+  font-size: 14.5px;
+  color: var(--ink_soft);
+  line-height: 1.55;
+  margin: 14px 0 12px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s ease 0.05s,
+              transform 0.4s ease 0.05s,
+              margin 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.svc_link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--rose);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s ease 0.1s;
+}
+.svc_link svg { transition: transform 0.2s ease; }
+.svc_img_acc {
+  width: 0;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 16px;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s ease 0.1s,
+              transform 0.4s ease 0.1s;
+}
+/* Active / hover state: row expands */
+.svc_row:hover,
+.svc_row.active {
+  padding-top: 34px;
+  padding-bottom: 34px;
+}
+.svc_row:hover .svc_desc,
+.svc_row.active .svc_desc {
+  max-height: 200px;
+  opacity: 1;
+  transform: translateY(0);
+  margin: 14px 0 12px;
+}
+.svc_row:hover .svc_link,
+.svc_row.active .svc_link {
+  max-height: 30px;
+  opacity: 1;
+}
+.svc_row:hover .svc_link svg,
+.svc_row.active .svc_link svg { transform: translate(2px, -2px); }
+.svc_row:hover .svc_img_acc,
+.svc_row.active .svc_img_acc {
+  width: 140px;
+  opacity: 1;
+  transform: scale(1);
+  margin-left: 24px;
+}
+
+/* View all button */
+.svc_view_all_wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+.svc_view_all {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px 14px 28px;
+  background: var(--ink);
+  color: white;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.25s ease;
+}
+.svc_view_all:hover { transform: translateY(-2px); }
+.svc_view_all_arrow {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--rose);
+  color: white;
+  display: grid; place-items: center;
+}
+
+@media (max-width: 768px) {
+  .svc_row {
+    grid-template-columns: 36px 1fr;
+    padding: 22px 22px;
+    gap: 12px;
+  }
+  .svc_img_acc { display: none !important; }
+  .svc_row:hover, .svc_row.active { padding-top: 24px; padding-bottom: 24px; }
+  .svc_view_all { padding: 12px 14px 12px 22px; font-size: 14px; }
+  .svc_view_all_arrow { width: 32px; height: 32px; }
+}
