@@ -3940,3 +3940,114 @@ header.lp .lp_panel {
 .mobile_close { z-index: 10000 !important; }
 /* When menu is open, hide the floating nav pill so X is fully reachable */
 body:has(.mobile_menu.open) .lp_nav.nav-scrolled { opacity: 0 !important; pointer-events: none !important; }
+
+/* ============================================
+   DOT FIELD + GRADIENT ORBS + SYMPTOM MODAL
+   ============================================ */
+
+/* Hero needs relative positioning for the dot canvas */
+.lp_hero { position: relative; overflow: hidden; isolation: isolate; }
+.dot-field-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.7;
+}
+.lp_hero_left, .lp_hero_right { position: relative; z-index: 2; }
+
+/* Gradient orbs that drift behind the hero */
+.lp_orbs {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.lp_orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+  animation: lp_orb_drift 18s ease-in-out infinite;
+}
+.lp_orb1 {
+  width: 520px; height: 520px;
+  background: radial-gradient(circle at 30% 30%, rgba(241,69,129,0.5), transparent 70%);
+  top: -160px; left: -120px;
+}
+.lp_orb2 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle at 60% 50%, rgba(168,85,247,0.35), transparent 70%);
+  top: 30%; right: -180px;
+  animation-delay: -6s;
+}
+.lp_orb3 {
+  width: 460px; height: 460px;
+  background: radial-gradient(circle at 50% 50%, rgba(255,200,220,0.6), transparent 70%);
+  bottom: -160px; left: 30%;
+  animation-delay: -12s;
+}
+@keyframes lp_orb_drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.08); }
+  66% { transform: translate(-30px, 20px) scale(0.95); }
+}
+
+/* Symptom Check Modal */
+.sym-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(10,23,51,0.55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.sym-modal.open { display: flex; animation: sym_fade 0.25s ease both; }
+@keyframes sym_fade { from { opacity: 0; } to { opacity: 1; } }
+.sym-modal-frame {
+  width: 100%;
+  max-width: 1200px;
+  height: calc(100vh - 40px);
+  max-height: 920px;
+  border: 0;
+  border-radius: 24px;
+  background: white;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+  animation: sym_pop 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes sym_pop {
+  from { opacity: 0; transform: scale(0.94) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.sym-modal-close {
+  position: absolute;
+  top: 18px; right: 20px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: white;
+  color: var(--ink);
+  border: 1px solid rgba(15,23,42,0.08);
+  cursor: pointer;
+  display: grid; place-items: center;
+  z-index: 2;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.sym-modal-close:hover {
+  transform: rotate(90deg);
+  background: var(--ink);
+  color: white;
+}
+@media (max-width: 540px) {
+  .sym-modal { padding: 0; }
+  .sym-modal-frame { border-radius: 0; height: 100vh; max-height: none; }
+  .sym-modal-close { top: 10px; right: 10px; width: 38px; height: 38px; }
+}
