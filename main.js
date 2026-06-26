@@ -28,12 +28,12 @@ const ICON_CLOSE = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" 
 function openMenu() {
   mobileMenu.classList.add('open');
   document.body.style.overflow = 'hidden';
-  if (menuBtn) { menuBtn.innerHTML = ICON_CLOSE; menuBtn.setAttribute('aria-label', 'Close menu'); menuBtn.setAttribute('aria-expanded', 'true'); }
+  if (menuBtn) { menuBtn.setAttribute('aria-label', 'Close menu'); menuBtn.setAttribute('aria-expanded', 'true'); }
 }
 function closeMenu() {
   mobileMenu.classList.remove('open');
   document.body.style.overflow = '';
-  if (menuBtn) { menuBtn.innerHTML = ICON_MENU; menuBtn.setAttribute('aria-label', 'Open menu'); menuBtn.setAttribute('aria-expanded', 'false'); }
+  if (menuBtn) { menuBtn.setAttribute('aria-label', 'Open menu'); menuBtn.setAttribute('aria-expanded', 'false'); }
 }
 function toggleMenu() { mobileMenu.classList.contains('open') ? closeMenu() : openMenu(); }
 if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
