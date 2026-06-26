@@ -5300,3 +5300,57 @@ body:has(.mobile_menu.open) .lp_nav.nav-scrolled {
     padding-right: 0 !important;
   }
 }
+
+/* ============================================================
+   NAV TWEAKS — larger logo, phone as an icon by the lang toggle
+   ============================================================ */
+.lp_logo img { height: 40px !important; }
+
+.lp_phone_btn {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(15,23,42,0.05);
+  color: var(--ink);
+  flex: 0 0 auto;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.lp_phone_btn:hover {
+  background: rgba(15,23,42,0.1);
+  transform: translateY(-1px);
+}
+/* On mobile the hamburger handles calling (Call link is in the drawer) */
+@media (max-width: 768px) {
+  .lp_phone_btn { display: none !important; }
+  .lp_logo img { height: 34px !important; }
+}
+
+/* Keep nav controls (phone + lang + CTA) on one line; size column to content */
+@media (min-width: 769px) {
+  .lp_nav { grid-template-columns: auto 1fr auto !important; }
+  .lp_nav.nav-scrolled { grid-template-columns: auto 1fr auto !important; }
+  .lp_cta { white-space: nowrap !important; }
+  .lp_nav_right { gap: 12px !important; }
+}
+
+/* Medium desktop (links still visible): tighten so nothing overflows */
+@media (min-width: 981px) and (max-width: 1280px) {
+  .lp_nav { padding-left: 20px !important; padding-right: 20px !important; }
+  .lp_nav.nav-scrolled { padding-left: 18px !important; padding-right: 18px !important; }
+  .lp_nav_links { gap: 9px !important; }
+  .lp_nav_links a { font-size: 14px !important; }
+  .lp_nav_right { gap: 8px !important; }
+  .lp_cta { padding: 10px 15px !important; font-size: 13px !important; }
+  .lp_phone_btn { width: 36px !important; height: 36px !important; }
+}
+
+/* Collapse to hamburger a touch earlier so the icon never causes overflow */
+@media (max-width: 1100px) {
+  .lp_nav_links { display: none !important; }
+  .lp_nav .menu_btn { display: grid !important; }
+  .lp_cta { display: none !important; }
+  .lp_phone_btn { display: none !important; }
+  .lp_nav, .lp_nav.nav-scrolled { grid-template-columns: 1fr auto !important; }
+}
