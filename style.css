@@ -4604,3 +4604,185 @@ body.home #testimonials {
   .wh_cards > .wh_card:nth-child(n+5) { display: none; }
   .wh_h2 { font-size: clamp(32px, 9vw, 44px); }
 }
+
+/* ============================================================
+   PREMIUM REFINEMENTS — 2026 pass
+   Contained panels, smoother accordion, promise + provider
+   redesign, consistent gutters, mobile polish.
+   This block is intentionally last so it wins the cascade.
+   ============================================================ */
+
+/* ---- 1. Contain all home panels to the page width + even gutters ---- */
+body.home .world,
+body.home #checker,
+body.home #services,
+body.home #providers,
+body.home #testimonials,
+body.home #about {
+  max-width: var(--maxw) !important;
+  width: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 40px !important;
+  margin-bottom: 40px !important;
+  padding-left: clamp(22px, 3.2vw, 56px) !important;
+  padding-right: clamp(22px, 3.2vw, 56px) !important;
+  padding-top: clamp(48px, 5vw, 80px) !important;
+  padding-bottom: clamp(48px, 5vw, 80px) !important;
+  box-sizing: border-box !important;
+}
+
+/* Promise section: give it the same contained, premium panel treatment */
+body.home #about {
+  background: linear-gradient(180deg, #ffffff 0%, #f6f8fc 100%) !important;
+  border-radius: 32px !important;
+  box-shadow: 0 1px 0 rgba(10,23,51,0.03) !important;
+}
+
+/* ---- 2. World of care — balanced card proportions ---- */
+.wh_section { padding-top: clamp(48px, 5vw, 80px) !important; padding-bottom: clamp(48px, 5vw, 80px) !important; }
+.wh_h2 { font-size: clamp(36px, 4.4vw, 58px) !important; }
+.wh_top { margin-bottom: clamp(32px, 4vw, 52px) !important; }
+.wh_cards { gap: 16px !important; }
+.wh_card {
+  aspect-ratio: 3 / 4 !important;
+  border-radius: 18px !important;
+}
+.wh_card_label { font-size: 16px !important; left: 18px !important; bottom: 18px !important; }
+
+/* ---- 3. Services accordion — smooth, premium expand ---- */
+.svc_list { border-radius: 26px !important; }
+.svc_row {
+  transition: background 0.4s ease,
+              padding 0.55s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  will-change: padding !important;
+}
+.svc_row:not(:hover):not(.active) { padding: 24px 36px !important; }
+.svc_row:hover,
+.svc_row.active { padding: 32px 36px !important; }
+.svc_main {
+  transition: grid-template-rows 0.55s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+.svc_main > .svc_desc,
+.svc_main > .svc_link {
+  transition: opacity 0.4s ease 0.08s,
+              transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.06s !important;
+}
+.svc_img_acc {
+  transition: opacity 0.45s ease,
+              transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+.svc_row .svc_title { transition: color 0.35s ease !important; }
+.svc_row:hover .svc_title,
+.svc_row.active .svc_title { color: var(--rose) !important; }
+
+/* ---- 4. Promise cards — calmer, premium, consistent ---- */
+.promise_grid { gap: 20px !important; }
+.promise_card {
+  background: #ffffff !important;
+  border: 1px solid rgba(10,23,51,0.06) !important;
+  box-shadow: 0 2px 14px rgba(10,23,51,0.04) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  padding: 34px 32px !important;
+  min-height: 0 !important;
+  border-radius: 24px !important;
+}
+.promise_card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 20px 46px rgba(10,23,51,0.10) !important;
+  border-color: rgba(10,23,51,0.10) !important;
+}
+.promise_icon {
+  width: 52px !important; height: 52px !important;
+  margin-bottom: 28px !important;
+  background: linear-gradient(150deg, var(--ink) 0%, #233158 100%) !important;
+}
+.promise_title { font-size: 23px !important; margin-bottom: 12px !important; }
+
+/* ---- 5. Meet your providers — medium photo cards ---- */
+.prov_grid { gap: 18px !important; }
+.prov {
+  display: flex !important;
+  flex-direction: column !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(10,23,51,0.06) !important;
+  border-radius: 22px !important;
+  padding: 16px 16px 18px !important;
+  text-decoration: none !important;
+  box-shadow: 0 2px 14px rgba(10,23,51,0.04) !important;
+  transition: transform 0.4s var(--ease_lux, cubic-bezier(0.16,1,0.3,1)),
+              box-shadow 0.4s ease, border-color 0.3s ease !important;
+}
+.prov:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 22px 50px rgba(10,23,51,0.12) !important;
+  border-color: rgba(10,23,51,0.10) !important;
+}
+.prov_photo {
+  display: block !important;
+  width: 100% !important;
+  aspect-ratio: 4 / 5 !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background: var(--bg_section) !important;
+  margin-bottom: 16px !important;
+  position: relative !important;
+}
+.prov_photo img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center 18% !important;
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1) !important;
+}
+.prov:hover .prov_photo img { transform: scale(1.045) !important; }
+.prov_info { padding: 0 4px !important; }
+.prov_name_big { font-size: 20px !important; margin-bottom: 3px !important; color: var(--ink) !important; }
+.prov_role { font-size: 13px !important; color: var(--muted, #6b7280) !important; margin-bottom: 16px !important; }
+.prov_btn {
+  align-self: flex-start !important;
+  margin: auto 4px 0 !important;
+  padding: 8px 8px 8px 16px !important;
+  background: var(--ink) !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  font-size: 13px !important;
+  box-shadow: none !important;
+  transition: transform 0.25s ease, background 0.25s ease !important;
+}
+.prov:hover .prov_btn { transform: translateX(2px) !important; }
+.prov_btn .plus_btn {
+  width: 22px !important; height: 22px !important;
+  background: #fff !important; color: var(--ink) !important;
+}
+
+/* ---- 6. Mobile polish ---- */
+@media (max-width: 768px) {
+  body.home .world,
+  body.home #checker,
+  body.home #services,
+  body.home #providers,
+  body.home #testimonials,
+  body.home #about {
+    margin-top: 22px !important;
+    margin-bottom: 22px !important;
+    max-width: calc(100% - 20px) !important;
+    padding-left: clamp(18px, 5vw, 26px) !important;
+    padding-right: clamp(18px, 5vw, 26px) !important;
+    border-radius: 24px !important;
+  }
+  .prov_grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+  .prov { padding: 12px 12px 14px !important; }
+  .prov_name_big { font-size: 17px !important; }
+  .prov_role { font-size: 12px !important; margin-bottom: 12px !important; }
+  .prov_btn { font-size: 12px !important; padding: 7px 7px 7px 13px !important; }
+  .promise_grid { gap: 12px !important; }
+  .promise_card { padding: 26px 22px !important; }
+}
+@media (max-width: 420px) {
+  .prov_grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+  .prov_btn { width: 100%; justify-content: center !important; align-self: stretch !important; }
+}
