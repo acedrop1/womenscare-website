@@ -4400,14 +4400,15 @@ body.home #testimonials {
     grid-template-columns: 1.2fr 1fr !important;
     gap: clamp(40px, 5vw, 80px) !important;
   }
-  /* Keep right column full-width inside its grid cell so the video shows */
+  /* 3:4 portrait container on desktop, capped width so it stays tall not wide */
   .lp_hero_right {
     width: 100% !important;
-    justify-self: stretch !important;
+    max-width: 540px !important;
+    aspect-ratio: 3 / 4 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    justify-self: end !important;
     margin-right: 0 !important;
-    aspect-ratio: auto !important;
-    min-height: 520px !important;
-    max-height: 720px !important;
   }
   .lp_media {
     position: absolute !important;
