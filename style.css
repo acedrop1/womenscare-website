@@ -4865,3 +4865,46 @@ body.home #testimonials .test_src { color: rgba(255,255,255,0.6) !important; }
 @media (max-width: 768px) {
   body.home #testimonials { border-radius: 24px !important; }
 }
+
+/* ============================================================
+   TWO-TONE — STRONGER CONTRAST PASS
+   Make the light/dark alternation obvious while scrolling:
+   World (warm) > Services (DARK) > Promise (white) >
+   Checker (dark) > Providers (warm) > Testimonials (DARK) > Book (dark)
+   ============================================================ */
+
+/* Crisper light panels so they contrast hard against the dark bands */
+body.home .world {
+  background: linear-gradient(165deg, #fce6ef 0%, #fbd9e9 100%) !important;
+}
+body.home #providers {
+  background: linear-gradient(165deg, #efe6fb 0%, #fbe1ee 100%) !important;
+}
+
+/* ---- SERVICES becomes a dark band ---- */
+body.home #services {
+  background: linear-gradient(160deg, #0b1730 0%, #15234a 65%, #1a2b56 100%) !important;
+}
+body.home #services .sec_title,
+body.home #services .sec_title em { color: #ffffff !important; }
+body.home #services .sec_eyebrow { color: rgba(255,255,255,0.6) !important; }
+body.home #services .sec_sub { color: rgba(255,255,255,0.72) !important; }
+body.home #services .svc_list {
+  background: rgba(255,255,255,0.045) !important;
+  border: 1px solid rgba(255,255,255,0.09) !important;
+  box-shadow: none !important;
+}
+body.home #services .svc_row { border-bottom: 1px solid rgba(255,255,255,0.09) !important; }
+body.home #services .svc_row:last-child { border-bottom: 0 !important; }
+body.home #services .svc_row:hover { background: rgba(255,255,255,0.06) !important; }
+body.home #services .svc_num { color: rgba(255,255,255,0.5) !important; }
+body.home #services .svc_title { color: #ffffff !important; }
+body.home #services .svc_row:hover .svc_title,
+body.home #services .svc_row.active .svc_title { color: var(--rose) !important; }
+body.home #services .svc_tags { color: rgba(255,255,255,0.55) !important; }
+body.home #services .svc_desc { color: rgba(255,255,255,0.72) !important; }
+body.home #services .svc_view_all {
+  background: #ffffff !important;
+  color: var(--ink) !important;
+}
+body.home #services .svc_view_all_arrow { background: var(--rose) !important; color: #fff !important; }
