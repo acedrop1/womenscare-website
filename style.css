@@ -5385,3 +5385,34 @@ body:has(.mobile_menu.open) .lp_nav.nav-scrolled {
 }
 /* Desktop already uses a 3/4 hero frame; make sure the video fills it */
 .lp_video { object-fit: cover !important; }
+
+/* ============================================================
+   DESKTOP CALL BUTTON — show the phone number (tel: doesn't dial on desktop)
+   ============================================================ */
+.lp_phone_btn {
+  width: auto !important;
+  height: 40px !important;
+  border-radius: 999px !important;
+  padding: 0 16px 0 13px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  color: var(--ink) !important;
+  white-space: nowrap !important;
+}
+.lp_phone_btn svg { flex: 0 0 auto; }
+.lp_phone_num { display: inline; }
+
+/* On tighter desktop widths show just the icon so nothing overflows */
+@media (min-width: 1101px) and (max-width: 1340px) {
+  .lp_phone_num { display: none !important; }
+  .lp_phone_btn {
+    width: 40px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+  }
+}
