@@ -236,3 +236,16 @@ if (contactForm) {
   setup();
   window.addEventListener('resize', setup, { passive: true });
 })();
+
+// Ensure hero video autoplays inline on mobile and desktop
+(function () {
+  document.querySelectorAll('.lp_video').forEach(function (v) {
+    v.muted = true;
+    v.setAttribute('muted', '');
+    v.playsInline = true;
+    const tryPlay = function () { const p = v.play(); if (p && p.catch) p.catch(function () {}); };
+    tryPlay();
+    v.addEventListener('canplay', tryPlay, { once: true });
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) tryPlay(); });
+  });
+})();

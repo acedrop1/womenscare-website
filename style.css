@@ -5354,3 +5354,32 @@ body:has(.mobile_menu.open) .lp_nav.nav-scrolled {
   .lp_phone_btn { display: none !important; }
   .lp_nav, .lp_nav.nav-scrolled { grid-template-columns: 1fr auto !important; }
 }
+
+/* ============================================================
+   HERO VIDEO — guaranteed 3:4 frame on mobile, fills on all
+   ============================================================ */
+@media (max-width: 768px) {
+  body.home .lp_hero_right {
+    min-height: 0 !important;
+    height: auto !important;
+  }
+  body.home .lp_media {
+    position: relative !important;
+    inset: auto !important;
+    left: 0 !important; right: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 3 / 4 !important;
+    border-radius: 22px !important;
+    overflow: hidden !important;
+    display: block !important;
+  }
+  body.home .lp_video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+}
+/* Desktop already uses a 3/4 hero frame; make sure the video fills it */
+.lp_video { object-fit: cover !important; }
