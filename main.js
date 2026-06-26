@@ -55,6 +55,16 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileMe
   onScroll();
 })();
 
+// Service accordion: click a row to navigate to its service page
+document.querySelectorAll('.svc_row').forEach(function (row) {
+  row.addEventListener('click', function () {
+    const href = row.getAttribute('data-href');
+    if (href) window.location.href = href;
+  });
+  // First row stays open by default until user hovers another
+  // (CSS handles hover, no JS needed for that)
+});
+
 // reveal on scroll
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
