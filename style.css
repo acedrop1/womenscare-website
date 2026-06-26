@@ -5468,3 +5468,9 @@ body:not(.home) .lp_nav.nav-scrolled {
 @media (max-width: 768px) {
   .lp_phone_btn { display: none !important; }
 }
+
+/* Remove the announcement/top call bar site-wide (it was crowding the nav) */
+.top_bar { display: none !important; }
+body:not(.home) .lp_nav,
+body:not(.home) .lp_nav.nav-scrolled { top: 0 !important; }
+body:not(.home) .page_hero { padding-top: 112px !important; }
