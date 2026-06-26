@@ -164,3 +164,80 @@ document.querySelectorAll('.ai_fab').forEach(btn => {
   typeEl.textContent = '';
   setTimeout(tick, START);
 })();
+
+// ---- Mobile: services accordion auto opens the row you scroll to ----
+(function () {
+  const rows = Array.from(document.querySelectorAll('#services .svc_row'));
+  if (!rows.length) return;
+  const mq = window.matchMedia('(max-width: 768px)');
+  let ticking = false;
+  function update() {
+    ticking = false;
+    if (!mq.matches) { rows.forEach(r => r.classList.remove('active')); return; }
+    const center = window.innerHeight * 0.42;
+    let best = null, bestDist = Infinity;
+    rows.forEach(r => {
+      const rect = r.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+      const d = Math.abs(rect.top + rect.height / 2 - center);
+      if (d < bestDist) { bestDist = d; best = r; }
+    });
+    rows.forEach(r => r.classList.toggle('active', r === best));
+  }
+  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+// ---- Mobile: promise carousel focuses the centered card ----
+(function () {
+  const grid = document.querySelector('.promise_grid');
+  if (!grid) return;
+  const cards = Array.from(grid.querySelectorAll('.promise_card'));
+  if (!cards.length) return;
+  const mq = window.matchMedia('(max-width: 768px)');
+  let ticking = false;
+  function focusCard() {
+    ticking = false;
+    if (!mq.matches) { cards.forEach(c => c.classList.remove('is-focus')); return; }
+    const gc = grid.getBoundingClientRect();
+    const mid = gc.left + gc.width / 2;
+    let best = null, bestDist = Infinity;
+    cards.forEach(c => {
+      const r = c.getBoundingClientRect();
+      const d = Math.abs(r.left + r.width / 2 - mid);
+      if (d < bestDist) { bestDist = d; best = c; }
+    });
+    cards.forEach(c => c.classList.toggle('is-focus', c === best));
+  }
+  grid.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(focusCard); } }, { passive: true });
+  window.addEventListener('resize', focusCard);
+  // run after layout settles
+  setTimeout(focusCard, 200);
+})();
+
+// ---- Mobile: testimonials become an unstoppable marquee (cloned for seamless loop) ----
+(function () {
+  const grid = document.querySelector('#testimonials .test_grid');
+  if (!grid) return;
+  function setup() {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (isMobile && !grid.dataset.marquee) {
+      const track = document.createElement('div');
+      track.className = 'test_track';
+      const originals = Array.from(grid.children);
+      originals.forEach(c => track.appendChild(c));
+      originals.forEach(c => {
+        const clone = c.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.tabIndex = -1;
+        track.appendChild(clone);
+      });
+      grid.appendChild(track);
+      grid.dataset.marquee = '1';
+      grid.classList.add('is-marquee');
+    }
+  }
+  setup();
+  window.addEventListener('resize', setup, { passive: true });
+})();
