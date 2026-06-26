@@ -5047,3 +5047,34 @@ body.home #checker {
     padding-right: clamp(14px, 4vw, 20px) !important;
   }
 }
+
+/* ============================================================
+   TESTIMONIALS — single swipeable row (horizontal scroll)
+   ============================================================ */
+body.home #testimonials .test_grid {
+  display: flex !important;
+  grid-template-columns: none !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  gap: 16px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scroll-snap-type: x proximity !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  padding-bottom: 4px !important;
+  margin-top: 8px !important;
+}
+body.home #testimonials .test_grid::-webkit-scrollbar { display: none !important; height: 0 !important; }
+body.home #testimonials .test {
+  flex: 0 0 auto !important;
+  width: 372px !important;
+  scroll-snap-align: start !important;
+}
+@media (max-width: 768px) {
+  body.home #testimonials .test {
+    width: 82vw !important;
+    max-width: 340px !important;
+  }
+}
