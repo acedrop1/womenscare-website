@@ -1150,11 +1150,12 @@ a { color: inherit; text-decoration: none; }
 <!-- Exit bottom sheet -->
 <div class="sheet_bg" id="exitSheet">
   <div class="sheet">
-    <h3>Save and come back later?</h3>
-    <p>Your progress is saved on this device. You can pick up right where you left off.</p>
-    <div class="sheet_actions">
-      <button class="btn btn_primary" id="exitConfirm">Save and exit</button>
-      <button class="btn btn_back" id="exitCancel" style="flex: 1; width: 100%; min-width: 0; background: white; border: 1px solid var(--line);">Keep going</button>
+    <h3>Leaving the Symptom Check?</h3>
+    <p>You can save your progress and pick up where you left off, or discard it and start fresh next time.</p>
+    <div class="sheet_actions" style="flex-direction: column; gap: 10px;">
+      <button class="btn btn_primary" id="exitConfirm" style="width: 100%;">Save and exit</button>
+      <button class="btn" id="exitDiscard" style="width: 100%; background: white; color: var(--rose); border: 1px solid rgba(241,69,129,0.3);">Discard and exit</button>
+      <button class="btn btn_back" id="exitCancel" style="width: 100%; background: white; border: 1px solid var(--line);">Keep going</button>
     </div>
   </div>
 </div>
@@ -1481,21 +1482,38 @@ document.getElementById('nextBtn').addEventListener('click', goNext);
 document.getElementById('backBtn').addEventListener('click', goBack);
 
 document.getElementById('closeBtn').addEventListener('click', () => {
-  // mid-questionnaire? confirm; otherwise navigate home
+  // mid-questionnaire? confirm; otherwise close/navigate
   if (state.currentIndex >= 1 && state.currentIndex <= 21) {
     document.getElementById('exitSheet').classList.add('show');
   } else {
-    window.location.href = 'index.html';
+    exitToParent();
   }
 });
+
+// If we're inside the modal iframe, postMessage to parent to close it.
+// Otherwise navigate to the home page.
+function exitToParent() {
+  if (window.parent && window.parent !== window) {
+    try { window.parent.postMessage({ type: 'sym-close' }, '*'); return; } catch (e) {}
+  }
+  window.location.href = 'index.html';
+}
 
 document.getElementById('exitCancel').addEventListener('click', () => {
   document.getElementById('exitSheet').classList.remove('show');
 });
 document.getElementById('exitConfirm').addEventListener('click', () => {
   save();
-  window.location.href = 'index.html';
+  exitToParent();
 });
+const discardBtn = document.getElementById('exitDiscard');
+if (discardBtn) {
+  discardBtn.addEventListener('click', () => {
+    if (typeof clearStorage === 'function') clearStorage();
+    state = { answers: {}, currentIndex: 0, shownGroups: [] };
+    exitToParent();
+  });
+}
 
 document.getElementById('restartBtn').addEventListener('click', () => {
   clearStorage();
