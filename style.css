@@ -4287,3 +4287,106 @@ body.home #testimonials {
   .svc_view_all { padding: 12px 14px 12px 22px; font-size: 14px; }
   .svc_view_all_arrow { width: 32px; height: 32px; }
 }
+
+/* ============================================
+   SERVICES ACCORDION — performance rebuild
+   GPU-friendly. No more laggy width animations.
+   ============================================ */
+.svc_row {
+  position: relative !important;
+  grid-template-columns: 60px 1fr 160px !important;
+  align-items: center !important;
+  padding: 28px 36px !important;
+  transition: background 0.35s ease !important;
+  contain: layout style !important;
+}
+.svc_row:not(:hover):not(.active) { padding: 22px 36px !important; }
+
+/* Image always visible — fade + scale, NEVER animate width */
+.svc_img_acc {
+  width: 140px !important;
+  height: 90px !important;
+  object-fit: cover !important;
+  border-radius: 14px !important;
+  opacity: 0.55 !important;
+  transform: scale(0.96) translateZ(0) !important;
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  justify-self: end !important;
+  will-change: transform, opacity !important;
+}
+.svc_row:hover .svc_img_acc,
+.svc_row.active .svc_img_acc {
+  opacity: 1 !important;
+  transform: scale(1) translateZ(0) !important;
+}
+
+/* Description: use grid-template-rows 0fr → 1fr trick — smoothest possible */
+.svc_main {
+  display: grid !important;
+  grid-template-rows: auto auto 0fr 0fr !important;
+  transition: grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  min-width: 0 !important;
+}
+.svc_main > .svc_desc,
+.svc_main > .svc_link {
+  overflow: hidden !important;
+  min-height: 0 !important;
+  opacity: 0 !important;
+  transform: translateY(-4px) translateZ(0) !important;
+  transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s !important;
+  max-height: none !important;
+  margin: 0 !important;
+}
+.svc_main > .svc_desc { margin: 0 !important; }
+.svc_main > .svc_link {
+  margin: 8px 0 0 !important;
+  pointer-events: none;
+}
+.svc_row:hover .svc_main,
+.svc_row.active .svc_main {
+  grid-template-rows: auto auto 1fr 1fr !important;
+}
+.svc_row:hover .svc_main > .svc_desc,
+.svc_row.active .svc_main > .svc_desc,
+.svc_row:hover .svc_main > .svc_link,
+.svc_row.active .svc_main > .svc_link {
+  opacity: 1 !important;
+  transform: translateY(0) translateZ(0) !important;
+  margin-top: 12px !important;
+}
+.svc_row:hover .svc_main > .svc_link,
+.svc_row.active .svc_main > .svc_link { pointer-events: auto; margin-top: 10px !important; }
+
+/* Mobile: hide image entirely, simpler animation */
+@media (max-width: 768px) {
+  .svc_row {
+    grid-template-columns: 36px 1fr !important;
+    padding: 18px 22px !important;
+  }
+  .svc_img_acc { display: none !important; }
+}
+
+/* ============================================
+   HERO VIDEO — 3:4 portrait container on desktop
+   ============================================ */
+@media (min-width: 769px) {
+  .lp_hero_right {
+    aspect-ratio: 3 / 4 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: 720px !important;
+  }
+  .lp_media {
+    position: absolute !important;
+    inset: 0 !important;
+    left: 0 !important; right: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 26px !important;
+  }
+  .lp_video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+}
