@@ -237,15 +237,27 @@ if (contactForm) {
   window.addEventListener('resize', setup, { passive: true });
 })();
 
-// Ensure hero video autoplays inline on mobile and desktop
+// Ensure hero video autoplays inline on mobile and desktop (no play button)
 (function () {
-  document.querySelectorAll('.lp_video').forEach(function (v) {
-    v.muted = true;
-    v.setAttribute('muted', '');
-    v.playsInline = true;
-    const tryPlay = function () { const p = v.play(); if (p && p.catch) p.catch(function () {}); };
-    tryPlay();
-    v.addEventListener('canplay', tryPlay, { once: true });
-    document.addEventListener('visibilitychange', function () { if (!document.hidden) tryPlay(); });
+  var vids = document.querySelectorAll('.lp_video');
+  if (!vids.length) return;
+  function kick(v) {
+    v.muted = true; v.defaultMuted = true;
+    v.setAttribute('muted', ''); v.playsInline = true;
+    v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
+    var p = v.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+  function kickAll() { vids.forEach(kick); }
+  vids.forEach(function (v) {
+    kick(v);
+    ['loadeddata', 'canplay', 'canplaythrough'].forEach(function (ev) {
+      v.addEventListener(ev, function () { kick(v); }, { once: true });
+    });
   });
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) kickAll(); });
+  // First interaction (scroll/tap) unlocks playback if the browser blocked autoplay
+  var events = ['touchstart', 'pointerdown', 'click', 'scroll', 'keydown'];
+  function unlock() { kickAll(); events.forEach(function (ev) { window.removeEventListener(ev, unlock, true); }); }
+  events.forEach(function (ev) { window.addEventListener(ev, unlock, { capture: true, passive: true }); });
 })();
