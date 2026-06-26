@@ -126,12 +126,7 @@ if (contactForm) {
   });
 }
 
-// AI FAB placeholder (opens a small alert until real chat is wired)
-document.querySelectorAll('.ai_fab').forEach(btn => {
-  btn.addEventListener('click', () => {
-    alert("Our AI Care Assistant is coming soon. For now, please call (973) 782 5577 or use the Contact form.");
-  });
-});
+// AI FAB is wired to the Care Assistant chat in chat.js
 
 // Hero typewriter — types a medical term, deletes, cycles to the next (~7 terms)
 (function () {
