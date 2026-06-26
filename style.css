@@ -4390,3 +4390,23 @@ body.home #testimonials {
     object-fit: cover !important;
   }
 }
+
+/* ============================================
+   FINE-TUNE — hero right column shifts right, hide review on mobile
+   ============================================ */
+@media (min-width: 769px) {
+  /* Push the right column (video/image) further to the right */
+  .lp_hero {
+    grid-template-columns: 1.25fr 1fr !important;
+    gap: clamp(40px, 6vw, 96px) !important;
+  }
+  .lp_hero_right {
+    margin-right: clamp(0px, 2vw, 32px) !important;
+    justify-self: end !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hide "Compassionate, attentive care" review row on mobile */
+  .lp_review { display: none !important; }
+}
