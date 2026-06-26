@@ -4975,3 +4975,75 @@ body.home #faq {
     margin-right: auto !important;
   }
 }
+
+/* ============================================================
+   WIDTH RHYTHM v2 — full-width colour bands + aligned content
+   All section CONTENT shares one 1200px centered column so edges
+   line up; backgrounds alternate full-bleed bands vs contained.
+   Supersedes the earlier width rules.
+   ============================================================ */
+
+/* Full-bleed colour bands: bg edge to edge, content centered 1200 */
+body.home .world,
+body.home #services,
+body.home #about,
+body.home #checker,
+body.home #testimonials {
+  max-width: none !important;
+  width: auto !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
+  padding-left: max(40px, calc((100vw - 1200px) / 2)) !important;
+  padding-right: max(40px, calc((100vw - 1200px) / 2)) !important;
+}
+
+/* Contained sections: SAME 1200 content column, centered (no offsets) */
+body.home #banner,
+body.home .sym_callout_wrap,
+body.home #providers,
+body.home #locations,
+body.home #faq,
+body.home #book {
+  max-width: 1280px !important;
+  width: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 40px !important;
+  padding-right: 40px !important;
+}
+
+/* Symptom-check bar: balanced spacing above/below */
+body.home .sym_callout_wrap {
+  padding-top: 36px !important;
+  padding-bottom: 36px !important;
+}
+
+/* #checker band keeps its soft pink wash full width */
+body.home #checker {
+  background: linear-gradient(180deg, #fdf2f6 0%, #fff5fa 100%) !important;
+}
+
+/* Mobile: bands + cards all clean full width */
+@media (max-width: 768px) {
+  body.home .world,
+  body.home #services,
+  body.home #about,
+  body.home #checker,
+  body.home #testimonials {
+    padding-left: clamp(18px, 5vw, 24px) !important;
+    padding-right: clamp(18px, 5vw, 24px) !important;
+  }
+  body.home #banner,
+  body.home .sym_callout_wrap,
+  body.home #providers,
+  body.home #locations,
+  body.home #faq,
+  body.home #book {
+    max-width: 100% !important;
+    padding-left: clamp(14px, 4vw, 20px) !important;
+    padding-right: clamp(14px, 4vw, 20px) !important;
+  }
+}
