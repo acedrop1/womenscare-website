@@ -132,3 +132,35 @@ document.querySelectorAll('.ai_fab').forEach(btn => {
     alert("Our AI Care Assistant is coming soon. For now, please call (973) 782 5577 or use the Contact form.");
   });
 });
+
+// Hero typewriter — types a medical term, deletes, cycles to the next (~7 terms)
+(function () {
+  const h1 = document.getElementById('heroH1');
+  if (!h1) return;
+  const typeEl = h1.querySelector('.lp_type');
+  let words = [];
+  try { words = JSON.parse(h1.getAttribute('data-words') || '[]'); } catch (e) { words = []; }
+  if (!typeEl || !words.length) return;
+
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { typeEl.textContent = words[0]; return; }
+
+  const TYPE = 75, DEL = 38, HOLD = 1500, GAP = 380, START = 600;
+  let wi = 0, ci = 0, deleting = false;
+
+  function tick() {
+    const word = words[wi];
+    if (!deleting) {
+      ci++;
+      typeEl.textContent = word.slice(0, ci);
+      if (ci >= word.length) { deleting = true; return setTimeout(tick, HOLD); }
+      return setTimeout(tick, TYPE);
+    }
+    ci--;
+    typeEl.textContent = word.slice(0, ci);
+    if (ci <= 0) { deleting = false; wi = (wi + 1) % words.length; return setTimeout(tick, GAP); }
+    return setTimeout(tick, DEL);
+  }
+  typeEl.textContent = '';
+  setTimeout(tick, START);
+})();
