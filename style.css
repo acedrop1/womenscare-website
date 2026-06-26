@@ -4908,3 +4908,70 @@ body.home #services .svc_view_all {
   color: var(--ink) !important;
 }
 body.home #services .svc_view_all_arrow { background: var(--rose) !important; color: #fff !important; }
+
+/* ============================================================
+   WIDTH RHYTHM — break the uniform 1280 column (2026)
+   Dark sections run full-bleed edge to edge; light sections
+   sit contained at varied widths with one intentional offset.
+   ============================================================ */
+
+/* ---- Full-bleed dark bands (edge to edge, content re-centered) ---- */
+body.home #services,
+body.home #testimonials {
+  max-width: none !important;
+  width: auto !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
+  padding-left: max(24px, calc((100vw - 1180px) / 2)) !important;
+  padding-right: max(24px, calc((100vw - 1180px) / 2)) !important;
+}
+
+/* ---- Light sections at varied widths (edges no longer align) ---- */
+/* Wider */
+body.home .world { max-width: 1380px !important; }
+body.home #banner { max-width: 1380px !important; }
+/* Standard-ish, but distinct from the wide ones */
+body.home #providers { max-width: 1240px !important; }
+/* Narrower + gently offset left so it doesn't line up with the rest */
+body.home #about {
+  max-width: 1060px !important;
+  margin-left: clamp(24px, 7vw, 130px) !important;
+  margin-right: auto !important;
+}
+/* Narrower, offset right */
+body.home #faq {
+  max-width: 1100px !important;
+  margin-left: auto !important;
+  margin-right: clamp(24px, 6vw, 110px) !important;
+}
+
+/* ---- Mobile: collapse offsets & widths to clean full-width ---- */
+@media (max-width: 900px) {
+  body.home #about,
+  body.home #faq {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: var(--maxw) !important;
+  }
+}
+@media (max-width: 768px) {
+  body.home #services,
+  body.home #testimonials {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: clamp(18px, 5vw, 26px) !important;
+    padding-right: clamp(18px, 5vw, 26px) !important;
+  }
+  body.home #about,
+  body.home #faq,
+  body.home .world,
+  body.home #banner,
+  body.home #providers {
+    max-width: calc(100% - 20px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
