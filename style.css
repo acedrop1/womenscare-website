@@ -4786,3 +4786,82 @@ body.home #about {
   .prov_grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
   .prov_btn { width: 100%; justify-content: center !important; align-self: stretch !important; }
 }
+
+/* ============================================================
+   TWO-TONE SCROLL RHYTHM — 2026
+   Break the repetitive single-tone page: alternating warm/cool
+   panels, two dark "anchor" bands, and a gentle gradient page bg
+   so the backdrop shifts as you scroll.
+   ============================================================ */
+
+/* Page backdrop: soft warm/cool vertical wave (shows in gutters) */
+body.home {
+  background:
+    linear-gradient(180deg,
+      #e8eaef 0%,
+      #f3ebf0 12%,
+      #e7ecf4 26%,
+      #f2eaf0 40%,
+      #e7ecf4 54%,
+      #f2eaef 68%,
+      #e8ebf1 82%,
+      #e6e8ee 100%) !important;
+  background-attachment: scroll !important;
+}
+
+/* --- Alternating panel tones (clear contrast between neighbours) --- */
+/* WARM */
+body.home .world {
+  background: linear-gradient(170deg, #fdeef4 0%, #fbe3ee 100%) !important;
+}
+/* COOL */
+body.home #services {
+  background: linear-gradient(170deg, #ecf3fc 0%, #ffffff 70%) !important;
+}
+/* CLEAN WHITE (already set, reinforce) */
+body.home #about {
+  background: linear-gradient(180deg, #ffffff 0%, #f6f8fc 100%) !important;
+}
+/* WARM lavender-rose */
+body.home #providers {
+  background: linear-gradient(170deg, #f3ecfb 0%, #fbe9f2 100%) !important;
+}
+
+/* --- DARK ANCHOR: Testimonials becomes a deep navy band --- */
+body.home #testimonials {
+  background: linear-gradient(160deg, #0b1730 0%, #16244c 60%, #1b2c58 100%) !important;
+  border-radius: 32px !important;
+}
+body.home #testimonials .sec_title,
+body.home #testimonials .sec_title em { color: #ffffff !important; }
+body.home #testimonials .sec_eyebrow { color: rgba(255,255,255,0.62) !important; }
+body.home #testimonials .sec_sub { color: rgba(255,255,255,0.72) !important; }
+body.home #testimonials .test {
+  background: rgba(255,255,255,0.055) !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+  backdrop-filter: blur(6px) !important;
+  transition: transform 0.35s var(--ease_lux, cubic-bezier(0.16,1,0.3,1)), background 0.35s ease, border-color 0.35s ease !important;
+}
+body.home #testimonials .test:hover {
+  transform: translateY(-5px) !important;
+  background: rgba(255,255,255,0.09) !important;
+  border-color: rgba(255,255,255,0.18) !important;
+}
+body.home #testimonials .test_text { color: #f3f5fa !important; }
+body.home #testimonials .test_quote { color: #ffffff !important; opacity: 0.45 !important; }
+body.home #testimonials .test_name { color: #ffffff !important; }
+body.home #testimonials .test_src { color: rgba(255,255,255,0.6) !important; }
+
+/* Locations & FAQ stay "open" (no card bg) so they read as light
+   breathing room between the tinted/dark panels — adds rhythm. */
+
+/* Gentle, slightly richer reveal so scrolling feels alive */
+.reveal {
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+@media (max-width: 768px) {
+  body.home #testimonials { border-radius: 24px !important; }
+}
