@@ -444,9 +444,6 @@ body.home #book               { --w: 1440px; }
   .fx3d_list.fx-swipe a { padding: 10px 14px; white-space: nowrap; }
   .fx3d_list.fx-swipe a span { display: none; }
 
-  /* locations: side-by-side swipe */
-  body.home .locs.fx-swipe > .loc { width: 82%; }
-
   .fx-dots { display: flex; justify-content: center; gap: 6px; margin-top: 14px; }
   .fx-dots i { width: 6px; height: 6px; border-radius: 3px; background: rgba(74,16,46,.18); transition: width .35s var(--fx-ease), background .25s; }
   .fx-dots i.on { width: 22px; background: #b4235e; }
@@ -566,3 +563,6 @@ body.home #providers { --w: 1200px; }
 }
 /* the frosted profile is the only panel here: drop the section's old lavender box */
 body.home #providers { background: transparent !important; box-shadow: none !important; border-radius: 0 !important; }
+
+/* one office: the location card spans the column */
+body.home .locs { grid-template-columns: minmax(0, 1fr) !important; }

@@ -494,8 +494,6 @@
   if (bentoGrid) swipeRow(bentoGrid, [].slice.call(bentoGrid.children));
   var organList = document.querySelector('.fx3d_list');
   if (organList) organList.classList.add('fx-swipe');
-  var locs = document.querySelector('body.home .locs');
-  if (locs) swipeRow(locs, [].slice.call(locs.children));
 
   /* ================================================================
      World of care: on mobile, a centre-snapping swipe row that

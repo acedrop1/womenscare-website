@@ -135,14 +135,14 @@
     {
       id: 'appointment',
       keywords: ['appointment', 'book', 'schedule', 'visit'],
-      answer: "You can request an appointment using our contact form or by calling (973) 782 5577. Most new patients are seen within the same week. We have two locations: Paterson and Totowa, both with the same team and standard of care.",
+      answer: "You can request an appointment using our contact form or by calling (973) 782 5577. Most new patients are seen within the same week. Our office is at 825 Riverview Drive in Totowa, NJ.",
       source: null,
       link: { url: "contact.html", text: "Request an appointment" }
     },
     {
       id: 'locations',
-      keywords: ['location', 'address', 'where', 'paterson', 'totowa', 'directions', 'hours'],
-      answer: "We have two New Jersey locations: 1044 Main Street, Paterson NJ 07503 and 825 Riverview Drive, Totowa NJ 07512. Both offices are open Monday through Friday, 9am to 5pm, closed on weekends. Same team, same care at both locations.",
+      keywords: ['location', 'address', 'where', 'totowa', 'directions', 'hours'],
+      answer: "Our office is at 825 Riverview Drive, Totowa NJ 07512. We are open Monday through Friday, 9am to 5pm, and closed on weekends. On-site parking is available for patients.",
       source: null,
       link: { url: "contact.html", text: "Visit information and directions" }
     },
