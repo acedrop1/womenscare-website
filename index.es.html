@@ -26,6 +26,8 @@
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/lay-grotesk" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="fx.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "MedicalBusiness", "name": "Women's Care OB/GYN of NJ", "alternateName": "Women's Care of New Jersey", "url": "https://womenscarenj.com", "logo": "https://womenscarenj.com/logo.svg", "image": "https://womenscarenj.com/social.svg", "description": "Board certified OB/GYN care in Paterson and Totowa, NJ. Annual exams, family planning, menopause, ultrasound, and more.", "telephone": "+1-973-782-5577", "medicalSpecialty": ["Gynecology", "ObstetricsAndGynecology"], "availableService": [{"@type": "MedicalProcedure", "name": "Annual Well Woman Exam"}, {"@type": "MedicalProcedure", "name": "Birth Control"}, {"@type": "MedicalProcedure", "name": "Family Planning"}, {"@type": "MedicalProcedure", "name": "Menopause Care"}, {"@type": "MedicalProcedure", "name": "Endometriosis Treatment"}, {"@type": "MedicalProcedure", "name": "Fibroid Treatment"}, {"@type": "MedicalProcedure", "name": "Pelvic Ultrasound"}, {"@type": "MedicalProcedure", "name": "Colposcopy"}, {"@type": "MedicalProcedure", "name": "LEEP"}, {"@type": "MedicalProcedure", "name": "STD Treatment"}, {"@type": "MedicalProcedure", "name": "Adolescent Gynecology"}], "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "17:00"}], "department": [{"@type": "MedicalClinic", "name": "Women's Care OB/GYN Paterson", "telephone": "+1-973-782-5577", "address": {"@type": "PostalAddress", "streetAddress": "1044 Main Street", "addressLocality": "Paterson", "addressRegion": "NJ", "postalCode": "07503", "addressCountry": "US"}}, {"@type": "MedicalClinic", "name": "Women's Care OB/GYN Totowa", "telephone": "+1-973-782-5577", "address": {"@type": "PostalAddress", "streetAddress": "825 Riverview Drive", "addressLocality": "Totowa", "addressRegion": "NJ", "postalCode": "07512", "addressCountry": "US"}}], "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.0", "reviewCount": "61", "bestRating": "5"}, "review": [{"@type": "Review", "author": {"@type": "Person", "name": "Marie Calicchio"}, "reviewRating": {"@type": "Rating", "ratingValue": "5"}, "reviewBody": "Dr. Sticco always so very nice and awesome! I trusted this doctor and she always cares about my situation."}, {"@type": "Review", "author": {"@type": "Person", "name": "Marianna Messana"}, "reviewRating": {"@type": "Rating", "ratingValue": "5"}, "reviewBody": "I had my first ever gynecologist appointment. After hours of investigating I believed Dr. Sticco was the doctor for the job."}, {"@type": "Review", "author": {"@type": "Person", "name": "Meredith Ruccatano"}, "reviewRating": {"@type": "Rating", "ratingValue": "5"}, "reviewBody": "I loved meeting Dr. Sticco. She's very thorough and pleasant. I finally found a great gynecologist I'll be continuing with."}]}, {"@context": "https://schema.org", "@type": "WebSite", "url": "https://womenscarenj.com", "name": "Women's Care OB/GYN of NJ"}]</script>
 <!-- Google Analytics 4 — REPLACE G-XXXXXXXXXX WITH YOUR MEASUREMENT ID -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -114,7 +116,7 @@
     </nav>
 
     <!-- HERO -->
-    <div class="lp_hero">
+    <div class="lp_hero" data-fx="wave">
       <div class="lp_hero_left">
         <a href="#testimonials" class="lp_eyebrow">
           <span class="lp_eyebrow_icon">
@@ -290,6 +292,25 @@
   </div>
 </section>
 
+<!-- ============ 3D ANATOMY ============ -->
+<section class="container sec" id="anatomy">
+  <div class="fx3d fx-panel reveal" data-fx="clouds">
+    <div class="fx3d_copy">
+      <span class="fx3d_pill"><i>3D</i>Anatomía interactiva</span>
+      <h2 class="fx-split">Conozca su cuerpo. <em>Nosotros nos encargamos del resto.</em></h2>
+      <p>Gire el modelo para explorar la anatomía que cuidamos cada día. Toque un punto para ver la atención detrás.</p>
+      <ul class="fx3d_list"><li><a href="annual-well-woman-exam.es.html" data-anchor="breast"><b>1</b>Salud mamaria<span>Examen anual</span></a></li><li><a href="fibroids.es.html" data-anchor="uterus"><b>2</b>Útero<span>Fibromas y endometriosis</span></a></li><li><a href="family-planning.es.html" data-anchor="ovary"><b>3</b>Ovarios<span>Fertilidad y planificación</span></a></li><li><a href="colposcopy.es.html" data-anchor="cervix"><b>4</b>Cuello uterino<span>Papanicolaou y colposcopia</span></a></li></ul>
+    </div>
+    <div class="fx3d_stage" data-fail="Vista 3D no disponible en este dispositivo">
+      <div class="fx3d_spot"></div>
+      <div class="fx3d_load"><span>Cargando modelo 3D</span></div>
+      <a class="fx3d_hot" href="annual-well-woman-exam.es.html" data-anchor="breast" data-side="right" tabindex="-1"><span class="dot">1</span><span class="lbl">Salud mamaria</span></a><a class="fx3d_hot" href="fibroids.es.html" data-anchor="uterus" data-side="left" tabindex="-1"><span class="dot">2</span><span class="lbl">Útero</span></a><a class="fx3d_hot" href="family-planning.es.html" data-anchor="ovary" data-side="right" tabindex="-1"><span class="dot">3</span><span class="lbl">Ovarios</span></a><a class="fx3d_hot" href="colposcopy.es.html" data-anchor="cervix" data-side="left" tabindex="-1"><span class="dot">4</span><span class="lbl">Cuello uterino</span></a>
+      <span class="fx3d_hint">Arrastre para girar</span>
+      <span class="fx3d_credit">Modelo: <a href="https://doi.org/10.48539/HBM352.BTSQ.586" target="_blank" rel="noopener">HuBMAP Female Reference Organs v1.5</a>, CC BY 4.0</span>
+    </div>
+  </div>
+</section>
+
 <!-- ============ SERVICES ============ -->
 <section class="container sec" id="services">
   <div class="sec_header">
@@ -340,6 +361,42 @@
       <div class="svc_name">Los 13 servicios</div>
       <span class="svc_plus"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
     </a>
+  </div>
+</section>
+
+<!-- ============ CARE BENTO ============ -->
+<section class="container sec" id="glance">
+  <div class="sec_header">
+    <h2 class="sec_title reveal">Atención de un <em>vistazo</em>.</h2>
+    <div class="reveal d1">
+      <span class="sec_eyebrow">Por qué nos eligen</span>
+      <p class="sec_sub">Todo lo que necesita de su ginecóloga, cerca de casa y a su horario.</p>
+    </div>
+  </div>
+  <div class="fxb fx-panel" data-fx="clouds" data-stages='{"points": [[3, 0.6, 0.1], [3, 2, 0.1], [2.6, 3.4, 0.2], [2.4, 4, 0.3], [2.5, 3, 1.2], [2.6, 1.6, 3], [2.8, 0.5, 3.6], [3, 0.2, 3.2]], "marks": [[0, "Adolescencia"], [2, "20s"], [4, "40s"], [6, "50s+"]], "tips": [["Adolescencia", "Primera visita y vacuna VPH", "Periodos y cólicos", "—"], ["Fin de la adolescencia", "Pruebas de ITS", "Anticonceptivos", "—"], ["20s", "Papanicolaou", "Anticonceptivos y DIU", "—"], ["30s", "Examen anual", "Preconcepción y embarazo", "—"], ["40s", "Ultrasonido", "Fibromas y sangrado abundante", "Perimenopausia"], ["Fin de los 40s", "Examen anual", "Endometriosis y dolor pélvico", "Sofocos y sueño"], ["50s", "Pruebas de detección", "—", "Atención de la menopausia"], ["60s+", "Salud ósea y pélvica", "—", "Salud urinaria y vaginal"]]}'>
+    <div class="fxb-grid">
+      <div class="fxb-card fxb-big"><div class="g" style="background:linear-gradient(180deg,#ffb8d2 0%,#c93d76 36%,#c93d76 74%,#e26a9b 100%)"></div><div class="core" style="background:#3d0a24"></div><div class="fxb-in">
+        <div class="fxb-row" style="justify-content:space-between;flex-wrap:wrap"><div class="fxb-ttl">Atención para cada etapa</div><div class="fxb-legend"><span><i style="background:#ffffff"></i>Preventiva</span><span><i style="background:#ffd3e4"></i>Reproductiva</span><span><i style="background:#d9c8ff"></i>Madurez</span></div></div>
+        <div class="fxb-row" style="margin-top:16px;align-items:flex-end;gap:14px"><span data-count="13" data-pitch="7"></span><span class="fxb-muted" style="padding-bottom:4px">servicios en un solo lugar</span></div>
+        <svg class="fxb-stream" aria-hidden="true"></svg></div><div class="rim"></div></div>
+      <div class="fxb-card fxb-week"><div class="g" style="background:linear-gradient(180deg,#d8ccff 0%,#7d63d9 36%,#7d63d9 74%,#9f8af0 100%)"></div><div class="core" style="background:#1f1352"></div><div class="fxb-in">
+        <div class="fxb-cap">Abierto entre semana</div>
+        <svg class="fxb-gauge" viewBox="-150 -150 300 168" data-days='["Lun", "Mar", "Mié", "Jue", "Vie"]' data-cap="9am a 5pm" aria-label="Abierto entre semana, 9am a 5pm" role="img"></svg>
+        <div class="fxb-rows"><div><span>Paterson</span><span>1044 Main St</span></div><div><span>Totowa</span><span>825 Riverview Dr</span></div><div><span>Hablamos español</span><span>EN · ES</span></div></div></div><div class="rim"></div></div>
+      <div class="fxb-card fxb-kpi"><div class="g" style="background:linear-gradient(180deg,#ffc1d8 0%,#e0447f 36%,#e0447f 74%,#f07aa6 100%)"></div><div class="core" style="background:#5c0f33"></div><div class="fxb-in">
+        <div class="fxb-cap">Proveedoras</div><div style="margin:14px 0 10px"><span data-count="4" data-pitch="6"></span></div>
+        <div class="fxb-muted">Ginecóloga certificada, asistente médica y enfermeras practicantes</div><a class="fxb-link" href="our-team.es.html">Conózcalas <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div><div class="rim"></div></div>
+      <div class="fxb-card fxb-glass fxb-kpi"><div class="fxb-in">
+        <div class="fxb-cap">Ubicaciones</div><div style="margin:14px 0 10px;color:#c93d76"><span data-count="2" data-pitch="6"></span></div>
+        <div class="fxb-muted">Paterson y Totowa, el mismo equipo en ambas</div><a class="fxb-link" href="contact.es.html">Cómo llegar <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
+      <div class="fxb-card fxb-glass fxb-kpi"><div class="fxb-in">
+        <div class="fxb-cap">Planes de seguro</div><div style="margin:14px 0 10px;color:#7d63d9"><span data-count="8" data-suffix="+" data-pitch="6"></span></div>
+        <div class="fxb-muted">Horizon, Aetna, Cigna, UnitedHealthcare y más</div><a class="fxb-link" href="about.es.html">Ver planes <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
+      <div class="fxb-card fxb-kpi"><div class="g" style="background:linear-gradient(180deg,#ffd9c2 0%,#e57f5a 36%,#e57f5a 74%,#f0a283 100%)"></div><div class="core" style="background:#3d1405"></div><div class="fxb-in">
+        <div class="fxb-cap">Chequeo de síntomas</div><div style="margin:14px 0 10px"><span data-count="21" data-pitch="6"></span></div>
+        <div class="fxb-muted" style="margin-bottom:12px">preguntas · unos 3 minutos, gratis y confidencial</div>
+        <a class="fxb-link" href="#" data-sym-open style="margin-top:auto">Comenzar <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div><div class="rim"></div></div>
+    </div>
   </div>
 </section>
 
@@ -423,47 +480,61 @@
       <p class="sec_sub">Board certified clinicians who treat the full spectrum of women's health, every single day.</p>
     </div>
   </div>
-  <div class="prov_grid">
-    <a href="christine-sticco.html" class="prov reveal">
-      <span class="prov_photo"><img src="web%20images/drsticco.jpg" alt="Dr. Christine Sticco" loading="lazy"></span>
-      <div class="prov_info">
-        <div class="prov_name_big">Dr. Christine Sticco</div>
-        <div class="prov_role">MD, FACOG &middot; Ginecóloga</div>
+  <div class="cc reveal" role="region" aria-roledescription="carousel" aria-label="Nuestras proveedoras" tabindex="0">
+    <div class="cc-stage" aria-live="polite"></div>
+    <div class="cc-nav">
+      <button class="cc-arrow cc-prev" type="button" aria-label="Proveedora anterior"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="cc-tabs" role="tablist" aria-label="Nuestras proveedoras"></div>
+      <button class="cc-arrow cc-next" type="button" aria-label="Siguiente proveedora"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
+    <template class="cc-item" data-label="Dra. Christine Sticco">
+      <div class="cc-thumb"><img src="web%20images/drsticco.jpg" alt="" loading="lazy"></div>
+      <div class="cc-active">
+        <div class="cc-body">
+          <h3 class="cc-stat">Más de 14 años de práctica</h3>
+          <p class="cc-quote">Ginecóloga certificada, miembro de ACOG y certificada por NAMS en menopausia.</p>
+          <div class="cc-who"><span class="cc-chip">Dra. Christine Sticco</span><span class="cc-link"><svg viewBox="0 -2 14 12" width="14" height="10" preserveAspectRatio="none"><path d="M0 -2 V0 C0 0 5.09091 0.49688 5.09091 4 C5.09091 7.50312 0 8 0 8 V10 H14 V8 C14 8 8.90909 7.50312 8.90909 4 C8.90909 0.49688 14 0 14 0 V-2 Z"/></svg></span><span class="cc-chip role">MD, FACOG · Ginecología y obstetricia</span></div>
+          <div class="cc-actions"><a class="cc-btn" href="contact.es.html">Reservar cita</a><a class="cc-btn ghost" href="christine-sticco.es.html">Ver perfil</a></div>
+        </div>
+        <div class="cc-photo"><img src="web%20images/drsticco.jpg" alt="Dra. Christine Sticco" loading="lazy"></div>
       </div>
-      <span class="prov_btn">Ver perfil
-        <span class="plus_btn"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
-      </span>
-    </a>
-    <a href="ifrah-syed.html" class="prov reveal d1">
-      <span class="prov_photo"><img src="web%20images/syed.jpg" alt="Ifrah Syed, PA-C" loading="lazy"></span>
-      <div class="prov_info">
-        <div class="prov_name_big">Ifrah Syed, PA</div>
-        <div class="prov_role">Asistente Médica</div>
+    </template>
+    <template class="cc-item" data-label="Ifrah Syed, PA-C">
+      <div class="cc-thumb"><img src="web%20images/syed.jpg" alt="" loading="lazy"></div>
+      <div class="cc-active">
+        <div class="cc-body">
+          <h3 class="cc-stat">Más de 10 años cuidando pacientes</h3>
+          <p class="cc-quote">Certificada a nivel nacional y conocida por su optimismo y su trato amable.</p>
+          <div class="cc-who"><span class="cc-chip">Ifrah Syed, PA-C</span><span class="cc-link"><svg viewBox="0 -2 14 12" width="14" height="10" preserveAspectRatio="none"><path d="M0 -2 V0 C0 0 5.09091 0.49688 5.09091 4 C5.09091 7.50312 0 8 0 8 V10 H14 V8 C14 8 8.90909 7.50312 8.90909 4 C8.90909 0.49688 14 0 14 0 V-2 Z"/></svg></span><span class="cc-chip role">Asistente médica</span></div>
+          <div class="cc-actions"><a class="cc-btn" href="contact.es.html">Reservar cita</a><a class="cc-btn ghost" href="ifrah-syed.es.html">Ver perfil</a></div>
+        </div>
+        <div class="cc-photo"><img src="web%20images/syed.jpg" alt="Ifrah Syed, PA-C" loading="lazy"></div>
       </div>
-      <span class="prov_btn">Ver perfil
-        <span class="plus_btn"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
-      </span>
-    </a>
-    <a href="gessica-russo.html" class="prov reveal d2">
-      <span class="prov_photo"><img src="web%20images/russo.jpg" alt="Gessica Russo, FNP-C" loading="lazy"></span>
-      <div class="prov_info">
-        <div class="prov_name_big">Gessica Russo, FNP</div>
-        <div class="prov_role">Enfermera Practicante Familiar</div>
+    </template>
+    <template class="cc-item" data-label="Gessica Russo, FNP-C">
+      <div class="cc-thumb"><img src="web%20images/russo.jpg" alt="" loading="lazy"></div>
+      <div class="cc-active">
+        <div class="cc-body">
+          <h3 class="cc-stat">Ginecología para todas las edades</h3>
+          <p class="cc-quote">Consultas minuciosas y precisas, del examen anual y DIU a la menopausia.</p>
+          <div class="cc-who"><span class="cc-chip">Gessica Russo, FNP-C</span><span class="cc-link"><svg viewBox="0 -2 14 12" width="14" height="10" preserveAspectRatio="none"><path d="M0 -2 V0 C0 0 5.09091 0.49688 5.09091 4 C5.09091 7.50312 0 8 0 8 V10 H14 V8 C14 8 8.90909 7.50312 8.90909 4 C8.90909 0.49688 14 0 14 0 V-2 Z"/></svg></span><span class="cc-chip role">Enfermera practicante familiar</span></div>
+          <div class="cc-actions"><a class="cc-btn" href="contact.es.html">Reservar cita</a><a class="cc-btn ghost" href="gessica-russo.es.html">Ver perfil</a></div>
+        </div>
+        <div class="cc-photo"><img src="web%20images/russo.jpg" alt="Gessica Russo, FNP-C" loading="lazy"></div>
       </div>
-      <span class="prov_btn">Ver perfil
-        <span class="plus_btn"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
-      </span>
-    </a>
-    <a href="rawan-hammoudeh.html" class="prov reveal d3">
-      <span class="prov_photo"><img src="web%20images/hammoudeh.jpg" alt="Rawan Hammoudeh, FNP-C" loading="lazy"></span>
-      <div class="prov_info">
-        <div class="prov_name_big">Rawan Hammoudeh, FNP</div>
-        <div class="prov_role">Enfermera Practicante Familiar</div>
+    </template>
+    <template class="cc-item" data-label="Rawan Hammoudeh, FNP-C">
+      <div class="cc-thumb"><img src="web%20images/hammoudeh.jpg" alt="" loading="lazy"></div>
+      <div class="cc-active">
+        <div class="cc-body">
+          <h3 class="cc-stat">Criada aquí en el condado de Passaic</h3>
+          <p class="cc-quote">Primera de su clase en su maestría FNP y comprometida con su comunidad.</p>
+          <div class="cc-who"><span class="cc-chip">Rawan Hammoudeh, FNP-C</span><span class="cc-link"><svg viewBox="0 -2 14 12" width="14" height="10" preserveAspectRatio="none"><path d="M0 -2 V0 C0 0 5.09091 0.49688 5.09091 4 C5.09091 7.50312 0 8 0 8 V10 H14 V8 C14 8 8.90909 7.50312 8.90909 4 C8.90909 0.49688 14 0 14 0 V-2 Z"/></svg></span><span class="cc-chip role">Enfermera practicante familiar</span></div>
+          <div class="cc-actions"><a class="cc-btn" href="contact.es.html">Reservar cita</a><a class="cc-btn ghost" href="rawan-hammoudeh.es.html">Ver perfil</a></div>
+        </div>
+        <div class="cc-photo"><img src="web%20images/hammoudeh.jpg" alt="Rawan Hammoudeh, FNP-C" loading="lazy"></div>
       </div>
-      <span class="prov_btn">Ver perfil
-        <span class="plus_btn"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
-      </span>
-    </a>
+    </template>
   </div>
 </section>
 
@@ -605,7 +676,7 @@
 
 <!-- ============ FINAL CTA ============ -->
 <section class="container sec" id="book">
-  <div class="cta reveal">
+  <div class="cta fx-sky fx-panel reveal" data-fx="clouds">
     <img class="cta_img" src="web%20images/1.jpg" alt="" loading="lazy">
     <h2>Lista cuando <em>usted</em><br>lo esté.</h2>
     <p>Reserve en línea en menos de un minuto, o llámenos. Aceptamos nuevas pacientes en ambas ubicaciones.</p>
@@ -690,6 +761,8 @@
 
 <script src="main.js"></script>
 <script src="chat.js"></script>
+<script src="fx.js"></script>
+<script type="module" src="anatomy.js"></script>
 
 <a href="tel:9737825577" class="call_fab" aria-label="Call (973) 782 5577">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.72 2.8a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.35 1.84.59 2.8.72A2 2 0 0122 16.92z"/></svg>
