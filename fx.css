@@ -515,3 +515,4 @@ body.home #testimonials .sec_eyebrow, body.home #services .sec_eyebrow { color: 
 .lp_video::-webkit-media-controls, .lp_video::-webkit-media-controls-start-playback-button,
 .lp_video::-webkit-media-controls-overlay-play-button { display: none !important; -webkit-appearance: none; opacity: 0 !important; }
 .lp_play { display: none !important; }
+.cc.is-single .cc-nav { display: none; }
