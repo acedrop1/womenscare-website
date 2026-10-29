@@ -27,50 +27,50 @@
 }
 .lp_hero[data-fx="wave"] > .fx-canvas.fx-on { opacity: .9; }
 
-/* ---------- nav: compact smoked-glass panel (ref: generalintelligencecompany.com) ---------- */
+/* ---------- nav: compact frosted panel, light (ref: generalintelligencecompany.com) ---------- */
 :root { --fx-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 .lp_nav, .lp_nav.nav-scrolled {
   display: flex !important; align-items: center !important; justify-content: space-between !important; gap: clamp(12px, 1.8vw, 28px) !important;
   width: max-content !important; max-width: calc(100% - 24px) !important;
-  margin: 12px auto 0 !important; padding: 7px 7px 7px 16px !important;
-  border-radius: 18px !important; color: #fff;
-  background: rgba(22, 27, 52, .64) !important;
-  border: 1px solid rgba(255,255,255,.16) !important;
-  box-shadow: 0 12px 34px rgba(10,14,32,.20), inset 0 1px 0 rgba(255,255,255,.12) !important;
+  margin: 0 auto 20px !important; padding: 7px 7px 7px 16px !important;
+  border-radius: 18px !important; color: var(--ink);
+  background: rgba(255,255,255,.74) !important;
+  border: 1px solid rgba(10,23,51,.08) !important;
+  box-shadow: 0 10px 30px rgba(10,23,51,.08), 0 1px 2px rgba(10,23,51,.05), inset 0 1px 0 #fff !important;
   -webkit-backdrop-filter: blur(20px) saturate(140%) !important; backdrop-filter: blur(20px) saturate(140%) !important;
 }
-.lp_nav.nav-scrolled { position: fixed !important; top: 12px !important; left: 50% !important; right: auto !important; transform: translateX(-50%) !important; }
+.lp_nav.nav-scrolled { position: fixed !important; margin: 0 !important; top: 12px !important; left: 50% !important; right: auto !important; transform: translateX(-50%) !important; }
 .lp_nav_left, .lp_nav_right { justify-self: auto !important; }
 .lp_nav_right { gap: 10px !important; }
-.lp_logo img { filter: brightness(0) invert(1); opacity: .95; height: 32px !important; }
+.lp_logo img { height: 32px !important; }
 
 .lp_nav_links { position: relative; isolation: isolate; gap: 2px !important; padding: 0 !important; background: none !important; border: 0 !important; box-shadow: none !important; }
 .lp_nav_links .lp_sep { display: none; }
-.lp_nav_links a { position: relative; z-index: 1; padding: 9px 14px !important; border-radius: 11px; white-space: nowrap; font-weight: 500 !important; color: rgba(255,255,255,.88) !important; opacity: 1 !important; transition: color .2s; }
-.lp_nav_links a:hover, .lp_nav_links a.is-here { color: #fff !important; }
+.lp_nav_links a { position: relative; z-index: 1; padding: 9px 14px !important; border-radius: 11px; white-space: nowrap; font-weight: 500 !important; color: rgba(10,23,51,.78) !important; opacity: 1 !important; transition: color .2s; }
+.lp_nav_links a:hover, .lp_nav_links a.is-here { color: var(--ink) !important; }
 .fx-navblob {
   position: absolute; left: 0; top: 0; bottom: 0; z-index: 0; border-radius: 11px; opacity: 0;
-  background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+  background: rgba(10,23,51,.06); box-shadow: inset 0 0 0 1px rgba(10,23,51,.04);
   transition: transform .45s var(--fx-spring), width .45s var(--fx-spring), opacity .2s;
 }
 
 /* controls: quiet tiles + one solid action, like the reference */
 .lp_phone_btn, .menu_btn {
-  background: rgba(255,255,255,.1) !important; color: #fff !important;
-  border: 1px solid rgba(255,255,255,.12) !important; border-radius: 12px !important; box-shadow: none !important;
+  background: rgba(10,23,51,.05) !important; color: var(--ink) !important;
+  border: 1px solid rgba(10,23,51,.07) !important; border-radius: 12px !important; box-shadow: none !important;
   -webkit-backdrop-filter: none; backdrop-filter: none; transition: background .2s !important;
 }
 .lp_phone_btn { height: 40px; padding: 0 14px !important; gap: 8px; }
-.lp_phone_btn:hover, .menu_btn:hover { background: rgba(255,255,255,.18) !important; transform: none !important; }
-.lang_toggle { background: rgba(255,255,255,.08) !important; border: 1px solid rgba(255,255,255,.1); }
-.lang_toggle a { color: rgba(255,255,255,.7) !important; }
-.lang_toggle a.active { background: #fff !important; color: var(--ink) !important; }
-.lang_toggle a:not(.active):hover { color: #fff !important; }
+.lp_phone_btn:hover, .menu_btn:hover { background: rgba(10,23,51,.09) !important; transform: none !important; }
+.lang_toggle { background: rgba(10,23,51,.05) !important; border: 1px solid rgba(10,23,51,.06); }
+.lang_toggle a { color: rgba(10,23,51,.55) !important; }
+.lang_toggle a.active { background: var(--ink) !important; color: #fff !important; }
+.lang_toggle a:not(.active):hover { color: var(--ink) !important; }
 .lp_cta {
   align-items: center !important; gap: 6px;
   padding: 10px 10px 10px 16px !important; border-radius: 12px !important;
-  background: rgba(8, 10, 22, .82) !important; border: 1px solid rgba(255,255,255,.1) !important;
-  color: rgba(255,255,255,.7) !important; box-shadow: inset 0 1px 0 rgba(255,255,255,.08) !important;
+  background: var(--ink) !important; border: 1px solid var(--ink) !important;
+  color: rgba(255,255,255,.7) !important; box-shadow: 0 6px 16px rgba(10,23,51,.18), inset 0 1px 0 rgba(255,255,255,.1) !important;
   transition: background .2s !important;
 }
 .lp_cta b { color: #fff !important; }
@@ -79,10 +79,11 @@
   background: rgba(255,255,255,.14) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center / 11px no-repeat;
   transition: transform .25s var(--fx-spring);
 }
-.lp_cta:hover { background: rgba(8,10,22,.95) !important; transform: none !important; }
+.lp_cta:hover { background: #142347 !important; transform: none !important; }
 .lp_cta:hover::after { transform: translateX(2px); }
 @media (max-width: 1024px) {
-  .lp_nav, .lp_nav.nav-scrolled { width: calc(100% - 20px) !important; max-width: none !important; margin-top: 10px !important; padding: 7px 7px 7px 14px !important; }
+  .lp_nav, .lp_nav.nav-scrolled { width: calc(100% - 20px) !important; max-width: none !important; padding: 7px 7px 7px 14px !important; }
+  .lp_nav:not(.nav-scrolled) { margin: 0 auto 14px !important; }
   .lp_logo img { height: 30px !important; }
 }
 
