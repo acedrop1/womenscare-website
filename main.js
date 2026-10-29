@@ -241,12 +241,27 @@ if (contactForm) {
 (function () {
   var vids = document.querySelectorAll('.lp_video');
   if (!vids.length) return;
+  // iOS Low Power Mode (and some data-saver settings) refuse ALL video autoplay,
+  // even muted. Safari plays an MP4 inside an <img> muted and looped regardless,
+  // so when play() is refused there, swap the video for an <img> of the same file.
+  var ua = navigator.userAgent;
+  var imgVideo = /iPhone|iPad|iPod/.test(ua) || (/AppleWebKit/.test(ua) && !/Chrome|Chromium|Edg|Android/.test(ua));
+  function toImage(v) {
+    if (!imgVideo || v.dataset.swapped) return;
+    var src = v.currentSrc || (v.querySelector('source') || {}).src;
+    if (!src) return;
+    v.dataset.swapped = '1';
+    var img = new Image();
+    img.className = v.className; img.alt = ''; img.setAttribute('aria-hidden', 'true');
+    img.onload = function () { if (v.parentNode) v.parentNode.replaceChild(img, v); }; // swap once frames decode: no blank flash
+    img.src = src;
+  }
   function kick(v) {
     v.muted = true; v.defaultMuted = true;
     v.setAttribute('muted', ''); v.playsInline = true;
     v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
     var p = v.play();
-    if (p && p.catch) p.catch(function () {});
+    if (p && p.catch) p.catch(function (err) { if (err && err.name === 'NotAllowedError') toImage(v); });
   }
   function kickAll() { vids.forEach(kick); }
   vids.forEach(function (v) {

@@ -510,3 +510,8 @@ body.home #testimonials .sec_eyebrow, body.home #services .sec_eyebrow { color: 
 @media (min-width: 769px) {
   body { font-size: 17px; line-height: 1.6; }
 }
+
+/* hero video: never show iOS's native play overlay (autoplay is handled in main.js) */
+.lp_video::-webkit-media-controls, .lp_video::-webkit-media-controls-start-playback-button,
+.lp_video::-webkit-media-controls-overlay-play-button { display: none !important; -webkit-appearance: none; opacity: 0 !important; }
+.lp_play { display: none !important; }
