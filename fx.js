@@ -16,6 +16,12 @@
     pageHero.setAttribute('data-fx', 'wave');
     var h1 = pageHero.querySelector('.page_h1');
     if (h1) h1.classList.add('fx-split');
+    // "#menopause" hashtag kickers read as dated; show them as plain sentence case
+    var eb = pageHero.querySelector('.page_eyebrow');
+    if (eb && /^#/.test(eb.textContent.trim())) {
+      var tag = eb.textContent.trim().slice(1).replace(/[-_]/g, ' ');
+      eb.textContent = tag.charAt(0).toUpperCase() + tag.slice(1);
+    }
     // two quiet facts floating over the hero photo
     var heroImg = pageHero.querySelector('.page_hero_image');
     if (heroImg) {

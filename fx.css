@@ -681,3 +681,61 @@ body:not(.home) .lp_nav:not(.nav-scrolled) { top: 40px !important; max-width: ca
 @media (max-width: 1024px) {
   body:not(.home) .lp_nav:not(.nav-scrolled) { top: 24px !important; width: calc(100% - 68px) !important; }
 }
+
+/* =====================================================================
+   HIG PROPORTIONS — Apple Human Interface Guidelines applied site-wide:
+   44pt minimum hit targets, 12px text floor with 16px+ body on phones,
+   ~68 character measure, concentric corner radii (outer = inner + gap).
+   ===================================================================== */
+
+/* -- 44pt hit targets. Where growing the control would distort the design,
+      an invisible ::after extends the hit area instead (HIG permits this). -- */
+.menu_btn { width: 44px !important; height: 44px !important; }
+.lang_toggle a { position: relative; font-size: 13px !important; }
+.lang_toggle a::after { content: ""; position: absolute; inset: -10px -5px; }
+.lp_logo, .footer .logo { display: inline-flex; align-items: center; min-height: 44px; }
+.f_col a, .aside_phone, .fxb-link, .doc_more { display: inline-flex; align-items: center; min-height: 46px; }
+.f_col a { display: flex; }
+.chat_close, .chat_send { width: 44px !important; height: 44px !important; min-width: 44px; flex: none; }
+#chatInput { min-height: 46px; }
+.ai_input input { min-height: 44px; }
+.ai_input { min-height: 52px; }
+.ai_input button { width: 44px !important; height: 44px !important; }
+.fx3d_credit a { position: relative; }
+.fx3d_credit a::after { content: ""; position: absolute; inset: -16px -4px; }
+
+/* -- type floor: nothing under 12px; labels become sentence-case kickers -- */
+.promise_label, .sym_callout_eyebrow, .aside_card h4, .page_eyebrow {
+  text-transform: none !important; letter-spacing: -0.01em !important;
+  font-size: 14px !important; font-weight: 600 !important; color: #b4235e !important;
+}
+.aside_book h4 { color: #ffb3cf !important; }
+.lp_btn_check_sub { font-size: 12.5px !important; }
+.fx3d_credit { font-size: 12px !important; }
+.fx3d_hot .dot { font-size: 12px; }
+.f_bot, .f_bot span { font-size: 13px !important; }
+.chat_sub, .chat_disclaimer { font-size: 12.5px !important; }
+.cp_opt { font-size: 12px !important; }
+
+/* -- body copy: 16px+ on phones, comfortable measure everywhere -- */
+@media (max-width: 767px) {
+  .test_text, .promise_text, .sym_callout p, .cta p, .loc_addr, .wh_desc, .fx3d p, .feature p { font-size: 16px !important; line-height: 1.55 !important; }
+  .page_lead { font-size: 17px !important; line-height: 1.55 !important; }
+}
+.article_body > p, .article_body > ul:not(.fx-list), .faq_a_inner { max-width: 68ch; }
+.page_lead { max-width: 58ch; }
+
+/* -- concentric radii: a corner inside a corner = outer radius minus the gap -- */
+.lp_panel, header.lp .lp_panel { border-radius: 40px !important; }        /* 18 (nav, hero) + 22 padding */
+.lp_hero { border-radius: 18px !important; }
+@media (max-width: 600px) {
+  .lp_panel, header.lp .lp_panel { border-radius: 32px !important; }      /* 18 + 14 padding */
+}
+.lp_pcard_img { border-radius: 8px !important; }
+
+.fxb { --p: clamp(14px, 2vw, 22px); padding: var(--p) !important; border-radius: calc(24px + var(--p)) !important; }
+.fxb-card { border-radius: 24px; }
+
+.doc_wrap { --wp: clamp(14px, 2vw, 24px); --dp: clamp(14px, 1.6vw, 20px); padding: var(--wp); border-radius: calc(16px + var(--dp) + var(--wp)); }
+.doc { padding: var(--dp); border-radius: calc(16px + var(--dp)); }
+.doc_photo { border-radius: 16px; }
