@@ -7,6 +7,51 @@
   var ES = document.documentElement.lang === 'es';
 
   /* ================================================================
+     Inner pages (service, blog, profile, legal, location): tag the
+     shared template so the effects below pick it up. Runs first.
+     ================================================================ */
+  var pageHero = document.querySelector('.page_hero');
+  if (pageHero) {
+    document.body.classList.add('fx-inner');
+    pageHero.setAttribute('data-fx', 'wave');
+    var h1 = pageHero.querySelector('.page_h1');
+    if (h1) h1.classList.add('fx-split');
+    // two quiet facts floating over the hero photo
+    var heroImg = pageHero.querySelector('.page_hero_image');
+    if (heroImg) {
+      var CHECK = '<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></i>';
+      [ES ? 'Citas la misma semana' : 'Same-week visits', ES ? 'Ginecóloga certificada' : 'Board certified OB/GYN'].forEach(function (t, i) {
+        var c = document.createElement('span');
+        c.className = 'fx-chip fx-chip' + (i + 1); c.setAttribute('aria-hidden', 'true');
+        c.innerHTML = CHECK + t; heroImg.appendChild(c);
+      });
+    }
+  }
+  var article = document.querySelector('.article_body');
+  if (article) {
+    // word-by-word reveal replaces main.js's generic fly-up on these headings
+    article.querySelectorAll('h2').forEach(function (h) { h.classList.remove('fly-up'); h.classList.add('fx-split'); });
+    // bullet lists become a grid of soft check cards
+    article.querySelectorAll(':scope > ul').forEach(function (ul) {
+      ul.classList.add('fx-list');
+      ul.querySelectorAll(':scope > li').forEach(function (li, i) { li.style.setProperty('--i', i); });
+    });
+  }
+  // "Other services" tiles get the matching photograph
+  var SVC_IMG = {
+    'annual-well-woman-exam': '3.jpg', 'birth-control': 'birth-control.jpg', 'family-planning': '5.jpg',
+    'endometriosis-pelvic-pain': 'pelvic-pain.jpg', 'menopause': 'menopause.jpg', 'ultrasound': 'ultrasound-consult.jpg',
+    'colposcopy': 'colposcopy.jpg', 'leep': 'leep.jpg', 'fibroids': '6.jpg', 'adolescent-care': 'adolescent-care.jpg',
+    'sexual-health': 'sexual-health.jpg', 'std-treatment': 'sexual-health.jpg', 'urinary-problems': 'urinary.jpg'
+  };
+  document.querySelectorAll('.related_cards .svc').forEach(function (a) {
+    var key = (a.getAttribute('href') || '').replace(/(\.es)?\.html$/, '');
+    if (!SVC_IMG[key]) return;
+    a.classList.add('fx-photo');
+    a.style.setProperty('--img', 'url("web%20images/' + SVC_IMG[key] + '")');
+  });
+
+  /* ================================================================
      Shader runner: one fullscreen fragment shader per canvas.
      Renders at reduced resolution (the art is soft anyway), pauses
      off-screen and in background tabs.
@@ -505,5 +550,63 @@
     swipeRow(wh, whCards, function (i) {
       whCards.forEach(function (c, k) { c.classList.toggle('is-on', !desk.matches && k === i); });
     });
+  }
+
+  /* ================================================================
+     Inner pages: reading progress, "On this page" scrollspy,
+     staggered reveals for body copy and list cards.
+     ================================================================ */
+  var body = document.querySelector('.article_body');
+  if (body) {
+    // thin rose progress line across the top while reading
+    var bar = document.createElement('div');
+    bar.className = 'fx-progress'; bar.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(bar);
+    var tick = false;
+    function progress() {
+      tick = false;
+      var r = body.getBoundingClientRect(), span = r.height - innerHeight * 0.6;
+      bar.style.transform = 'scaleX(' + Math.max(0, Math.min(1, (innerHeight * 0.4 - r.top) / Math.max(1, span))) + ')';
+    }
+    addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(progress); } }, { passive: true });
+    progress();
+
+    // "On this page": built from the article's own h2s
+    var heads = [].slice.call(body.querySelectorAll('h2'));
+    var aside = document.querySelector('.article_aside');
+    if (aside && heads.length >= 3) {
+      var toc = document.createElement('nav');
+      toc.className = 'aside_card fx-toc';
+      toc.setAttribute('aria-label', ES ? 'En esta página' : 'On this page');
+      toc.innerHTML = '<h4>' + (ES ? 'En esta página' : 'On this page') + '</h4>';
+      heads.forEach(function (h, i) {
+        if (!h.id) h.id = 's-' + (h.textContent.toLowerCase().replace(/[^a-z0-9áéíóúñü]+/g, '-').replace(/^-|-$/g, '') || i);
+        var a = document.createElement('a');
+        a.href = '#' + h.id; a.textContent = h.textContent.replace(/\s+/g, ' ').trim();
+        toc.appendChild(a);
+      });
+      aside.insertBefore(toc, aside.firstChild);
+      var links = toc.querySelectorAll('a');
+      var spy = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var i = heads.indexOf(e.target);
+          links.forEach(function (l, k) { l.classList.toggle('on', k === i); });
+        });
+      }, { rootMargin: '-25% 0px -65% 0px' });
+      heads.forEach(function (h) { spy.observe(h); });
+    }
+    // a sidebar taller than the screen can't stick; let it scroll with the page instead
+    function fitAside() { if (aside) aside.classList.toggle('fx-unstick', aside.offsetHeight > innerHeight - 130); }
+    addEventListener('resize', fitAside); addEventListener('load', fitAside); fitAside();
+
+    // soft reveals: paragraphs, list cards (staggered), FAQ, sidebar cards
+    if (!reduce) {
+      var rv = document.querySelectorAll('.article_body > p, .fx-list > li, .sub_faq, .article_aside > *, .related_cards > *');
+      var rio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('fx-in'); rio.unobserve(e.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      rv.forEach(function (el) { el.classList.add('fx-rv'); rio.observe(el); });
+    }
   }
 })();
