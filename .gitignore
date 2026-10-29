@@ -24,3 +24,8 @@ npm-debug.log*
 # Large unused source PNGs (we ship .jpg for photo content)
 web images/practice.png
 .vercel
+
+# Private business documents never go in this public repo
+Invoice*.pdf
+*.invoice.pdf
+.hig-scan.js

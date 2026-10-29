@@ -111,22 +111,61 @@ if (firstFaq) {
   setTimeout(() => { a.style.maxHeight = a.scrollHeight + 'px'; }, 100);
 }
 
-// Contact form submit (placeholder until backend is wired)
+// Contact form: there is no backend yet, so never pretend a request was sent.
+// Keep what the patient typed and point them to the phone, in their language.
 const contactForm = document.querySelector('.contact_form form');
 if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const btn = contactForm.querySelector('.form_btn');
-    const originalText = btn.innerHTML;
-    btn.innerHTML = 'Sending…';
-    btn.disabled = true;
-    setTimeout(() => {
-      contactForm.innerHTML = '<div style="text-align:center; padding: 40px 20px;"><div style="width:64px; height:64px; border-radius:50%; background:#d1fae5; color:#065f46; display:grid; place-items:center; margin:0 auto 18px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4M12 22a10 10 0 100-20 10 10 0 000 20z"/></svg></div><h3 style="font-size:22px; font-weight:500; letter-spacing:-0.02em; margin-bottom:8px;">Request sent</h3><p style="color: var(--ink_soft);">Thank you. We will get back to you by the end of the next business day. For urgent concerns, please call (973) 782 5577.</p></div>';
-    }, 600);
+    const es = document.documentElement.lang === 'es';
+    let note = contactForm.querySelector('.form_notice');
+    if (!note) {
+      note = document.createElement('div');
+      note.className = 'form_notice';
+      note.setAttribute('role', 'status');
+      contactForm.querySelector('.form_btn').insertAdjacentElement('beforebegin', note);
+    }
+    note.innerHTML = es
+      ? '<strong>Las solicitudes en línea aún no están disponibles.</strong> Para reservar, llámenos al <a href="tel:9737825577">(973) 782-5577</a>. Normalmente atendemos a nuevas pacientes la misma semana.'
+      : '<strong>Online requests aren’t connected yet.</strong> To book, please call <a href="tel:9737825577">(973) 782-5577</a>. New patients are usually seen the same week.';
+    note.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 }
 
 // AI FAB is wired to the Care Assistant chat in chat.js
+
+// Symptom Check modal: any [data-sym-open] link opens symptom-check.html in an iframe
+(function () {
+  const modal = document.getElementById('symModal');
+  const frame = document.getElementById('symModalFrame');
+  const closeBtn = document.getElementById('symModalClose');
+  if (!modal || !frame || !closeBtn) return;
+
+  function open() {
+    if (!frame.src || frame.src === 'about:blank') frame.src = 'symptom-check.html?modal=1';
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-sym-open]').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); open(); });
+  });
+  closeBtn.addEventListener('click', close);
+  modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('open')) close();
+  });
+  // the embedded check asks to close when it finishes; only trust our own origin
+  window.addEventListener('message', function (e) {
+    if (e.origin === location.origin && e.data && e.data.type === 'sym-close') close();
+  });
+})();
 
 // Hero typewriter — types a medical term, deletes, cycles to the next (~7 terms)
 (function () {

@@ -739,3 +739,5 @@ body:not(.home) .lp_nav:not(.nav-scrolled) { top: 40px !important; max-width: ca
 .doc_wrap { --wp: clamp(14px, 2vw, 24px); --dp: clamp(14px, 1.6vw, 20px); padding: var(--wp); border-radius: calc(16px + var(--dp) + var(--wp)); }
 .doc { padding: var(--dp); border-radius: calc(16px + var(--dp)); }
 .doc_photo { border-radius: 16px; }
+.form_notice { margin: 4px 0 16px; padding: 14px 16px; border-radius: 14px; background: #fff4f8; border: 1px solid rgba(180,35,94,.2); color: var(--ink); font-size: 15px; line-height: 1.5; }
+.form_notice a { color: #b4235e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }

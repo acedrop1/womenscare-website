@@ -23,6 +23,6 @@ Designed for Vercel. `vercel.json` includes basic security headers and cache rul
 
 ## Before going live
 
-1. Replace `G-XXXXXXXXXX` in every HTML file with your real Google Analytics 4 measurement ID
+1. Analytics: the placeholder Google tag was removed (it loaded a third-party tracker on a health site while measuring nothing). If you add analytics, use a privacy-first tool that sets no cookies and never sees page content, and add its origin to the CSP in `vercel.json`
 2. Wire the contact form to a real handler (Formspree, Netlify Forms, or a custom endpoint)
 3. Update `og:url` and `og:image` if changing the production domain
