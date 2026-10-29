@@ -45,10 +45,10 @@
   }
   // "Other services" tiles get the matching photograph
   var SVC_IMG = {
-    'annual-well-woman-exam': '3.jpg', 'birth-control': 'birth-control.jpg', 'family-planning': '5.jpg',
-    'endometriosis-pelvic-pain': 'pelvic-pain.jpg', 'menopause': 'menopause.jpg', 'ultrasound': 'ultrasound-consult.jpg',
-    'colposcopy': 'colposcopy.jpg', 'leep': 'leep.jpg', 'fibroids': '6.jpg', 'adolescent-care': 'adolescent-care.jpg',
-    'sexual-health': 'sexual-health.jpg', 'std-treatment': 'sexual-health.jpg', 'urinary-problems': 'urinary.jpg'
+    'annual-well-woman-exam': '3.jpg', 'birth-control': 'birth-control.jpg', 'family-planning': '4.jpg',
+    'endometriosis-pelvic-pain': 'pelvic-pain.jpg', 'menopause': 'menopause.jpg', 'ultrasound': '6.jpg',
+    'colposcopy': 'colposcopy.jpg', 'leep': 'leep.jpg', 'fibroids': 'fibroids.jpg', 'adolescent-care': 'adolescent-care.jpg',
+    'sexual-health': 'sexual-health.jpg', 'std-treatment': 'std.jpg', 'urinary-problems': 'urinary.jpg'
   };
   document.querySelectorAll('.related_cards .svc').forEach(function (a) {
     var key = (a.getAttribute('href') || '').replace(/(\.es)?\.html$/, '');
@@ -613,6 +613,110 @@
         es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('fx-in'); rio.unobserve(e.target); } });
       }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
       rv.forEach(function (el) { el.classList.add('fx-rv'); rio.observe(el); });
+    }
+  }
+  /* ================================================================
+     Service line icons: one drawn glyph per service, reused by the
+     Services page cards, service-page heroes and related cards.
+     ================================================================ */
+  var UT = 'M12 9c-2.6 0-4.3-2.4-6.6-2.4C3.9 6.6 3.4 8 4.3 9c1.3 1.4 3.2 1.3 3.7 3.4v2.1a4 4 0 0 0 8 0v-2.1c.5-2.1 2.4-2 3.7-3.4.9-1 .4-2.4-1.1-2.4C16.3 6.6 14.6 9 12 9z';
+  var ICONS = {
+    'annual-well-woman-exam': '<rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M12 17.4s-2.7-1.6-2.7-3.4a1.35 1.35 0 0 1 2.7-.4 1.35 1.35 0 0 1 2.7.4c0 1.8-2.7 3.4-2.7 3.4z"/>',
+    'menopause': '<path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.3 6.3 0 0 0 10 10z"/><path d="M17.5 3v3.4M15.8 4.7h3.4"/>',
+    'birth-control': '<rect x="4.5" y="3.5" width="15" height="17" rx="4"/><circle cx="9.3" cy="8.5" r="1.3"/><circle cx="14.7" cy="8.5" r="1.3"/><circle cx="9.3" cy="12.5" r="1.3"/><circle cx="14.7" cy="12.5" r="1.3"/><circle cx="9.3" cy="16.5" r="1.3"/><circle cx="14.7" cy="16.5" r="1.3"/>',
+    'family-planning': '<path d="M12 21v-9"/><path d="M12 12c0-4 2.5-6.5 7-6.5 0 4.5-2.5 6.5-7 6.5z"/><path d="M12 14.5C12 11 10 9 5.5 9c0 4 2.5 5.5 6.5 5.5z"/><path d="M8 21h8"/>',
+    'endometriosis-pelvic-pain': '<path d="' + UT + '"/><path d="M12 18.5V21"/><path d="M19.5 15.5l1.6 1.2M19 18.6l1 1.6"/>',
+    'fibroids': '<path d="' + UT + '"/><path d="M12 18.5V21"/><circle cx="13.4" cy="13" r="1.4"/>',
+    'ultrasound': '<rect x="3" y="4" width="18" height="13" rx="2.5"/><path d="M12 7.2 8 14h8l-4-6.8z"/><path d="M9 21h6M12 17v4"/>',
+    'urinary-problems': '<path d="M12 3.5s6 6.4 6 10.5a6 6 0 0 1-12 0c0-4.1 6-10.5 6-10.5z"/><path d="M9.4 14.6a2.6 2.6 0 0 0 2.6 2.6"/>',
+    'colposcopy': '<circle cx="10.5" cy="10.5" r="6.2"/><path d="M15.2 15.2l5.3 5.3"/><path d="M10.5 8v5M8 10.5h5"/>',
+    'leep': '<circle cx="15.5" cy="8.5" r="4"/><path d="M12.6 11.4 4 20"/><path d="M20 2.8l.6 1.5 1.5.6-1.5.6-.6 1.5-.6-1.5-1.5-.6 1.5-.6z"/>',
+    'sexual-health': '<path d="M9 18.5S3 15 3 10.8A3.3 3.3 0 0 1 9 9a3.3 3.3 0 0 1 6 1.8"/><path d="M16 20.5s-4.5-2.7-4.5-5.7a2.3 2.3 0 0 1 4.5-.9 2.3 2.3 0 0 1 4.5.9c0 3-4.5 5.7-4.5 5.7z"/>',
+    'std-treatment': '<path d="M12 3l7 3v5.5c0 4.5-3 8-7 9.5-4-1.5-7-5-7-9.5V6l7-3z"/><path d="M8.8 12.2l2.2 2.2 4.3-4.6"/>',
+    'adolescent-care': '<path d="M12 3.5l2.3 5 5.2.6-3.9 3.6 1.1 5.2L12 15.3l-4.7 2.6 1.1-5.2-3.9-3.6 5.2-.6z"/>',
+    'symptom-check': '<path d="M3 12h4l2.2-5.5 4.2 11 2.2-5.5H21"/>'
+  };
+  function icon(key) {
+    return ICONS[key] ? '<svg viewBox="0 0 24 24" aria-hidden="true">' + ICONS[key].replace(/\/>/g, ' pathLength="1"/>') + '</svg>' : '';
+  }
+  function drawOnView(els) {
+    if (reduce || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('fx-draw'); io.unobserve(e.target); } });
+    }, { threshold: 0.3 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+  var pageKey = location.pathname.split('/').pop().replace(/(\.es)?(\.html)?$/, '');
+  var heroPhoto = document.querySelector('.page_hero_image');
+  if (heroPhoto && ICONS[pageKey]) {
+    var hb = document.createElement('span');
+    hb.className = 'fx-hero-ic'; hb.setAttribute('aria-hidden', 'true'); hb.innerHTML = icon(pageKey);
+    heroPhoto.appendChild(hb); drawOnView([hb]);
+  }
+  var relIcons = [];
+  document.querySelectorAll('.related_cards .svc').forEach(function (a) {
+    var key = (a.getAttribute('href') || '').replace(/(\.es)?\.html$/, '');
+    if (!ICONS[key]) return;
+    var s = document.createElement('span'); s.className = 'fx-rel-ic'; s.innerHTML = icon(key);
+    a.appendChild(s); relIcons.push(s);
+  });
+  drawOnView(relIcons);
+
+  /* Services page: filters, cursor spotlight, rise-in, life-stage track */
+  var sv = document.querySelector('.sv');
+  if (sv) {
+    var cards = [].slice.call(sv.querySelectorAll('.sv_card'));
+    var icEls = [].slice.call(sv.querySelectorAll('.sv_ic'));
+    icEls.forEach(function (el) { el.innerHTML = icon(el.getAttribute('data-icon')); });
+    var count = sv.querySelector('.sv_count b');
+    sv.querySelectorAll('.sv_f').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var f = b.getAttribute('data-f');
+        function apply() {
+          sv.querySelectorAll('.sv_f').forEach(function (x) { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
+          var n = 0;
+          cards.forEach(function (c) {
+            var show = f === 'all' || (' ' + c.getAttribute('data-cats') + ' ').indexOf(' ' + f + ' ') > -1;
+            c.classList.toggle('sv_out', !show); if (show) n++;
+          });
+          if (count) count.textContent = n;
+        }
+        if (document.startViewTransition && !reduce) {
+          cards.forEach(function (c, i) { c.style.viewTransitionName = 'sv-' + i; });
+          document.startViewTransition(apply);
+        } else apply();
+        b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduce ? 'auto' : 'smooth' });
+      });
+    });
+    if (matchMedia('(hover: hover)').matches) cards.forEach(function (c) {
+      c.addEventListener('pointermove', function (e) {
+        var r = c.getBoundingClientRect();
+        c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+    if (!reduce && 'IntersectionObserver' in window) {
+      var cio = new IntersectionObserver(function (es) {
+        var k = 0;
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          e.target.style.setProperty('--d', k++); e.target.classList.add('fx-rise');
+          var ic = e.target.querySelector('.sv_ic'); if (ic) { ic.style.setProperty('--i', k + 2); ic.classList.add('fx-draw'); }
+          cio.unobserve(e.target);
+        });
+      }, { threshold: 0.15 });
+      cards.forEach(function (c) { cio.observe(c); });
+    }
+  }
+  var track = document.querySelector('.sv_j_track');
+  if (track) {
+    var dots = [].slice.call(track.querySelectorAll('.sv_j_dot'));
+    dots.forEach(function (d) {
+      d.addEventListener('click', function () { dots.forEach(function (x) { x.setAttribute('aria-expanded', x === d); }); });
+    });
+    if (reduce || !('IntersectionObserver' in window)) track.classList.add('fx-on');
+    else {
+      var tio = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { track.classList.add('fx-on'); tio.disconnect(); } }, { threshold: 0.35 });
+      tio.observe(track);
     }
   }
 })();
