@@ -1,1 +1,11 @@
+# Never deploy private or source-only files
+.vercel
+.claude
+Engagement RSVP Backups
+Invoice WomensCareNJ.pdf
+README.md
+gen.py
+gen_shells.py
+womenscare.ai
+headervideo.mov
 models/build-female-body.mjs
