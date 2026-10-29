@@ -61,6 +61,8 @@ document.querySelectorAll('.svc_row').forEach(function (row) {
     const href = row.getAttribute('data-href');
     if (href) window.location.href = href;
   });
+  row.addEventListener('focusin', function () { row.classList.add('active'); });
+  row.addEventListener('focusout', function () { row.classList.remove('active'); });
   // First row stays open by default until user hovers another
   // (CSS handles hover, no JS needed for that)
 });
@@ -207,7 +209,7 @@ if (contactForm) {
   let ticking = false;
   function update() {
     ticking = false;
-    if (!mq.matches) { rows.forEach(r => r.classList.remove('active')); return; }
+    if (!mq.matches) { rows.forEach(r => r.contains(document.activeElement) || r.classList.remove('active')); return; }
     const center = window.innerHeight * 0.42;
     let best = null, bestDist = Infinity;
     rows.forEach(r => {

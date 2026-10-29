@@ -36,6 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 </head>
 <body class="home">
+<a class="skip_link" href="#main">Skip to content</a>
 <!-- Top call bar -->
 <div class="top_bar">
   <div class="top_bar_inner">
@@ -201,6 +202,7 @@
 </header>
 
 <!-- ============ CARE BENTO ============ -->
+<main id="main">
 <section class="container sec" id="glance">
   <div class="sec_header">
     <h2 class="sec_title reveal">Care at a <em>glance</em>.</h2>
@@ -357,45 +359,41 @@
 
   <div class="svc_list reveal">
     <div class="svc_row" data-href="annual-well-woman-exam.html">
-      <span class="svc_num">01</span>
       <div class="svc_main">
         <h3 class="svc_title">Annual Well Woman Exam</h3>
         <div class="svc_tags">Preventive · Pap Screening · Pelvic Exam</div>
         <p class="svc_desc">Comprehensive yearly check-up including pelvic exam, breast exam, Pap smear, contraception review, and screenings tailored to your age and history.</p>
-        <span class="svc_link">View service <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+        <a class="svc_link" href="annual-well-woman-exam.html">View service <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
       </div>
       <img class="svc_img_acc" src="web%20images/3.jpg" alt="Annual exam" loading="lazy">
     </div>
 
     <div class="svc_row" data-href="menopause.html">
-      <span class="svc_num">02</span>
       <div class="svc_main">
         <h3 class="svc_title">Menopause &amp; Perimenopause</h3>
         <div class="svc_tags">NAMS Certified · Hormone Therapy · Symptom Relief</div>
         <p class="svc_desc">NAMS-certified care for hot flushes, mood changes, sleep, and bone health. Evidence-based options including hormone therapy when appropriate.</p>
-        <span class="svc_link">View service <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+        <a class="svc_link" href="menopause.html">View service <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
       </div>
       <img class="svc_img_acc" src="web%20images/1.jpg" alt="Menopause care" loading="lazy">
     </div>
 
     <div class="svc_row" data-href="ultrasound.html">
-      <span class="svc_num">03</span>
       <div class="svc_main">
         <h3 class="svc_title">Pelvic Ultrasound</h3>
         <div class="svc_tags">In-Office · Same-Day Results · Diagnostic</div>
         <p class="svc_desc">High-resolution pelvic ultrasound performed in our office, with same-visit results and a clear next-step plan whenever follow up is needed.</p>
-        <span class="svc_link">View service <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+        <a class="svc_link" href="ultrasound.html">View service <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
       </div>
       <img class="svc_img_acc" src="web%20images/6.jpg" alt="Ultrasound" loading="lazy">
     </div>
 
     <div class="svc_row" data-href="family-planning.html">
-      <span class="svc_num">04</span>
       <div class="svc_main">
         <h3 class="svc_title">Family Planning &amp; Birth Control</h3>
         <div class="svc_tags">IUD · Implant · Pills · Preconception</div>
         <p class="svc_desc">Personalised contraception and preconception planning. We discuss every method, answer questions honestly, and help you decide what fits your life.</p>
-        <span class="svc_link">View service <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+        <a class="svc_link" href="family-planning.html">View service <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
       </div>
       <img class="svc_img_acc" src="web%20images/5.jpg" alt="Family planning" loading="lazy">
     </div>
@@ -588,7 +586,7 @@
         <div class="bubble bot">Yes, we accept Horizon NJ Health at our Totowa office. Want me to start a booking?</div>
         <div class="bubble user">What time works this week?</div>
         <div class="bubble bot">We have openings Thursday at 10:30am and Friday at 2:15pm in Totowa. Should I hold one?</div>
-        <div class="ai_input">
+        <div class="ai_input" aria-hidden="true" inert>
           <input placeholder="Ask a question...">
           <button><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
         </div>
@@ -646,6 +644,8 @@
 </section>
 
 <!-- ============ FOOTER ============ -->
+</main>
+
 <footer class="footer">
   <div class="container">
     <div class="f_grid">

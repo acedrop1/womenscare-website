@@ -36,6 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 </head>
 <body class="home">
+<a class="skip_link" href="#main">Saltar al contenido</a>
 <!-- Top call bar -->
 <div class="top_bar">
   <div class="top_bar_inner">
@@ -204,6 +205,7 @@
 </header>
 
 <!-- ============ CARE BENTO ============ -->
+<main id="main">
 <section class="container sec" id="glance">
   <div class="sec_header">
     <h2 class="sec_title reveal">Atención de un <em>vistazo</em>.</h2>
@@ -580,7 +582,7 @@
         <div class="bubble bot">Sí, aceptamos Horizon NJ Health en nuestra oficina de Totowa. ¿Quiere que inicie una reserva?</div>
         <div class="bubble user">¿Qué hora funciona esta semana?</div>
         <div class="bubble bot">Tenemos disponibilidad jueves 10:30am y viernes 2:15pm en Totowa. ¿Reservo una?</div>
-        <div class="ai_input">
+        <div class="ai_input" aria-hidden="true" inert>
           <input placeholder="Haga una pregunta...">
           <button><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
         </div>
@@ -638,6 +640,8 @@
 </section>
 
 <!-- ============ FOOTER ============ -->
+</main>
+
 <footer class="footer">
   <div class="container">
     <div class="f_grid">

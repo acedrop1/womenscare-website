@@ -6,7 +6,7 @@
   --card: #ffffff;
   --ink: #0a1733;
   --ink_soft: #475569;
-  --muted: #94a3b8;
+  --muted: #5e6a7d;
   --line: #e2e8f0;
   --line_soft: #eef2f7;
   --accent: #0a1733;
@@ -2125,8 +2125,7 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em {
 
 .bot_urgent {
   background: #fef2f2;
-  border: 1px solid #fecaca;
-  border-left: 3px solid #b91c1c;
+  border: 1px solid #fca5a5;
   padding: 12px 14px;
   border-radius: 14px;
   font-size: 13.5px;
@@ -3101,16 +3100,6 @@ body { background: linear-gradient(180deg, #ffffff 0%, #fff8fb 50%, #ffffff 100%
 }
 .hero_image_card img { animation: ken_burns 16s ease-in-out infinite; }
 
-/* ---------- World mega number a soft gradient sweep ---------- */
-.world_h1 em,
-.hero_h1 em {
-  background: linear-gradient(90deg, var(--rose) 0%, #c93469 50%, var(--rose) 100%);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: shimmer 7s ease-in-out infinite;
-}
 
 /* ---------- Smooth focus state for accessibility ---------- */
 a:focus-visible,
