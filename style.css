@@ -3694,13 +3694,13 @@ header.lp .lp_panel {
   .lp_eyebrow,
   .lp_h1,
   .lp_rule { display: none !important; }
-  /* Make the sub line into the headline-feel */
+  /* Sub line under the headline: same light weight as desktop */
   .lp_sub {
-    font-size: 22px !important;
-    font-weight: 600 !important;
-    line-height: 1.25 !important;
-    color: var(--ink) !important;
-    margin: 4px 0 14px !important;
+    font-size: 17px !important;
+    font-weight: 400 !important;
+    line-height: 1.55 !important;
+    color: var(--ink_soft) !important;
+    margin: 6px 0 18px !important;
   }
   .lp_review { margin-bottom: 18px !important; }
   .lp_cta_row { width: 100% !important; }
@@ -3938,8 +3938,6 @@ header.lp .lp_panel {
 .mobile_menu { z-index: 9998 !important; }
 .mobile_menu_panel { z-index: 9999 !important; }
 .mobile_close { z-index: 10000 !important; }
-/* When menu is open, hide the floating nav pill so X is fully reachable */
-body:has(.mobile_menu.open) .lp_nav.nav-scrolled { opacity: 0 !important; pointer-events: none !important; }
 
 /* ============================================
    DOT FIELD + GRADIENT ORBS + SYMPTOM MODAL
@@ -5248,35 +5246,6 @@ body:has(.mobile_menu.open) .menu_btn .burger span:nth-child(3) { top: 6px; tran
 
 /* ---- Menu opens as a dropdown from the nav bar (logo + X stay put) ---- */
 .mobile_close { display: none !important; } /* no separate floating X */
-
-/* Keep the nav bar visible & on top of the dropdown when open */
-body:has(.mobile_menu.open) .lp_nav,
-body:has(.mobile_menu.open) .lp_nav.nav-scrolled {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  transform: none !important;
-  width: 100% !important;
-  max-width: none !important;
-  border-radius: 0 !important;
-  background: #ffffff !important;
-  -webkit-backdrop-filter: none !important;
-  backdrop-filter: none !important;
-  box-shadow: none !important;
-  border: 0 !important;
-  border-bottom: 1px solid rgba(15,23,42,0.06) !important;
-  z-index: 10001 !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-  padding: 14px 18px !important;
-}
-
-/* The dropdown panel sits just under the nav bar */
-.mobile_menu_panel {
-  padding-top: 74px !important;
-  border-radius: 0 0 26px 26px !important;
-}
 
 @media (max-width: 768px) {
   /* ---- Full-bleed swipers: cards/reviews are no longer cut off ---- */

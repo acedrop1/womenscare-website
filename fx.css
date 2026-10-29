@@ -27,68 +27,68 @@
 }
 .lp_hero[data-fx="wave"] > .fx-canvas.fx-on { opacity: .9; }
 
-/* ---------- liquid glass ---------- */
-.fx-glass,
-.lp_nav.nav-scrolled,
-.lp_nav_links,
-.mobile_menu_panel {
-  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
-          backdrop-filter: blur(18px) saturate(180%) !important;
+/* ---------- nav: compact smoked-glass panel (ref: generalintelligencecompany.com) ---------- */
+:root { --fx-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.lp_nav, .lp_nav.nav-scrolled {
+  display: flex !important; align-items: center !important; justify-content: space-between !important; gap: clamp(12px, 1.8vw, 28px) !important;
+  width: max-content !important; max-width: calc(100% - 24px) !important;
+  margin: 12px auto 0 !important; padding: 7px 7px 7px 16px !important;
+  border-radius: 18px !important; color: #fff;
+  background: rgba(22, 27, 52, .64) !important;
+  border: 1px solid rgba(255,255,255,.16) !important;
+  box-shadow: 0 12px 34px rgba(10,14,32,.20), inset 0 1px 0 rgba(255,255,255,.12) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(140%) !important; backdrop-filter: blur(20px) saturate(140%) !important;
 }
-.fx-liquid .lp_nav.nav-scrolled,
-.fx-liquid .lp_nav_links { backdrop-filter: url(#container-glass) blur(6px) saturate(170%) !important; }
+.lp_nav.nav-scrolled { position: fixed !important; top: 12px !important; left: 50% !important; right: auto !important; transform: translateX(-50%) !important; }
+.lp_nav_left, .lp_nav_right { justify-self: auto !important; }
+.lp_nav_right { gap: 10px !important; }
+.lp_logo img { filter: brightness(0) invert(1); opacity: .95; height: 32px !important; }
 
-.lp_nav.nav-scrolled {
-  background: linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,247,251,.42)) !important;
-  border: 1px solid rgba(255,255,255,.7) !important;
-  box-shadow:
-    0 10px 40px rgba(74,16,46,.10), 0 2px 6px rgba(74,16,46,.06),
-    inset 3px 3px .5px -3px rgba(255,255,255,.95), inset -3px -3px .5px -3px rgba(255,255,255,.8),
-    inset 1px 1px 1px -.5px rgba(255,255,255,.7), inset -1px -1px 1px -.5px rgba(74,16,46,.08),
-    inset 0 0 6px 6px rgba(255,255,255,.18), inset 0 0 2px 2px rgba(255,255,255,.1) !important;
-}
-/* specular streak across the top of the pill */
-.lp_nav.nav-scrolled::before {
-  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  background: linear-gradient(100deg, transparent 20%, rgba(255,255,255,.55) 45%, transparent 60%) 0 0 / 220% 100% no-repeat;
-  -webkit-mask: linear-gradient(#000, transparent 55%); mask: linear-gradient(#000, transparent 55%);
-  animation: fx-sheen 7s var(--fx-ease) infinite;
-}
-@keyframes fx-sheen { 0%, 60% { background-position: 140% 0; } 100% { background-position: -60% 0; } }
-
-/* desktop links become a glass capsule with a sliding highlight */
-.lp_nav_links {
-  position: relative; isolation: isolate;
-  padding: 5px 6px; gap: 0 !important; border-radius: 999px;
-  background: rgba(255,255,255,.38);
-  border: 1px solid rgba(255,255,255,.75);
-  box-shadow: 0 6px 22px rgba(74,16,46,.07), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(74,16,46,.04);
-}
-.lp_nav.nav-scrolled .lp_nav_links { background: transparent; border-color: transparent; box-shadow: none; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+.lp_nav_links { position: relative; isolation: isolate; gap: 2px !important; padding: 0 !important; background: none !important; border: 0 !important; box-shadow: none !important; }
 .lp_nav_links .lp_sep { display: none; }
-.lp_nav_links a { position: relative; z-index: 1; padding: 7px 11px; border-radius: 999px; white-space: nowrap; opacity: 1 !important; transition: color .25s; }
-.lp_nav_links a.is-here { color: #b4235e; }
+.lp_nav_links a { position: relative; z-index: 1; padding: 9px 14px !important; border-radius: 11px; white-space: nowrap; font-weight: 500 !important; color: rgba(255,255,255,.88) !important; opacity: 1 !important; transition: color .2s; }
+.lp_nav_links a:hover, .lp_nav_links a.is-here { color: #fff !important; }
 .fx-navblob {
-  position: absolute; left: 0; top: 6px; bottom: 6px; z-index: 0; border-radius: 999px; opacity: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(253,231,239,.85));
-  box-shadow: 0 4px 14px rgba(241,69,129,.16), inset 0 1px 0 #fff, inset 0 0 0 1px rgba(241,69,129,.12);
-  transition: transform .5s var(--fx-spring), width .5s var(--fx-spring), opacity .25s;
+  position: absolute; left: 0; top: 0; bottom: 0; z-index: 0; border-radius: 11px; opacity: 0;
+  background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+  transition: transform .45s var(--fx-spring), width .45s var(--fx-spring), opacity .2s;
 }
 
-/* liquid-glass buttons: header CTA + phone */
-.lp_cta, .lp_phone_btn {
-  position: relative;
-  background: rgba(255,255,255,.45) !important;
-  border: 1px solid rgba(255,255,255,.8) !important;
-  -webkit-backdrop-filter: blur(14px) saturate(170%); backdrop-filter: blur(14px) saturate(170%);
-  box-shadow: 0 2px 6px rgba(74,16,46,.08),
-    inset 3px 3px .5px -3px rgba(74,16,46,.5), inset -3px -3px .5px -3px rgba(74,16,46,.4),
-    inset 1px 1px 1px -.5px rgba(74,16,46,.25), inset -1px -1px 1px -.5px rgba(74,16,46,.2),
-    inset 0 0 6px 6px rgba(255,255,255,.35) !important;
-  transition: transform .3s var(--fx-spring), box-shadow .3s, background .3s !important;
+/* controls: quiet tiles + one solid action, like the reference */
+.lp_phone_btn, .menu_btn {
+  background: rgba(255,255,255,.1) !important; color: #fff !important;
+  border: 1px solid rgba(255,255,255,.12) !important; border-radius: 12px !important; box-shadow: none !important;
+  -webkit-backdrop-filter: none; backdrop-filter: none; transition: background .2s !important;
 }
-.lp_cta:hover, .lp_phone_btn:hover { transform: scale(1.04); background: rgba(255,255,255,.7) !important; }
-.lp_cta:hover, .lp_cta:hover b { color: var(--ink) !important; }
+.lp_phone_btn { height: 40px; padding: 0 14px !important; gap: 8px; }
+.lp_phone_btn:hover, .menu_btn:hover { background: rgba(255,255,255,.18) !important; transform: none !important; }
+.lang_toggle { background: rgba(255,255,255,.08) !important; border: 1px solid rgba(255,255,255,.1); }
+.lang_toggle a { color: rgba(255,255,255,.7) !important; }
+.lang_toggle a.active { background: #fff !important; color: var(--ink) !important; }
+.lang_toggle a:not(.active):hover { color: #fff !important; }
+.lp_cta {
+  align-items: center !important; gap: 6px;
+  padding: 10px 10px 10px 16px !important; border-radius: 12px !important;
+  background: rgba(8, 10, 22, .82) !important; border: 1px solid rgba(255,255,255,.1) !important;
+  color: rgba(255,255,255,.7) !important; box-shadow: inset 0 1px 0 rgba(255,255,255,.08) !important;
+  transition: background .2s !important;
+}
+.lp_cta b { color: #fff !important; }
+.lp_cta::after {
+  content: ""; width: 20px; height: 20px; margin-left: 6px; border-radius: 6px; flex: none;
+  background: rgba(255,255,255,.14) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center / 11px no-repeat;
+  transition: transform .25s var(--fx-spring);
+}
+.lp_cta:hover { background: rgba(8,10,22,.95) !important; transform: none !important; }
+.lp_cta:hover::after { transform: translateX(2px); }
+@media (max-width: 1024px) {
+  .lp_nav, .lp_nav.nav-scrolled { width: calc(100% - 20px) !important; max-width: none !important; margin-top: 10px !important; padding: 7px 7px 7px 14px !important; }
+  .lp_logo img { height: 30px !important; }
+}
+
+/* mobile menu sheet: frosted, with a fine grain */
+.mobile_menu_panel { -webkit-backdrop-filter: blur(30px) saturate(150%) !important; backdrop-filter: blur(30px) saturate(150%) !important; }
+.mobile_menu_panel::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: var(--fx-grain); opacity: .06; mix-blend-mode: multiply; }
 
 /* mobile drop-down menu: frosted glass sheet */
 .mobile_menu_panel {
@@ -333,12 +333,6 @@ body.home #book               { --w: 1440px; }
   body.home #locations, body.home #faq, body.home #book { max-width: calc(var(--w) + 80px) !important; }
 }
 
-/* ---------- desktop nav: give the links room to breathe ---------- */
-@media (min-width: 1025px) {
-  .lp_nav_links { padding: 5px 8px; }
-  .lp_nav_links a { padding: 8px clamp(10px, 1.05vw, 20px); }
-  .lp_nav.nav-scrolled { max-width: 1480px !important; padding-left: 30px !important; padding-right: 18px !important; }
-}
 @media (min-width: 1025px) and (max-width: 1360px) {
   .lp_phone_num { display: none; }
   .lp_phone_btn { width: 40px; padding: 0 !important; justify-content: center; }
@@ -386,18 +380,23 @@ body.home #book               { --w: 1440px; }
 /* ---------- premium mobile menu: frosted sheet that unrolls ---------- */
 @media (max-width: 1024px) {
   .mobile_menu { background: linear-gradient(180deg, rgba(74,16,46,.28), rgba(74,16,46,.12)) !important; transition: opacity .35s ease !important; }
+  /* popover card that grows out of the hamburger; the nav (and its X) never moves */
   .mobile_menu_panel {
+    position: fixed !important; top: var(--mt, 84px) !important; left: 10px !important; right: 10px !important; bottom: auto !important;
     transform: none !important;
-    clip-path: inset(0 0 100% 0 round 0 0 34px 34px);
-    transition: clip-path .6s var(--fx-ease) !important;
-    max-height: 100dvh; overflow-y: auto; overscroll-behavior: contain;
-    padding: 88px 26px 26px !important;
-    background: linear-gradient(180deg, rgba(255,255,255,.94) 0%, rgba(255,240,247,.92) 100%) !important;
-    -webkit-backdrop-filter: blur(26px) saturate(180%) !important; backdrop-filter: blur(26px) saturate(180%) !important;
-    border-radius: 0 0 34px 34px !important;
-    box-shadow: 0 40px 90px rgba(74,16,46,.22), inset 0 -1px 0 rgba(255,255,255,.9) !important;
+    clip-path: circle(0 at var(--ox, calc(100% - 34px)) var(--oy, -30px));
+    transition: clip-path .4s cubic-bezier(.4, 0, .2, 1) !important;
+    max-height: calc(100dvh - var(--mt, 84px) - 12px); overflow-y: auto; overscroll-behavior: contain;
+    padding: 14px 24px 22px !important;
+    background: linear-gradient(180deg, rgba(255,255,255,.82) 0%, rgba(255,244,249,.78) 100%) !important;
+    border: 1px solid rgba(255,255,255,.8) !important;
+    border-radius: 30px !important;
+    box-shadow: 0 30px 80px rgba(74,16,46,.22), inset 0 1px 0 #fff !important;
   }
-  .mobile_menu.open .mobile_menu_panel { clip-path: inset(0 0 0 0 round 0 0 34px 34px); }
+  .mobile_menu.open .mobile_menu_panel { clip-path: circle(160% at var(--ox, calc(100% - 34px)) var(--oy, -30px)); transition: clip-path .7s var(--fx-ease) !important; }
+  /* the nav sits above the scrim, exactly where it was */
+  body:has(.mobile_menu.open) .lp_nav { z-index: 10001 !important; }
+  body:has(.mobile_menu.open) .lp_nav:not(.nav-scrolled) { position: relative !important; }
   .mobile_links { display: flex !important; flex-direction: column; gap: 0 !important; }
   .mobile_link {
     display: flex !important; align-items: center; justify-content: space-between;
@@ -482,7 +481,31 @@ body.home #book               { --w: 1440px; }
 /* headings follow their column: narrow sections get a smaller display size */
 .sec_title, .wh_h2, .fx3d h2, .cta h2 { text-wrap: balance; }
 body.home #locations .sec_title, body.home #services .sec_title, body.home #checker h2 { font-size: clamp(40px, 4.2vw, 66px) !important; }
-/* the open sheet runs up under the nav bar: no white strip, no hairline */
-@media (max-width: 1024px) {
-  body:has(.mobile_menu.open) .lp_nav, body:has(.mobile_menu.open) .lp_nav.nav-scrolled { background: transparent !important; border-bottom-color: transparent !important; }
+@media (min-width: 1025px) { .lp_cta { display: inline-flex !important; } }
+
+/* =====================================================================
+   TYPOGRAPHY — one family, used with discipline (Apple-like):
+   General Sans everywhere, tight-but-readable display tracking,
+   a calm 17px body, balanced headings, no shouty uppercase kickers.
+   ===================================================================== */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+body { font-family: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important; letter-spacing: -0.006em; }
+h1, h2, h3, h4, .sec_title, .wh_h2, .lp_h1, .fx3d h2, .cta h2, .feature h2, .svc_title, .prov_name_big, .loc_city {
+  font-family: "General Sans", -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-weight: 600 !important; letter-spacing: -0.035em !important; text-wrap: balance;
+}
+.sec_title { font-size: clamp(40px, 5vw, 76px) !important; line-height: 1.02 !important; }
+h1 em, h2 em, h3 em, .sec_title em, .wh_h2 em { font-family: "Instrument Serif", serif !important; font-weight: 400 !important; letter-spacing: -0.01em !important; }
+p, li, .sec_sub, .wh_desc, .svc_desc, .promise_text, .test_text, .faq_a_inner { text-wrap: pretty; }
+.sec_sub, .wh_desc { font-size: clamp(16px, 1.25vw, 19px) !important; line-height: 1.5 !important; color: #545d6e !important; max-width: 42ch; }
+body.home #testimonials .sec_sub, body.home #services .sec_sub { color: rgba(255,255,255,.74) !important; }
+/* kickers: sentence case in the brand rose, the way Apple writes "New" */
+.sec_eyebrow, .feature_eyebrow, .fx3d_pill {
+  text-transform: none !important; letter-spacing: -0.01em !important;
+  font-size: 16px !important; font-weight: 600 !important; color: #b4235e !important;
+}
+body.home #testimonials .sec_eyebrow, body.home #services .sec_eyebrow { color: #ff9cc0 !important; }
+.fxb-cap { text-transform: none !important; letter-spacing: -0.01em !important; font-size: 14px !important; }
+@media (min-width: 769px) {
+  body { font-size: 17px; line-height: 1.6; }
 }

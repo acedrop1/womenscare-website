@@ -122,20 +122,6 @@
   document.querySelectorAll('[data-fx="wave"]').forEach(function (h) { runShader(canvasIn(h), WAVE, PALETTE, { scale: 0.4, speed: 0.8 }); });
   document.querySelectorAll('[data-fx="clouds"]').forEach(function (h, i) { runShader(canvasIn(h), CLOUDS, SKY, { scale: 0.4, offset: 40 + i * 37 }); });
 
-  /* ================================================================
-     Liquid glass: the SVG displacement filter from the component,
-     used as a backdrop-filter where the browser supports it (Chromium).
-     ================================================================ */
-  var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.setAttribute('class', 'fx-svgdefs'); svg.setAttribute('aria-hidden', 'true');
-  svg.innerHTML = '<defs><filter id="container-glass" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">' +
-    '<feTurbulence type="fractalNoise" baseFrequency="0.05 0.05" numOctaves="1" seed="1" result="t"/>' +
-    '<feGaussianBlur in="t" stdDeviation="2" result="b"/>' +
-    '<feDisplacementMap in="SourceGraphic" in2="b" scale="70" xChannelSelector="R" yChannelSelector="B" result="d"/>' +
-    '<feGaussianBlur in="d" stdDeviation="4"/></filter></defs>';
-  document.body.appendChild(svg);
-  if (window.chrome && CSS.supports('backdrop-filter', 'url(#container-glass)')) document.documentElement.classList.add('fx-liquid');
-
   // sliding highlight under the desktop nav links
   var links = document.querySelector('.lp_nav_links');
   if (links) {
@@ -150,8 +136,8 @@
     function moveTo(a) {
       if (!a) { blob.style.opacity = 0; return; }
       blob.style.opacity = 1;
-      blob.style.width = a.offsetWidth + 24 + 'px';
-      blob.style.transform = 'translateX(' + (a.offsetLeft - 12) + 'px)';
+      blob.style.width = a.offsetWidth + 'px';
+      blob.style.transform = 'translateX(' + a.offsetLeft + 'px)';
     }
     links.querySelectorAll('a').forEach(function (a) { a.addEventListener('mouseenter', function () { moveTo(a); }); a.addEventListener('focus', function () { moveTo(a); }); });
     links.addEventListener('mouseleave', function () { moveTo(active); });
@@ -461,6 +447,18 @@
       a.style.setProperty('--i', i);
       if (a.getAttribute('href') === page0) a.classList.add('is-here');
     });
+    // anchor the popover under the hamburger and grow it out of the button
+    var burger = document.getElementById('menuBtn'), menu = document.getElementById('mobileMenu');
+    function anchor() {
+      if (!burger) return;
+      var r = burger.getBoundingClientRect(), top = Math.round(r.bottom + 10);
+      menuPanel.style.setProperty('--mt', top + 'px');
+      menuPanel.style.setProperty('--ox', Math.round(r.left + r.width / 2 - 10) + 'px');
+      menuPanel.style.setProperty('--oy', Math.round(r.top + r.height / 2 - top) + 'px');
+    }
+    if (menu) new MutationObserver(function () { if (menu.classList.contains('open')) anchor(); }).observe(menu, { attributes: true, attributeFilter: ['class'] });
+    addEventListener('resize', anchor);
+    anchor();
     var hours = document.querySelector('.top_bar_hours');
     if (hours && !menuPanel.querySelector('.fx-menu-meta')) {
       var meta = document.createElement('p');
