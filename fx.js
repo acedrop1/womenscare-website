@@ -321,8 +321,7 @@
     // desktop shows two providers side by side; tablet/mobile show one
     var PEEK = 96, GAP = 18, MID = 22;
     function slotW() { return Math.min(620, (cc.clientWidth - 2 * (PEEK + GAP) - MID - 8) / 2); }
-    var single = total === 1;
-    function dims() { return { desktop: { w: slotW(), h: 470 }, tablet: { w: single ? Math.min(880, cc.clientWidth - 16) : 560, h: single ? 460 : 440 }, mobile: { w: Math.min(340, vw - 56), h: 520 } }[tier]; }
+    function dims() { return { desktop: { w: slotW(), h: 470 }, tablet: { w: 560, h: 440 }, mobile: { w: Math.min(340, vw - 56), h: 520 } }[tier]; }
     function isActive(off) { return off === 0 || (tier === 'desktop' && off === 1); }
     function variant(off) {
       var A = dims(), hid = Math.abs(off) > 1;
@@ -365,7 +364,7 @@
     function render() {
       var A = dims(), want = new Set();
       stage.style.height = A.h + 'px';
-      for (var off = single ? 0 : -3; off <= (single ? 0 : 3); off++) {
+      for (var off = -3; off <= 3; off++) {
         var vi = page + off, card = cards.get(vi);
         want.add(vi);
         if (!card) {
@@ -420,15 +419,14 @@
 
     function setTier() {
       vw = innerWidth;
-      var t = vw < 768 ? 'mobile' : (single || cc.clientWidth < 1000) ? 'tablet' : 'desktop';
+      var t = vw < 768 ? 'mobile' : cc.clientWidth < 1000 ? 'tablet' : 'desktop';
       if (t !== tier) { tier = t; cards.forEach(function (c) { c.remove(); }); cards.clear(); }
       render();
     }
     addEventListener('resize', setTier);
     setTier();
 
-    cc.classList.toggle('is-single', single);
-    if (!reduce && !single) (function step(now) {
+    if (!reduce) (function step(now) {
       if (paused || !inView || document.hidden) last = null;
       else {
         if (last !== null) elapsed += now - last;
