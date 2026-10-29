@@ -7,6 +7,21 @@
   var ES = document.documentElement.lang === 'es';
 
   /* ================================================================
+     Lenis smooth scroll (wheel/trackpad only; touch stays native).
+     Pauses while the menu, chat or a modal locks the page.
+     ================================================================ */
+  if (window.Lenis && !reduce) {
+    var lenis = new Lenis({ autoRaf: true, anchors: { offset: -100 }, allowNestedScroll: true, lerp: 0.1 });
+    window.lenis = lenis;
+    var syncLock = function () {
+      var locked = document.body.style.overflow === 'hidden' || document.body.classList.contains('chat_open') ||
+        !!document.querySelector('.mobile_menu.open');
+      locked ? lenis.stop() : lenis.start();
+    };
+    new MutationObserver(syncLock).observe(document.body, { attributes: true, attributeFilter: ['style', 'class'], subtree: true });
+  }
+
+  /* ================================================================
      Inner pages (service, blog, profile, legal, location): tag the
      shared template so the effects below pick it up. Runs first.
      ================================================================ */
@@ -173,24 +188,56 @@
   document.querySelectorAll('[data-fx="wave"]').forEach(function (h) { runShader(canvasIn(h), WAVE, PALETTE, { scale: 0.4, speed: 0.8 }); });
   document.querySelectorAll('[data-fx="clouds"]').forEach(function (h, i) { runShader(canvasIn(h), CLOUDS, SKY, { scale: 0.4, offset: 40 + i * 37 }); });
 
-  // sliding highlight under the desktop nav links
+  // sliding highlight under the desktop nav items + dropdown menus
   var links = document.querySelector('.lp_nav_links');
   if (links) {
     var blob = document.createElement('span');
     blob.className = 'fx-navblob'; blob.setAttribute('aria-hidden', 'true');
     links.appendChild(blob);
-    var here = location.pathname.split('/').pop().replace(/\.html$/, '') || 'index';
-    var active = Array.prototype.find.call(links.querySelectorAll('a'), function (a) {
-      return (a.getAttribute('href') || '').replace(/(\.es)?\.html$/, '').replace(/\.es$/, '') === here.replace(/\.es$/, '');
+    var here = (location.pathname.split('/').pop() || 'index').replace(/(\.es)?(\.html)?$/, '');
+    var items = [].slice.call(links.querySelectorAll(':scope > a, :scope > .nav_dd > .nav_dd_btn'));
+    var hereLink = [].find.call(links.querySelectorAll('a'), function (a) {
+      return (a.getAttribute('href') || '').replace(/(\.es)?\.html$/, '') === here;
     });
-    if (active) active.classList.add('is-here');
+    var active = null;
+    if (hereLink) {
+      hereLink.classList.add('is-here');
+      var dd = hereLink.closest('.nav_dd');
+      active = dd ? dd.querySelector('.nav_dd_btn') : hereLink;
+      active.classList.add('is-here');
+    }
     function moveTo(a) {
       if (!a) { blob.style.opacity = 0; return; }
       blob.style.opacity = 1;
       blob.style.width = a.offsetWidth + 'px';
       blob.style.transform = 'translateX(' + a.offsetLeft + 'px)';
     }
-    links.querySelectorAll('a').forEach(function (a) { a.addEventListener('mouseenter', function () { moveTo(a); }); a.addEventListener('focus', function () { moveTo(a); }); });
+    var btns = [].slice.call(links.querySelectorAll('.nav_dd_btn'));
+    var closeT;
+    function setOpen(btn) {
+      btns.forEach(function (b) { b.setAttribute('aria-expanded', b === btn); });
+    }
+    items.forEach(function (a) {
+      a.addEventListener('mouseenter', function () { moveTo(a); });
+      a.addEventListener('focus', function () { moveTo(a); });
+    });
+    var canHover = matchMedia('(hover: hover)').matches;
+    btns.forEach(function (b) {
+      var dd = b.parentElement;
+      b.addEventListener('click', function () { setOpen(b.getAttribute('aria-expanded') === 'true' ? null : b); });
+      if (canHover) {
+        dd.addEventListener('mouseenter', function () { clearTimeout(closeT); setOpen(b); });
+        dd.addEventListener('mouseleave', function () { closeT = setTimeout(function () { setOpen(null); }, 160); });
+      }
+      dd.addEventListener('focusout', function (e) { if (!dd.contains(e.relatedTarget)) b.setAttribute('aria-expanded', 'false'); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      var open = btns.filter(function (b) { return b.getAttribute('aria-expanded') === 'true'; })[0];
+      if (open) { setOpen(null); open.focus(); }
+    });
+    document.addEventListener('click', function (e) { if (!links.contains(e.target)) setOpen(null); });
+    addEventListener('scroll', function () { if (btns.some(function (b) { return b.getAttribute('aria-expanded') === 'true'; }) && !canHover) setOpen(null); }, { passive: true });
     links.addEventListener('mouseleave', function () { moveTo(active); });
     addEventListener('load', function () { moveTo(active); });
     addEventListener('resize', function () { moveTo(active); });
@@ -493,10 +540,15 @@
      ================================================================ */
   var menuPanel = document.querySelector('.mobile_menu_panel');
   if (menuPanel) {
-    var page0 = location.pathname.split('/').pop() || 'index.html';
+    var page0 = (location.pathname.split('/').pop() || 'index').replace(/\.html$/, '');
+    var isHere = function (a) { return (a.getAttribute('href') || '').replace(/\.html$/, '') === page0; };
     menuPanel.querySelectorAll('.mobile_link').forEach(function (a, i) {
       a.style.setProperty('--i', i);
-      if (a.getAttribute('href') === page0) a.classList.add('is-here');
+      if (isHere(a)) a.classList.add('is-here');
+    });
+    // the group holding the current page starts open
+    menuPanel.querySelectorAll('.mm_sub a').forEach(function (a) {
+      if (isHere(a)) { a.classList.add('is-here'); a.closest('details').open = true; }
     });
     // anchor the popover under the hamburger and grow it out of the button
     var burger = document.getElementById('menuBtn'), menu = document.getElementById('mobileMenu');
@@ -646,6 +698,7 @@
     }, { threshold: 0.3 });
     els.forEach(function (el) { io.observe(el); });
   }
+  document.querySelectorAll('.nav_dd_svc[data-icon]').forEach(function (el) { el.innerHTML = icon(el.getAttribute('data-icon')); });
   var pageKey = location.pathname.split('/').pop().replace(/(\.es)?(\.html)?$/, '');
   var heroPhoto = document.querySelector('.page_hero_image');
   if (heroPhoto && ICONS[pageKey]) {
