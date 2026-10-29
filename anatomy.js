@@ -1,4 +1,5 @@
-// anatomy.js — interactive 3D female anatomy (HuBMAP female reference, CC BY 4.0).
+// anatomy.js — interactive 3D female anatomy: the human-atlas-enhanced female study
+// model (MIT; geometry BodyParts3D + HRA female, CC BY 4.0).
 // three.js loads only when the section nears the viewport.
 const stage = document.querySelector('.fx3d_stage');
 
@@ -13,12 +14,12 @@ if (stage) {
   }, { rootMargin: '300px' }).observe(stage);
 }
 
-// organ centres in model space (from the source GLB node bounds)
+// organ centres in model space (from the source manifest part bounds; feet at y = 0)
 const ANCHORS = {
-  breast: [0.075, 0.437, 0.033],
-  uterus: [-0.013, 0.036, -0.052],
-  ovary: [0.044, 0.061, -0.045],
-  cervix: [-0.011, 0.021, -0.074],
+  breast: [0.082, 1.21, 0.08],
+  uterus: [0.002, 0.872, -0.033],
+  ovary: [0.081, 0.895, -0.026],
+  cervix: [0.004, 0.858, -0.058],
 };
 
 async function init() {
@@ -38,35 +39,27 @@ async function init() {
   const key = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(1.5, 2, 2.5); scene.add(key);
   const rimL = new THREE.DirectionalLight(0xff9cc2, 1.4); rimL.position.set(-2, 0.5, -1.5); scene.add(rimL);
 
-  // pearl glass shell: fresnel rim, nearly clear face-on
-  const skin = new THREE.ShaderMaterial({
-    transparent: true, depthWrite: false, side: THREE.FrontSide,
-    uniforms: { uRim: { value: new THREE.Color('#c93d76') }, uFace: { value: new THREE.Color('#ffffff') }, uTime: { value: 0 } },
-    vertexShader: `varying vec3 vN; varying vec3 vV; varying float vY;
-      void main(){ vec4 mv = modelViewMatrix * vec4(position,1.); vN = normalize(normalMatrix*normal); vV = normalize(-mv.xyz); vY = position.y; gl_Position = projectionMatrix*mv; }`,
-    fragmentShader: `uniform vec3 uRim; uniform vec3 uFace; uniform float uTime; varying vec3 vN; varying vec3 vV; varying float vY;
-      void main(){ float f = pow(1. - abs(dot(normalize(vN), normalize(vV))), 2.2);
-        float scan = (1. - smoothstep(0., .012, abs(fract(vY*1.2 - uTime*.07) - .5))) * .18; // slow light band sweeping up the body
-        vec3 c = mix(uFace, uRim, f); gl_FragColor = vec4(c, .06 + f*.62 + scan); }`,
-  });
-  // standard (not physical) material: clearcoat + sheen cost seconds of shader compile on weaker GPUs
-  const organ = new THREE.MeshStandardMaterial({ color: '#e8588c', roughness: 0.3, metalness: 0.05, emissive: '#ff5c93', emissiveIntensity: 0.45 });
-  const bone = new THREE.MeshStandardMaterial({ color: '#f6e6da', roughness: 0.6, transparent: true, opacity: 0.55, depthWrite: false });
+  scene.add(new THREE.DirectionalLight(0xffd6e4, 0.8).translateX(2).translateZ(1));
 
+  // ecorche in the brand's rose palette; organs glow through the abdominal wall
+  const muscle = new THREE.MeshStandardMaterial({ color: '#dc7783', roughness: 0.55, emissive: '#5a1028', emissiveIntensity: 0.12 });
+  const bone = new THREE.MeshStandardMaterial({ color: '#f0cfd2', roughness: 0.65, emissive: '#5a1028', emissiveIntensity: 0.06 }); // blush ivory: softer than bare-bone white
+  const breast = new THREE.MeshStandardMaterial({ color: '#eea3ae', roughness: 0.5, emissive: '#7a1f3a', emissiveIntensity: 0.08 });
+  const organ = new THREE.MeshStandardMaterial({ color: '#ff6d9c', emissive: '#ff3d7f', emissiveIntensity: 0.9, transparent: true, opacity: 0.92, depthTest: false });
+  const MATS = { muscle, bone, breast, organ };
   const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
   const gltf = await loader.loadAsync('models/female-body.glb');
   const body = gltf.scene;
   body.traverse((o) => {
     if (!o.isMesh) return;
     const n = o.material.name;
-    o.material = n === 'skin' ? skin : n === 'bone' ? bone : organ;
-    if (n === 'skin') o.renderOrder = 2;
-    if (n === 'organ') o.renderOrder = 1;
+    o.material = MATS[n] || muscle;
+    if (n === 'organ') o.renderOrder = 3;
   });
 
   // centre on the torso so the organs read at a useful size
   const pivot = new THREE.Group();
-  const focus = new THREE.Vector3(0, 0.2, -0.05);
+  const focus = new THREE.Vector3(0, 0.82, 0);
   body.position.sub(focus);
   pivot.add(body);
   scene.add(pivot);
@@ -76,7 +69,7 @@ async function init() {
     map: (() => { const c = document.createElement('canvas'); c.width = c.height = 128; const g = c.getContext('2d'); const r = g.createRadialGradient(64, 64, 0, 64, 64, 64); r.addColorStop(0, 'rgba(255,120,170,.9)'); r.addColorStop(1, 'rgba(255,120,170,0)'); g.fillStyle = r; g.fillRect(0, 0, 128, 128); return new THREE.CanvasTexture(c); })(),
     transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
   }));
-  halo.scale.setScalar(0.4); halo.position.set(...ANCHORS.uterus); halo.renderOrder = 0;
+  halo.scale.setScalar(0.3); halo.position.set(...ANCHORS.uterus); halo.renderOrder = 4; halo.material.depthTest = false;
   body.add(halo);
 
   // hotspots: HTML buttons pinned to organ anchors
@@ -86,8 +79,9 @@ async function init() {
   });
   const list = document.querySelectorAll('.fx3d_list a[data-anchor]');
   // hovering a list row glides the camera in on that organ; pins only show their label
-  const WIDE = { y: 0.04, span: 1.35 };
-  const ZOOM = { breast: { y: 0.24, span: 0.55 }, uterus: { y: -0.16, span: 0.34 }, ovary: { y: -0.15, span: 0.38 }, cervix: { y: -0.17, span: 0.32 } };
+  // whole body by default; hovering a list row glides in on that organ
+  const WIDE = { y: -0.03, span: 1.95 };
+  const ZOOM = { breast: { y: 0.37, span: 0.5 }, uterus: { y: 0.05, span: 0.32 }, ovary: { y: 0.07, span: 0.36 }, cervix: { y: 0.04, span: 0.3 } };
   const view = { ...WIDE };
   let want = WIDE;
   function hot(name, zoom) {
@@ -112,7 +106,7 @@ async function init() {
     view.y += (want.y - view.y) * 0.07;
     view.span += (want.span - view.span) * 0.07;
     // keep the framed height, but never let a narrow stage crop the body sideways
-    const span = view.span * Math.max(1, 0.62 / camera.aspect);
+    const span = view.span * Math.max(1, 0.5 / camera.aspect);
     camera.position.set(0, view.y + 0.02, (span / 2) / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)));
     camera.lookAt(0, view.y, 0);
   }
@@ -154,7 +148,6 @@ async function init() {
     pivot.rotation.x += (tiltX - pivot.rotation.x) * 0.06;
     pivot.position.x += (tiltY * 0.15 - pivot.position.x) * 0.06;
     aim();
-    skin.uniforms.uTime.value = reduce ? 0 : t;
     halo.material.opacity = 0.55 + Math.sin(t * 1.6) * 0.15;
     renderer.render(scene, camera);
 

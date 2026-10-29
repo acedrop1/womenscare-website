@@ -500,34 +500,14 @@
   if (locs) swipeRow(locs, [].slice.call(locs.children));
 
   /* ================================================================
-     World of care: expanding gallery that auto-advances on desktop,
-     a centre-snapping swipe row on mobile.
+     World of care: on mobile, a centre-snapping swipe row that
+     highlights the focused card (desktop shows all five).
      ================================================================ */
   var wh = document.querySelector('body.home .wh_cards');
   if (wh) {
-    var whCards = [].slice.call(wh.querySelectorAll('.wh_card')), whOn = 0, whT = 0, whLast = null, whHover = false, whSeen = false;
-    var desk = matchMedia('(min-width: 769px)');
-    whCards.forEach(function (c, i) {
-      var bar = document.createElement('span'); bar.className = 'wh_card_bar'; bar.innerHTML = '<i></i>'; c.appendChild(bar);
-      c.addEventListener('mouseenter', function () { if (desk.matches) { setOn(i); whHover = true; } });
-      c.addEventListener('focus', function () { if (desk.matches) setOn(i); });
+    var whCards = [].slice.call(wh.querySelectorAll('.wh_card')), desk = matchMedia('(min-width: 769px)');
+    swipeRow(wh, whCards, function (i) {
+      whCards.forEach(function (c, k) { c.classList.toggle('is-on', !desk.matches && k === i); });
     });
-    wh.addEventListener('mouseleave', function () { whHover = false; whLast = null; });
-    function setOn(i) {
-      whOn = i; whT = 0;
-      whCards.forEach(function (c, k) { c.classList.toggle('is-on', k === i); c.querySelector('.wh_card_bar i').style.transform = 'scaleX(0)'; });
-    }
-    setOn(0);
-    swipeRow(wh, whCards, function (i) { if (!desk.matches) setOn(i); });
-    new IntersectionObserver(function (e) { whSeen = e[0].isIntersecting; whLast = null; }).observe(wh);
-    if (!reduce) (function tick(now) {
-      if (desk.matches && whSeen && !whHover && !document.hidden) {
-        if (whLast !== null) whT += now - whLast;
-        whLast = now;
-        if (whT >= 5000) setOn((whOn + 1) % whCards.length);
-        else whCards[whOn].querySelector('.wh_card_bar i').style.transform = 'scaleX(' + whT / 5000 + ')';
-      } else whLast = null;
-      requestAnimationFrame(tick);
-    })(performance.now());
   }
 })();
